@@ -6,9 +6,9 @@
  * @Date: Dec 2021
  */
 public class TimeController {
-    private static ATMDate startDate;
+    private static ATMDate startDate =new ATMDate();
     private static long startRealTime;
-    private static ATMDate curDate;
+    private static ATMDate curDate = new ATMDate();
     public static void startTime(){
         startRealTime = System.currentTimeMillis();
         startDate.setDate(new int[]{0, 0, 0, 0});
@@ -23,8 +23,10 @@ public class TimeController {
         int yearD = monthD/12;
         int[] dateTemp = {yearD,monthD%12,dayD%30,(int)hourD%24};
         curDate.setDate(dateTemp);
-        return curDate;
+        ATMDate cur = curDate;
+        return cur;
     }
+
 
     public static int getDaysDifference(ATMDate past,ATMDate now){
         int yearD = now.getYear()-past.getYear();
