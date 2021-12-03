@@ -11,7 +11,7 @@ public class TimeController {
     private static ATMDate curDate = new ATMDate();
     public static void startTime(){
         startRealTime = System.currentTimeMillis();
-        startDate.setDate(new int[]{0, 0, 0, 0});
+        startDate.setDate(new int[]{2020, 1, 1, 0});
     }
 
     public static ATMDate getCurDate(){
@@ -21,7 +21,8 @@ public class TimeController {
         int dayD = (int)hourD/24;
         int monthD = dayD/30;
         int yearD = monthD/12;
-        int[] dateTemp = {yearD,monthD%12,dayD%30,(int)hourD%24};
+        int[] dateTemp = {yearD+startDate.getYear(),monthD%12+startDate.getMonth(),dayD%30+startDate.getDay(),
+                (int)hourD%24+startDate.getHour()};
         curDate.setDate(dateTemp);
         ATMDate cur = curDate;
         return cur;
