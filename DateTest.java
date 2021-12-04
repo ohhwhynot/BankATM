@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * @ClassName: Kain
  * @Author: Xudong Gao
@@ -5,11 +7,16 @@
  * @Date: Dec 2021
  */
 public class DateTest {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         TimeController.startTime();
-        while (true) {
-            Thread.sleep(1000);
-            System.out.println( TimeController.getCurDate());
-        }
+        SessionHandler log = SessionHandler.getInstance();
+        log.addLog("aaaaaaaa");
+        log.addLog("bbbbbbbb");
+        log.writeLogs();
+        //TimeController.startTime();
+        //while (true) {
+        //    Thread.sleep(1000);
+        //    System.out.println( TimeController.getCurDate());
+        //}
     }
 }
