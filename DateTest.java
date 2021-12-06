@@ -8,11 +8,12 @@ import java.io.IOException;
  */
 public class DateTest {
     public static void main(String[] args) throws InterruptedException, IOException {
-        TimeController.startTime();
-        SessionHandler log = SessionHandler.getInstance();
-        log.addLog("aaaaaaaa");
-        log.addLog("bbbbbbbb");
-        log.writeLogs();
+        new ATMHome().setVisible(true);
+//        TimeController.startTime();
+//        SessionHandler log = SessionHandler.getInstance();
+//        log.addLog("aaaaaaaa");
+//        log.addLog("bbbbbbbb");
+//        log.writeLogs();
         //TimeController.startTime();
         //while (true) {
         //    Thread.sleep(1000);

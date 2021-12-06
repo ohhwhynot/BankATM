@@ -1,7 +1,10 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @ClassName: BackupController
@@ -10,8 +13,20 @@ import java.util.List;
  * @Date: Dec 2021
  */
 public class BackupController {
+    static String fRoot = System.getProperty("user.dir") + "/BankATM/ConfigFiles/";
+    public static List<String> readTxt(String fileName) throws FileNotFoundException {
+        Scanner inf =new Scanner(new File(fRoot+fileName));
+        List<String> content = new ArrayList<>();
+        String line;
+        while(inf.hasNext()){
+            line = inf.nextLine();
+            content.add(line);
+        }
+        return content;
+    }
+
     public static void writeTxt(String fileName, List<String> lines, boolean isReplace) throws IOException {
-        String fRoot = System.getProperty("user.dir") + "/BankATM/ConfigFiles/";
+
         File F=new File(fRoot+fileName);
         System.out.println(fRoot+fileName);
         if(!F.exists()){
