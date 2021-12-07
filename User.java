@@ -4,17 +4,17 @@ class User {
     protected String userName;
     protected String userId;
     protected String password;
-    // protected List<Account> accounts;
+    protected List<Account> accounts;
 
     public User(String userName, String userId, String password) {
         this.userName = userName;
         this.userId = userId;
         this.password = password;
-        // this.accounts = new ArrayList<Account>();
+        this.accounts = new ArrayList<Account>();
     }
 
     public boolean setPassword(String password) {
-        if(password.contains(" ")) {
+        if (password.contains(" ")) {
             return false;
         }
         this.password = password;
@@ -27,9 +27,10 @@ class User {
 
     public String toString() {
         // version 1
-        // String str = "Username: " + userName + "\nUser id: " + userId + "\nAccounts: ";
+        // String str = "Username: " + userName + "\nUser id: " + userId + "\nAccounts:
+        // ";
         // for(Account acc : this.accounts) {
-        //     str = str + "\n" +  acc.toString();
+        // str = str + "\n" + acc.toString();
         // }
 
         // version 2

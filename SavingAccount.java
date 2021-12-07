@@ -1,26 +1,30 @@
 import java.util.ArrayList;
 
 public class SavingAccount extends Account {
-    private ATMDate date;
+    private int day;
 
     public SavingAccount() {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
-        this.date = new ATMDate();
+        this.day = 0;
     }
 
-    public SavingAccount(String CountryCode, float money) {
+    public SavingAccount(int day, int usd, int eur, int cny, int jpy) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
-        addMoney(new Money(CountryCode, money));
-        this.date = new ATMDate();
+        this.day = day;
+        this.addMoney(new Money("USD", (float) usd));
+        this.addMoney(new Money("EUR", (float) eur));
+        this.addMoney(new Money("CNY", (float) cny));
+        this.addMoney(new Money("JPY", (float) jpy));
     }
 
-    public float interestCalculation(int datediff) {
+    public float interestCalculation() {
+        int datediff = this.day;
         float interest = 0;
         float balance = this.getBalance();
         if (balance >= 5000) {
@@ -45,7 +49,9 @@ public class SavingAccount extends Account {
 
     @Override
     public String toString() {
-        return String.format("This saving account's total balance is %.2f USD", this.getBalance());
+        return String.format("SAVING %d %.2f %.2f %.2f %.2f", this.day, this.moneyList.get(0).getMoneyAmount(),
+                this.moneyList.get(1).getMoneyAmount(), this.moneyList.get(2).getMoneyAmount(),
+                this.moneyList.get(3).getMoneyAmount());
     }
 
     public static void main(String[] args) {

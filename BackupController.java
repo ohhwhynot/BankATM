@@ -14,11 +14,12 @@ import java.util.Scanner;
  */
 public class BackupController {
     static String fRoot = System.getProperty("user.dir") + "/BankATM/ConfigFiles/";
+
     public static List<String> readTxt(String fileName) throws FileNotFoundException {
-        Scanner inf =new Scanner(new File(fRoot+fileName));
+        Scanner inf = new Scanner(new File(fRoot + fileName));
         List<String> content = new ArrayList<>();
         String line;
-        while(inf.hasNext()){
+        while (inf.hasNext()) {
             line = inf.nextLine();
             content.add(line);
         }
@@ -27,16 +28,16 @@ public class BackupController {
 
     public static void writeTxt(String fileName, List<String> lines, boolean isReplace) throws IOException {
 
-        File F=new File(fRoot+fileName);
-        System.out.println(fRoot+fileName);
-        if(!F.exists()){
+        File F = new File(fRoot + fileName);
+        System.out.println(fRoot + fileName);
+        if (!F.exists()) {
             F.createNewFile();
         }
-        FileWriter fw=null;
+        FileWriter fw = null;
 
         try {
             fw = new FileWriter(F, !isReplace);
-            for(String line:lines)
+            for (String line : lines)
                 fw.write(line + "\r\n");
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,4 +48,7 @@ public class BackupController {
         }
 
     }
+
+    public static void readCSV();
+
 }
