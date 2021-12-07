@@ -1,88 +1,144 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 /*
- * Created by JFormDesigner on Mon Dec 06 20:39:28 CST 2021
+ * Created by JFormDesigner on Mon Dec 06 22:18:12 CST 2021
  */
 
 
 
 /**
- * @author unknown
+ * @author Xudong Gao
  */
 public class ATMHome extends JFrame {
+
     public ATMHome() {
         initComponents();
     }
 
+    private void button2ActionPerformed(ActionEvent e) {
+        String username = textField1.getText();
+        String passWord = passwordField1.getText();
+        if(true){ //a function to check user
+            textField1.setText(null);
+            passwordField1.setText(null);
+            if(true){ //if it is a client
+                Client client = new Client(username,"ss",passWord);//  get a client object
+                ClientHome ch= new ClientHome(client);
+                ch.setVisible(true);
+            }
+            else {
+                // get an admin
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null,"Invalid Login Details!","Error!",
+                    JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }
+
+    private void signUpPerformed(ActionEvent e) {
+        new SignUpScreen().setVisible(true);// TODO add your code here
+    }
+
+
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Xudong Gao
-        panel4 = new JPanel();
-        panel3 = new JPanel();
-        panel2 = new JPanel();
-        panel5 = new JPanel();
-        panel6 = new JPanel();
         label1 = new JLabel();
+        label2 = new JLabel();
+        label3 = new JLabel();
         textField1 = new JTextField();
+        button2 = new JButton();
+        button3 = new JButton();
+        separator1 = new JSeparator();
+        passwordField1 = new JPasswordField();
+        separator2 = new JSeparator();
 
         //======== this ========
+        setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         var contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
+        contentPane.setLayout(null);
 
-        //======== panel4 ========
+        //---- label1 ----
+        label1.setText("ATM");
+        label1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+        contentPane.add(label1);
+        label1.setBounds(new Rectangle(new Point(240, 45), label1.getPreferredSize()));
+
+        //---- label2 ----
+        label2.setText("Username:");
+        label2.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
+        contentPane.add(label2);
+        label2.setBounds(148, 118, 85, 35);
+
+        //---- label3 ----
+        label3.setText("Password:");
+        label3.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
+        contentPane.add(label3);
+        label3.setBounds(148, 168, 80, 50);
+
+        //---- textField1 ----
+        textField1.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
+        contentPane.add(textField1);
+        textField1.setBounds(255, 123, 170, 30);
+
+        //---- button2 ----
+        button2.setText("log in");
+        button2.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
+        button2.addActionListener(e -> button2ActionPerformed(e));
+        contentPane.add(button2);
+        button2.setBounds(285, 270, 90, 30);
+
+        //---- button3 ----
+        button3.setText("sign up");
+        button3.setHorizontalTextPosition(SwingConstants.CENTER);
+        button3.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
+        button3.addActionListener(e -> signUpPerformed(e));
+        contentPane.add(button3);
+        button3.setBounds(160, 270, 90, 30);
+        contentPane.add(separator1);
+        separator1.setBounds(65, 85, 400, 70);
+
+        //---- passwordField1 ----
+        passwordField1.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
+        contentPane.add(passwordField1);
+        passwordField1.setBounds(255, 185, 170, 30);
+        contentPane.add(separator2);
+        separator2.setBounds(65, 245, 400, 70);
+
         {
-            panel4.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-            EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing
-            .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
-            java.awt.Color.red),panel4. getBorder()));panel4. addPropertyChangeListener(new java.beans.PropertyChangeListener()
-            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))
-            throw new RuntimeException();}});
-            panel4.setLayout(new BorderLayout());
+            // compute preferred size
+            Dimension preferredSize = new Dimension();
+            for(int i = 0; i < contentPane.getComponentCount(); i++) {
+                Rectangle bounds = contentPane.getComponent(i).getBounds();
+                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+            }
+            Insets insets = contentPane.getInsets();
+            preferredSize.width += insets.right;
+            preferredSize.height += insets.bottom;
+            contentPane.setMinimumSize(preferredSize);
+            contentPane.setPreferredSize(preferredSize);
         }
-        contentPane.add(panel4, BorderLayout.EAST);
-
-        //======== panel3 ========
-        {
-            panel3.setLayout(new BorderLayout());
-        }
-        contentPane.add(panel3, BorderLayout.WEST);
-
-        //======== panel2 ========
-        {
-            panel2.setLayout(new BorderLayout());
-        }
-        contentPane.add(panel2, BorderLayout.SOUTH);
-
-        //======== panel5 ========
-        {
-            panel5.setLayout(new BorderLayout());
-        }
-        contentPane.add(panel5, BorderLayout.NORTH);
-
-        //======== panel6 ========
-        {
-            panel6.setLayout(new BorderLayout());
-
-            //---- label1 ----
-            label1.setText("ATM");
-            label1.setHorizontalAlignment(SwingConstants.CENTER);
-            panel6.add(label1, BorderLayout.NORTH);
-            panel6.add(textField1, BorderLayout.CENTER);
-        }
-        contentPane.add(panel6, BorderLayout.CENTER);
-        pack();
+        setSize(545, 410);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Xudong Gao
-    private JPanel panel4;
-    private JPanel panel3;
-    private JPanel panel2;
-    private JPanel panel5;
-    private JPanel panel6;
     private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
     private JTextField textField1;
+    private JButton button2;
+    private JButton button3;
+    private JSeparator separator1;
+    private JPasswordField passwordField1;
+    private JSeparator separator2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

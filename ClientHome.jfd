@@ -1,0 +1,64 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:38:p, par l {seq {comp label5:::p::p, space u:::p, comp realName:::p::p, space :p:117:p, comp label6:::p::p, space :::p, comp credit:::p::p, space :120:179:x}, seq {par l {comp button8:::p:170:p, comp label8:::p::p, seq l {par l {comp button2::l:p:170:p, comp button4::l:p:170:p, comp button6::l:p:170:p}, space :p:44:p, par l {comp button7:::p:170:p, comp button5:::p:170:p, comp button3:::p:170:p}}}, space :0:66:x}}}}"
+			"$verticalGroup": "par l {seq l {space :p:19:p, par b {comp label5::b:p::p, comp realName::b:p::p, comp label6::b:p::p, comp credit::b:p::p}, space s:::p, comp label8:::p::p, space s:::p, par b {comp button2::b:p:40:p, comp button3::b:p:40:p}, space :::p, par b {comp button4::b:p:40:p, comp button5::b:p:40:p}, space :::p, par b {comp button6::b:p:40:p, comp button7::b:p:40:p}, space :::p, comp button8:::p:40:p, space ::24:x}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Username:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "realName"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Credit:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "credit"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Please choose the business you want to do:"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Create a new account"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "Deposit"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Close a new account"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "Withdraw"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"text": "Transfer"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button7"
+				"text": "Apply for loan"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button8"
+				"text": "Trade stocks"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 40, 80 )
+			"size": new java.awt.Dimension( 490, 335 )
+		} )
+	}
+}

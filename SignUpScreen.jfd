@@ -1,0 +1,54 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :49:49:p, par l {seq {comp label4:::p:69:p, space u:::p, comp passwordField2:::p:139:p}, seq l {par l {comp label2::l:p::p, comp label3::l:p:69:p}, space u:::p, par l {comp UsernameF:::p:139:p, comp passwordField1::l:p:139:p}}}}, seq {space :p:69:p, comp button1:::p::p, space :p:27:p, comp button2:::p::p}}, space ::51:x}, seq t {space :0:93:x, comp label1:::p::p, space :p:100:p}}"
+			"$verticalGroup": "par l {seq {space :p:7:p, comp label1:::p:45:p, space u:::p, par b {comp label2::b:p:38:p, comp UsernameF::b:p:30:p}, space :5:5:p, par b {comp label3::b:p:38:p, comp passwordField1::b:p:30:p}, space :p:5:p, par b {comp label4::b:p::p, comp passwordField2::b:p:30:p}, space s:::p, par b {comp button1::b:p::p, comp button2::b:p::p}, space ::54:x}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			"$locationPolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Create a new user"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Username:"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "UsernameF"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Password:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Confirm:"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField1"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Reset"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "resetPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Sign Up"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "signUpPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 135, 35 )
+			"size": new java.awt.Dimension( 345, 330 )
+		} )
+	}
+}
