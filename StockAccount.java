@@ -7,7 +7,7 @@ public class StockAccount extends Account {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
-        constructMoneyList();
+
         this.stocks = new ArrayList<Stock>();
     }
 
@@ -24,7 +24,6 @@ public class StockAccount extends Account {
     }
 
     public void buyStock(int amount, Stock stock) {
-        convertAllToUSD();
         float totalPrice = stock.getPrice() * amount;
         if (totalPrice > this.getBalance()) {
             System.out.println("Incifficient balance");
@@ -33,13 +32,6 @@ public class StockAccount extends Account {
             for (int i = 0; i < amount; i++) {
                 addStock(stock);
             }
-        }
-    }
-
-    public void printStock() {
-        for (Stock s : this.stocks) {
-            System.out.println(
-                    String.format("Name %s, code %s, current price %.2f", s.getName(), s.getCode(), s.getPrice()));
         }
     }
 

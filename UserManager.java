@@ -4,7 +4,7 @@ import java.util.*;
 class UserManager {
     // private String filename;
     private List<User> users;
-    
+
     public UserManager(String filename) {
         users = new ArrayList<User>();
         try {
@@ -18,13 +18,13 @@ class UserManager {
                 users.add(new User(strs[0], strs[1], strs[2]));
                 line = br.readLine();
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void printUsers() {
-        for(User user : users) {
+        for (User user : users) {
             System.out.println(user);
         }
     }
@@ -34,21 +34,21 @@ class UserManager {
     }
 
     // public void storeUser(User user) {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         // String userInfo = user.toString() + "\r\n";
         User u1 = new User("John", "1", "123456");
         String userInfo = u1.toString() + "\r\n";
 
-        try { 
-            File writename = new File("Users.txt"); 
-            writename.createNewFile(); 
-            BufferedWriter out = new BufferedWriter(new FileWriter(writename));  
-            out.write(userInfo); 
+        try {
+            File writename = new File("Users.txt");
+            writename.createNewFile();
+            BufferedWriter out = new BufferedWriter(new FileWriter(writename));
+            out.write(userInfo);
             out.flush();
             out.close();
-  
-        } catch (Exception e) {  
-            e.printStackTrace();  
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

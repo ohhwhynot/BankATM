@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class CheckingAccount extends Account {
     private float loan;
+    private int day;
+    private int credit;
 
     public CheckingAccount() {
         super();
@@ -9,15 +11,22 @@ public class CheckingAccount extends Account {
         this.curr = new Currency();
         constructMoneyList();
         this.loan = 0;
+        this.day = 0;
+        this.credit = 0;
     }
 
-    public CheckingAccount(String CountryCode, float money) {
+    public CheckingAccount(int day, int usd, int eur, int cny, int jpy, int credit, int loan) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
-        addMoney(new Money(CountryCode, money));
-        this.loan = 0;
+        this.day = day;
+        this.addMoney(new Money("USD", (float) usd));
+        this.addMoney(new Money("EUR", (float) eur));
+        this.addMoney(new Money("CNY", (float) cny));
+        this.addMoney(new Money("JPY", (float) jpy));
+        this.credit = credit;
+        this.loan = loan;
     }
 
     public void loan(Money m) {
@@ -27,6 +36,18 @@ public class CheckingAccount extends Account {
 
     public float getLoan() {
         return this.loan;
+    }
+
+    public void setCredit(int amount) {
+        this.credit = amount;
+    }
+
+    public void addCredit(int amount) {
+        this.credit += amount;
+    }
+
+    public void minusCredit(int amount) {
+        this.credit -= amount;
     }
 
     public float calculateLoan(int datediff) {
@@ -39,13 +60,15 @@ public class CheckingAccount extends Account {
     }
 
     public String toString() {
-        return String.format("This checking account's total balance is %.2f USD", (this.getBalance()));
+        return String.format("CHECKING %d %.2f %.2f %.2f %.2f %d %.2f", this.day,
+                this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
+                this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(), this.credit, this.loan);
     }
 
     public static void main(String[] args) {
         CheckingAccount c = new CheckingAccount();
         c.loan(new Money("EUR", (float) 1000));
-        c.printMoneyList();
-        System.out.println(c.getLoan() + " " + c.calculateLoan(180));
+        c.addMoney(new Money("USD", (float) 1000));
+        System.out.println(c);
     }
 }

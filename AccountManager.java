@@ -1,31 +1,20 @@
-import java.util.ArrayList;
-
 public class AccountManager {
-    private ArrayList<Account> accountList;
     private AccountFactory factory;
-    // new admin
+    private Admin admin;
 
-    public AccountManager() {
-        this.accountList = new ArrayList<Account>();
+    public AccountManager(Admin admin) {
         this.factory = new AccountFactory();
-        // new admin
+        this.admin = admin;
     }
 
-    public void addAccount(Account account) {
-        this.accountList.add(account);
-    }
-
-    public void removeAccount(Account account) {
-        this.accountList.remove(account);
-    }
-
-    public void createAccount(String accountType, Money m) {
-        this.accountList.add(this.factory.createAccount(accountType));
-        this.accountList.get(-1).addMoney(m);
+    public Account createAccount(String accountType, Money m) {
+        Account a = this.factory.createAccount(accountType);
+        a.addMoney(m);
         float fee = calculateFee(m);
         m.setMoney(fee);
-        this.accountList.get(-1).removeMoney(m);
+        a.removeMoney(m);
         // admin action
+        return a;
     }
 
     public float calculateFee(Money m) {
@@ -42,16 +31,15 @@ public class AccountManager {
         // admin action
     }
 
-    public void withdraw(Account account, Money m) {
-        for (Account a : this.accountList) {
-            if (a.equals(account)) {
-                float totalCharge = calculateFee(m) + m.getMoneyAmount();
-                m.setMoney(totalCharge);
-                a.removeMoney(m);
-                // admin action
-            } else {
-                System.out.println("Account not found");
-            }
-        }
+    public void withdraw(Account a, Money m) {
+        float totalCharge = calculateFee(m) + m.getMoneyAmount();
+        m.setMoney(totalCharge);
+        a.removeMoney(m);
+        // admin action
+    }
+
+    public void payInterest(SavingAccount a, int day) {
+        a.addMoney(new Money("USD", a.interestCalculation()));
+        // admin action
     }
 }
