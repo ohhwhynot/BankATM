@@ -42,4 +42,8 @@ public class AccountManager {
         a.addMoney(new Money("USD", a.interestCalculation()));
         // admin action
     }
+
+    public void save(Account a, Money m) {
+        a.addMoney(m);
+    }
 }
