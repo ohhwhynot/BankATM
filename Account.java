@@ -63,10 +63,6 @@ public abstract class Account {
 
     }
 
-    public void calculateFee() {
-
-    }
-
     public void removeMoney(Money money) {
         for (Money m : moneyList) {
             if (m.getCountryCode().equals(money.getCountryCode())) {
