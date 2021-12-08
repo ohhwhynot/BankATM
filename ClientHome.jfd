@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:38:p, par l {seq {comp label5:::p::p, space u:::p, comp realName:::p::p, space :p:117:p, comp label6:::p::p, space :::p, comp credit:::p::p, space :120:179:x}, seq {par l {comp button8:::p:170:p, comp label8:::p::p, seq l {par l {comp button2::l:p:170:p, comp button4::l:p:170:p, comp button6::l:p:170:p}, space :p:44:p, par l {comp button7:::p:170:p, comp button5:::p:170:p, comp button3:::p:170:p}}}, space :0:66:x}}}}"
-			"$verticalGroup": "par l {seq l {space :p:19:p, par b {comp label5::b:p::p, comp realName::b:p::p, comp label6::b:p::p, comp credit::b:p::p}, space s:::p, comp label8:::p::p, space s:::p, par b {comp button2::b:p:40:p, comp button3::b:p:40:p}, space :::p, par b {comp button4::b:p:40:p, comp button5::b:p:40:p}, space :::p, par b {comp button6::b:p:40:p, comp button7::b:p:40:p}, space :::p, comp button8:::p:40:p, space ::24:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:38:p, par t {seq t {par l {comp label8:::p::p, seq {par l {comp button2::l:p:170:p, comp button4::l:p:170:p, comp button6::l:p:170:p, comp button8::l:p:170:p}, space :p:44:p, par l {comp button9:::p:170:p, comp button7:::p:170:p, comp button5:::p:170:p, comp button3:::p:170:p}}}, space :0:66:x}, seq t {comp label5:::p::p, space u:::p, comp realName:::p::p, space :p:117:p, comp label6:::p::p, space :::p, comp credit:::p::p, space :p:58:p, comp button10:::p:81:p, space :p:31:p}}}}"
+			"$verticalGroup": "par l {seq l {space :p:9:p, par b {comp label5::b:p::p, comp realName::b:p::p, comp label6::b:p::p, comp credit::b:p::p, comp button10::b:p:32:p}, space :p:17:p, comp label8:::p::p, space s:::p, par b {comp button2::b:p:40:p, comp button3::b:p:40:p}, space :::p, par b {comp button4::b:p:40:p, comp button5::b:p:40:p}, space :::p, par b {comp button6::b:p:40:p, comp button7::b:p:40:p}, space :::p, par b {comp button8::b:p:40:p, comp button9::b:p:40:p}, space ::22:x}}"
 		} ) {
 			name: "this"
 			"$sizePolicy": 1
@@ -31,30 +31,48 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button2"
 				"text": "Create a new account"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonCreatAccountPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button4"
 				"text": "Deposit"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4ActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
 				"text": "Close a new account"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonCloseAccountPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button5"
 				"text": "Withdraw"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonWithdrawPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button6"
 				"text": "Transfer"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonTransferPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button7"
 				"text": "Apply for loan"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonLoanPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button8"
 				"text": "Trade stocks"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonTradeStockPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button9"
+				"text": "Swap"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonSwapPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button10"
+				"text": "logout"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonLogoutPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 40, 80 )
