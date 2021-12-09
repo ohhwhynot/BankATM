@@ -1,0 +1,178 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:169:p, comp button1:::p::p, space :p:62:p, comp button2:::p::p, space ::226:x}, seq t {space :::x, par l {seq {comp label1:::p::p, space :::p, comp username:::p::p, space :p:100:p, comp label2:::p::p, space :::p, comp balance:::p::p, space :p:61:p, comp label3:::p::p, space :::p, comp totProfit:::p:19:p}, par l:::p {comp table1:::::x, comp table2:::::x}}, space :p:63:p}}"
+			"$verticalGroup": "par l {seq t {space :p:24:p, par b {comp label1::b:p::p, comp label2::b:p::p, comp label3::b:p::p, comp username::b:p::p, comp balance::b:p::p, comp totProfit::b:p::p}, space ::49:x, comp table2:::p::p, space :::p, comp table1:::p::p, space :p:35:p, par b {comp button1::b:p::p, comp button2::b:p::p}, space :p:74:p}}"
+		} ) {
+			name: "this"
+			"title": "My stocks"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JTable" ) {
+				name: "table1"
+				"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+					add( new java.util.Vector {
+						add( "" )
+						add( "" )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+					add( new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+					add( new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+					add( new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+					add( new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Buy"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Sell"
+			} )
+			add( new FormComponent( "javax.swing.JTable" ) {
+				name: "table2"
+				"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+					add( new java.util.Vector {
+						add( "Name" )
+						add( "Code" )
+						add( "Cost price" )
+						add( "Cur price" )
+						add( "Number" )
+						add( "Postion" )
+						add( "Profit" )
+					} )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Username:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Balance:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Total profit:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "username"
+				"text": "none"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "balance"
+				"text": "0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "totProfit"
+				"text": "0"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 95, 10 )
+			"size": new java.awt.Dimension( 655, 435 )
+		} )
+	}
+}

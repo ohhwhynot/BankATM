@@ -77,6 +77,14 @@ public class ClientHome extends JFrame {
         // TODO add your code here
     }
 
+    private void inquiryBalanceActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void buttonRepayloanPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -95,6 +103,8 @@ public class ClientHome extends JFrame {
         button8 = new JButton();
         button9 = new JButton();
         button10 = new JButton();
+        inquiryBalance = new JButton();
+        button11 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -140,7 +150,7 @@ public class ClientHome extends JFrame {
         button8.addActionListener(e -> buttonTradeStockPerformed(e));
 
         //---- button9 ----
-        button9.setText("Swap");
+        button9.setText("Exchange");
         button9.addActionListener(e -> buttonSwapPerformed(e));
 
         //---- button10 ----
@@ -148,30 +158,23 @@ public class ClientHome extends JFrame {
         button10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
         button10.addActionListener(e -> buttonLogoutPerformed(e));
 
+        //---- inquiryBalance ----
+        inquiryBalance.setText("Check balance");
+        inquiryBalance.addActionListener(e -> inquiryBalanceActionPerformed(e));
+
+        //---- button11 ----
+        button11.setText("Repay loan");
+        button11.addActionListener(e -> buttonRepayloanPerformed(e));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(38, 38, 38)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(label8)
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addComponent(button2, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button4, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button6, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button8, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(44, 44, 44)
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addComponent(button9, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button7, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button5, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(button3, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))))
-                            .addGap(0, 66, Short.MAX_VALUE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
                             .addComponent(label5)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(realName)
@@ -181,7 +184,25 @@ public class ClientHome extends JFrame {
                             .addComponent(credit)
                             .addGap(58, 58, 58)
                             .addComponent(button10, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-                            .addGap(31, 31, 31))))
+                            .addGap(31, 31, 31))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(label8)
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(button2, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button4, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button6, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button8, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button7, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(44, 44, 44)
+                                    .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(button11, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button5, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button3, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(button9, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))))
+                            .addGap(0, 66, Short.MAX_VALUE))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -206,14 +227,18 @@ public class ClientHome extends JFrame {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button7, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button8, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                         .addComponent(button9, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(22, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(button7, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button11, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(31, Short.MAX_VALUE))
         );
-        setSize(490, 335);
+        setSize(490, 390);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -234,5 +259,7 @@ public class ClientHome extends JFrame {
     private JButton button8;
     private JButton button9;
     private JButton button10;
+    private JButton inquiryBalance;
+    private JButton button11;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

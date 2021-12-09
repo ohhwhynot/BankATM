@@ -1,0 +1,82 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:57:p, comp comboBox1:::p::p, space s:::p, par l {comp exRate:::p:38:p, comp scr:::p:92:p}}, seq l {space :p:24:p, comp label2:::p::p}, seq l {space :p:59:p, par l:::p {seq {comp buttonCancel:::p::p, space :::x, comp buttonConfirm:::p::p}, seq l {par t {comp comboBox2:::p::p, comp label3:::p::p}, space s:::p, par l {comp moneyT:::p:115:p, comp ServiceFee:::p:37:p}}}}, seq l {space :p:75:p, comp viewAccountInfo:::p::p}, seq l {space :p:96:p, comp label4:::p::p}, seq l {space :p:39:p, comp separator1:::p:289:p}}, space ::25:x}}"
+			"$verticalGroup": "par l {seq l {space :p:22:p, comp label4:::p::p, space :p:9:p, comp separator1:::p::p, space :::p, comp viewAccountInfo:::p::p, space u:::p, par b {comp comboBox1::b:p::p, comp scr::b:p::p}, space :::p, comp exRate:::p::p, space :::p, comp label2:::p::p, space u:::p, par b {comp comboBox2::b:p::p, comp moneyT::b:p::p}, space ::13:x, par b {comp label3::b:p::p, comp ServiceFee::b:p::p}, space u:::p, par b {comp buttonCancel::b:p::p, comp buttonConfirm::b:p::p}, space :p:53:p}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "USD"
+					addElement( "USD" )
+					addElement( "EUR" )
+					addElement( "CNY" )
+					addElement( "JPY" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "scr"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox2"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "USD"
+					addElement( "USD" )
+					addElement( "EUR" )
+					addElement( "CNY" )
+					addElement( "JPY" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Currency exchange rate:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "exRate"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "moneyT"
+				"text": "0"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonCancel"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonCancelActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonConfirm"
+				"text": "Confirm"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonConfirmActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Service charge:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "ServiceFee"
+				"text": "0"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "viewAccountInfo"
+				"text": "Account Information"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "viewAccountInfoActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "EXCHANGE"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 75, 50 )
+			"size": new java.awt.Dimension( 355, 420 )
+		} )
+	}
+}

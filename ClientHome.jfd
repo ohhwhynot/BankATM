@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:38:p, par t {seq t {par l {comp label8:::p::p, seq {par l {comp button2::l:p:170:p, comp button4::l:p:170:p, comp button6::l:p:170:p, comp button8::l:p:170:p}, space :p:44:p, par l {comp button9:::p:170:p, comp button7:::p:170:p, comp button5:::p:170:p, comp button3:::p:170:p}}}, space :0:66:x}, seq t {comp label5:::p::p, space u:::p, comp realName:::p::p, space :p:117:p, comp label6:::p::p, space :::p, comp credit:::p::p, space :p:58:p, comp button10:::p:81:p, space :p:31:p}}}}"
-			"$verticalGroup": "par l {seq l {space :p:9:p, par b {comp label5::b:p::p, comp realName::b:p::p, comp label6::b:p::p, comp credit::b:p::p, comp button10::b:p:32:p}, space :p:17:p, comp label8:::p::p, space s:::p, par b {comp button2::b:p:40:p, comp button3::b:p:40:p}, space :::p, par b {comp button4::b:p:40:p, comp button5::b:p:40:p}, space :::p, par b {comp button6::b:p:40:p, comp button7::b:p:40:p}, space :::p, par b {comp button8::b:p:40:p, comp button9::b:p:40:p}, space ::22:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:38:p, par l {seq t {space :0:0:x, comp label5:::p::p, space u:::p, comp realName:::p::p, space :p:117:p, comp label6:::p::p, space :::p, comp credit:::p::p, space :p:58:p, comp button10:::p:81:p, space :p:31:p}, seq {par l {comp label8:::p::p, seq l {par l {comp button2::l:p:170:p, comp button4::l:p:170:p, comp button6::l:p:170:p, comp button8::l:p:170:p, comp button7::l:p:170:p}, space :p:44:p, par l {comp button11:::p:170:p, comp button5:::p:170:p, comp button3:::p:170:p, comp inquiryBalance::l:p:170:p, comp button9::l:p:170:p}}}, space :0:66:x}}}}"
+			"$verticalGroup": "par l {seq l {space :p:9:p, par b {comp label5::b:p::p, comp realName::b:p::p, comp label6::b:p::p, comp credit::b:p::p, comp button10::b:p:32:p}, space :p:17:p, comp label8:::p::p, space s:::p, par b {comp button2::b:p:40:p, comp button3::b:p:40:p}, space :::p, par b {comp button4::b:p:40:p, comp button5::b:p:40:p}, space :::p, par b {comp button6::b:p:40:p, comp inquiryBalance::b:p:40:p}, space :::p, par b {comp button8::b:p:40:p, comp button9::b:p:40:p}, space :::p, par b {comp button7::b:p:40:p, comp button11::b:p:40:p}, space ::31:x}}"
 		} ) {
 			name: "this"
 			"$sizePolicy": 1
@@ -65,7 +65,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button9"
-				"text": "Swap"
+				"text": "Exchange"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonSwapPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -74,9 +74,19 @@ new FormModel {
 				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 12 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonLogoutPerformed", true ) )
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "inquiryBalance"
+				"text": "Check balance"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "inquiryBalanceActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button11"
+				"text": "Repay loan"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonRepayloanPerformed", true ) )
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 40, 80 )
-			"size": new java.awt.Dimension( 490, 335 )
+			"size": new java.awt.Dimension( 490, 390 )
 		} )
 	}
 }

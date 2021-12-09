@@ -1,0 +1,48 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::205:x, comp label1:::p::p, space :p:74:p, comp button1:::p::p, space :p:61:p}, seq l {space :p:107:p, par l {seq {comp label2:::p::p, space :::p, comp username:::p::p}, seq {par l {comp checkProfit::l:p:160:p, comp updateStock::l:p:160:p}, space :p:74:p, par l {comp checkLogs3:::p:160:p, comp checkLogs:::p:160:p}}}, space ::127:x}}"
+			"$verticalGroup": "par l {seq l {space :p:35:p, par b {comp label1::b:p::p, comp button1::b:p::p}, space :p:9:p, par b {comp label2::b:p::p, comp username::b:p::p}, space :p:70:p, par b {comp checkProfit::b:p::p, comp checkLogs::b:p::p}, space :::p, par b {comp updateStock::b:p::p, comp checkLogs3::b:p::p}, space ::52:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "checkProfit"
+				"text": "Check  Bank Balance"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "checkLogs"
+				"text": "Check  Logs"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "updateStock"
+				"text": "Update Stocks"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "checkLogs3"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Logout"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Controll Platform"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 22 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Username:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "username"
+				"text": "none"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 630, 345 )
+		} )
+	}
+}
