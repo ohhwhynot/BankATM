@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -15,32 +16,57 @@ public class AdminScreen extends JFrame {
         initComponents();
     }
 
+    private void logoutActionPerformed(ActionEvent e) {
+        new ATMHome().setVisible(true);
+        this.dispose();
+        // TODO add your code here
+    }
+
+    private void checkProfitActionPerformed(ActionEvent e) {
+        new AccountInfoScreen().setVisible(true);
+        // TODO add your code here
+    }
+
+    private void checkLogsActionPerformed(ActionEvent e) {
+        new LogScreen().setVisible(true);
+        // TODO add your code here
+    }
+
+    private void updateStockActionPerformed(ActionEvent e) {
+        new ControlStockScreen().setVisible(true);
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Xudong Gao
         checkProfit = new JButton();
         checkLogs = new JButton();
         updateStock = new JButton();
-        checkLogs3 = new JButton();
-        button1 = new JButton();
+        logout = new JButton();
         label1 = new JLabel();
         label2 = new JLabel();
         username = new JLabel();
 
         //======== this ========
+        setFont(new Font(Font.DIALOG, Font.PLAIN, 16));
         var contentPane = getContentPane();
 
         //---- checkProfit ----
         checkProfit.setText("Check  Bank Balance");
+        checkProfit.addActionListener(e -> checkProfitActionPerformed(e));
 
         //---- checkLogs ----
         checkLogs.setText("Check  Logs");
+        checkLogs.addActionListener(e -> checkLogsActionPerformed(e));
 
         //---- updateStock ----
         updateStock.setText("Update Stocks");
+        updateStock.addActionListener(e -> updateStockActionPerformed(e));
 
-        //---- button1 ----
-        button1.setText("Logout");
+        //---- logout ----
+        logout.setText("Logout");
+        logout.addActionListener(e -> logoutActionPerformed(e));
 
         //---- label1 ----
         label1.setText("Controll Platform");
@@ -48,9 +74,11 @@ public class AdminScreen extends JFrame {
 
         //---- label2 ----
         label2.setText("Username:");
+        label2.setFont(new Font(Font.DIALOG, Font.PLAIN, 16));
 
         //---- username ----
-        username.setText("none");
+        username.setText("admin");
+        username.setFont(new Font(Font.DIALOG, Font.PLAIN, 16));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -60,7 +88,7 @@ public class AdminScreen extends JFrame {
                     .addContainerGap(205, Short.MAX_VALUE)
                     .addComponent(label1)
                     .addGap(74, 74, 74)
-                    .addComponent(button1)
+                    .addComponent(logout)
                     .addGap(61, 61, 61))
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(107, 107, 107)
@@ -71,12 +99,10 @@ public class AdminScreen extends JFrame {
                             .addComponent(username))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(checkProfit, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(updateStock, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(updateStock, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkProfit, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
                             .addGap(74, 74, 74)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(checkLogs3, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(checkLogs, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(checkLogs, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(127, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
@@ -85,22 +111,20 @@ public class AdminScreen extends JFrame {
                     .addGap(35, 35, 35)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label1)
-                        .addComponent(button1))
-                    .addGap(9, 9, 9)
+                        .addComponent(logout))
+                    .addGap(34, 34, 34)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label2)
                         .addComponent(username))
-                    .addGap(70, 70, 70)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(checkProfit)
-                        .addComponent(checkLogs))
+                    .addGap(58, 58, 58)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(checkLogs, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(checkProfit, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(updateStock)
-                        .addComponent(checkLogs3))
-                    .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(updateStock, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(35, Short.MAX_VALUE))
         );
-        pack();
+        setSize(630, 365);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -110,8 +134,7 @@ public class AdminScreen extends JFrame {
     private JButton checkProfit;
     private JButton checkLogs;
     private JButton updateStock;
-    private JButton checkLogs3;
-    private JButton button1;
+    private JButton logout;
     private JLabel label1;
     private JLabel label2;
     private JLabel username;

@@ -1,3 +1,4 @@
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 /*
@@ -9,9 +10,35 @@ import javax.swing.GroupLayout;
 /**
  * @author Xudong Gao
  */
-public class DepositScreen extends JFrame {
-    public DepositScreen() {
+public class DepositWithdrawScreen extends JFrame {
+    public DepositWithdrawScreen(boolean isDeposit) {
         initComponents();
+        if(!isDeposit){
+            this.label1.setText("Please input the amount you want to withdraw");
+        }
+    }
+    private String getSelectedAccount(String[] options){
+        String result = (String)JOptionPane.showInputDialog(this, " ", "Please select an account to continue:",
+                JOptionPane.PLAIN_MESSAGE, null, options, options[0]
+        );
+        return result;
+    }
+
+    private void accountActionPerformed(ActionEvent e) {
+        new AccountInfoScreen().setVisible(true);
+        // TODO add your code here
+    }
+
+    private void switchAccActionPerformed(ActionEvent e) {
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
+        String result = getSelectedAccount(options);
+
+        // TODO add your code here
+    }
+
+    private void ReturnActionPerformed(ActionEvent e) {
+        this.dispose();
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -20,12 +47,12 @@ public class DepositScreen extends JFrame {
         textField1 = new JTextField();
         separator1 = new JSeparator();
         label1 = new JLabel();
-        comboBox1 = new JComboBox();
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
-        button4 = new JButton();
-        button5 = new JButton();
+        comboBox1 = new JComboBox<>();
+        reset = new JButton();
+        confirm = new JButton();
+        Return = new JButton();
+        account = new JButton();
+        switchAcc = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -33,20 +60,31 @@ public class DepositScreen extends JFrame {
         //---- label1 ----
         label1.setText("Please input the amount you want to deposit");
 
-        //---- button1 ----
-        button1.setText("Reset");
+        //---- comboBox1 ----
+        comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+            "USD",
+            "EUR",
+            "CNY",
+            "JPY"
+        }));
 
-        //---- button2 ----
-        button2.setText("Confirm");
+        //---- reset ----
+        reset.setText("Reset");
 
-        //---- button3 ----
-        button3.setText("Return");
+        //---- confirm ----
+        confirm.setText("Confirm");
 
-        //---- button4 ----
-        button4.setText("Account Information");
+        //---- Return ----
+        Return.setText("Return");
+        Return.addActionListener(e -> ReturnActionPerformed(e));
 
-        //---- button5 ----
-        button5.setText("Switch Account");
+        //---- account ----
+        account.setText("Account Information");
+        account.addActionListener(e -> accountActionPerformed(e));
+
+        //---- switchAcc ----
+        switchAcc.setText("Switch Account");
+        switchAcc.addActionListener(e -> switchAccActionPerformed(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -58,20 +96,20 @@ public class DepositScreen extends JFrame {
                             .addGap(136, 136, 136)
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(reset, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
                                     .addGap(34, 34, 34)
-                                    .addComponent(button2, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(confirm, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(contentPaneLayout.createSequentialGroup()
                                     .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(button3, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-                            .addGap(114, 114, 114)
-                            .addComponent(button4)
+                            .addComponent(Return, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                            .addGap(102, 102, 102)
+                            .addComponent(account)
                             .addGap(47, 47, 47)
-                            .addComponent(button5))
+                            .addComponent(switchAcc))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(96, 96, 96)
                             .addGroup(contentPaneLayout.createParallelGroup()
@@ -86,21 +124,21 @@ public class DepositScreen extends JFrame {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(button3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button5, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button4, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(switchAcc, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(account, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Return, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(label1)
-                    .addGap(40, 40, 40)
+                    .addGap(32, 32, 32)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
                     .addGap(42, 42, 42)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(button2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(confirm, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(reset, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(94, Short.MAX_VALUE))
         );
         setSize(595, 410);
@@ -113,11 +151,11 @@ public class DepositScreen extends JFrame {
     private JTextField textField1;
     private JSeparator separator1;
     private JLabel label1;
-    private JComboBox comboBox1;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
+    private JComboBox<String> comboBox1;
+    private JButton reset;
+    private JButton confirm;
+    private JButton Return;
+    private JButton account;
+    private JButton switchAcc;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

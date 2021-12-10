@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :p:170:p, comp label1:::p::p}, seq l {space :p:61:p, par l:::p {comp separator2:::p:240:p, seq {comp comboBox1:::p::p, space :::p, comp separator1:::p::p, space :::p, comp textField1:::::x, space :::p, comp label2:::p::p}, seq t {par t {comp cancel:::p::p, comp label3:::p::p}, space s:::p, par l {seq t {comp totMoney:::p:46:p, space s:::p, comp USD:::p::p, space :p:18:p}, comp confirm::t:p::p}}}}}, space ::97:x}}"
-			"$verticalGroup": "par l {seq {space :p:27:p, comp label1:::p::p, space :::p, comp separator2:::p::p, space :p:7:p, par t {seq l {comp separator1:::p::p, space u:::p, comp label2:::p::p}, par b:l {comp comboBox1::b:p::p, comp textField1::b:p::p}}, space :p:30:p, par b {comp totMoney::b:p::p, comp label3::b:p::p, comp USD::b:p::p}, space s:::p, par b {comp confirm::b:p::p, comp cancel::b:p::p}, space ::43:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:170:p, comp label1:::p::p}, seq l {space :p:61:p, par l:::p {comp separator2:::p:240:p, seq {comp comboBox1:::p:108:p, space :::p, comp separator1:::p::p, space :::p, comp textField1:::::x, space :::p, comp label2:::p::p}, seq t {par t {comp cancel:::p::p, comp label3:::p::p}, space s:::p, par l {seq t {comp totMoney:::p:46:p, space s:::p, comp USD:::p::p, space :p:18:p}, comp confirm::t:p::p}}}}}, space ::97:x}}"
+			"$verticalGroup": "par l {seq {space :p:27:p, comp label1:::p::p, space :::p, comp separator2:::p::p, space :p:7:p, par t {comp separator1::l:p::p, par b:l {comp textField1::b:p::p, comp comboBox1::b:p::p, comp label2::b:p::p}}, space :p:30:p, par b {comp totMoney::b:p::p, comp label3::b:p::p, comp USD::b:p::p}, space s:::p, par b {comp confirm::b:p::p, comp cancel::b:p::p}, space ::43:x}}"
 		} ) {
 			name: "this"
 			"$sizePolicy": 1
@@ -32,7 +32,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
-				"text": "total"
+				"text": "Total"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "totMoney"

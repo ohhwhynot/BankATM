@@ -9,7 +9,7 @@ import java.io.IOException;
 public class DateTest {
     public static void main(String[] args) throws InterruptedException, IOException {
         new ATMHome().setVisible(true);
-        new StocksMarketScreen().setVisible(true);
+        //new StocksMarketScreen().setVisible(true);
 //        TimeController.startTime();
 //        SessionHandler log = SessionHandler.getInstance();
 //        log.addLog("aaaaaaaa");

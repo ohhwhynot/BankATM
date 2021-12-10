@@ -22,16 +22,20 @@ public class ATMHome extends JFrame {
         if(true){ //a function to check user
             textField1.setText(null);
             passwordField1.setText(null);
-            if(true){ //if it is a client
+            if(!username.equals("admin")){ //if it is a client
                 Client client = new Client(username,"ss",passWord);//  get a client object
                 ClientHome ch= new ClientHome(client);
                 ch.setVisible(true);
+                this.dispose();
             }
             else {
+                new AdminScreen().setVisible(true);
+                this.dispose();
                 // get an admin
             }
 
         }else{
+
             JOptionPane.showMessageDialog(null,"Invalid Login Details!","Error!",
                     JOptionPane.ERROR_MESSAGE);
 

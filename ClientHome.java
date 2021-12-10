@@ -20,24 +20,19 @@ public class ClientHome extends JFrame {
     }
 
     private String getSelectedAccount(String[] options){
-
-
-        String result = (String)JOptionPane.showInputDialog(
-                this,
-                " ",
-                "Please select an account to continue:",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                options,
-                options[0]
+        String result = (String)JOptionPane.showInputDialog(this, " ", "Please select an account to continue:",
+                JOptionPane.PLAIN_MESSAGE, null, options, options[0]
         );
         return result;
     }
 
     private void button4ActionPerformed(ActionEvent e) {
         //deposit
-        String[] options = {"Python", "Java/Swing", "Ruby"};//todo
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
         String result = getSelectedAccount(options);
+        if(result!=null){
+            new DepositWithdrawScreen(true).setVisible(true);
+        }
 
     }
 
@@ -45,43 +40,71 @@ public class ClientHome extends JFrame {
 
     private void buttonLogoutPerformed(ActionEvent e) {
         this.dispose();
+        new ATMHome().setVisible(true);
         //this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         // TODO add your code here
     }
 
     private void buttonWithdrawPerformed(ActionEvent e) {
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
+        String result = getSelectedAccount(options);
+        if(result!=null){
+            new DepositWithdrawScreen(false).setVisible(true);
+        }
+
         // TODO add your code here
     }
 
     private void buttonCreatAccountPerformed(ActionEvent e) {
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
+        String result = getSelectedAccount(options);
+        JOptionPane.showMessageDialog(null,"Creat failed!","Error",
+                JOptionPane.ERROR_MESSAGE);
         // TODO add your code here
     }
 
     private void buttonCloseAccountPerformed(ActionEvent e) {
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
+        String result = getSelectedAccount(options);
+        JOptionPane.showMessageDialog(null,"Close failed!","Error",
+                JOptionPane.ERROR_MESSAGE);
         // TODO add your code here
     }
 
     private void buttonTransferPerformed(ActionEvent e) {
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
+        String result = getSelectedAccount(options);
+
         // TODO add your code here
     }
 
     private void buttonLoanPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(null,"Your credit score is not good enough","Error",
+                JOptionPane.ERROR_MESSAGE);
         // TODO add your code here
     }
 
     private void buttonTradeStockPerformed(ActionEvent e) {
+        new TradeStockScreen().setVisible(true);
         // TODO add your code here
     }
 
     private void buttonSwapPerformed(ActionEvent e) {
+        new ExchangeScreen().setVisible(true);
         // TODO add your code here
     }
 
     private void inquiryBalanceActionPerformed(ActionEvent e) {
+        String[] options = {"Saving Account", "Checking Account", "Securities Account"};//todo
+        String result = getSelectedAccount(options);
+        new AccountInfoScreen().setVisible(true);
+
         // TODO add your code here
     }
 
     private void buttonRepayloanPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(null,"You don't have a loan to pay","Error",
+                JOptionPane.ERROR_MESSAGE);
         // TODO add your code here
     }
 

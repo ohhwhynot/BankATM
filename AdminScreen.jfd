@@ -4,28 +4,31 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::205:x, comp label1:::p::p, space :p:74:p, comp button1:::p::p, space :p:61:p}, seq l {space :p:107:p, par l {seq {comp label2:::p::p, space :::p, comp username:::p::p}, seq {par l {comp checkProfit::l:p:160:p, comp updateStock::l:p:160:p}, space :p:74:p, par l {comp checkLogs3:::p:160:p, comp checkLogs:::p:160:p}}}, space ::127:x}}"
-			"$verticalGroup": "par l {seq l {space :p:35:p, par b {comp label1::b:p::p, comp button1::b:p::p}, space :p:9:p, par b {comp label2::b:p::p, comp username::b:p::p}, space :p:70:p, par b {comp checkProfit::b:p::p, comp checkLogs::b:p::p}, space :::p, par b {comp updateStock::b:p::p, comp checkLogs3::b:p::p}, space ::52:x}}"
+			"$horizontalGroup": "par l {seq t {space ::205:x, comp label1:::p::p, space :p:74:p, comp logout:::p::p, space :p:61:p}, seq l {space :p:107:p, par l {seq l {comp label2:::p::p, space :::p, comp username:::p::p}, seq {par l {comp updateStock:::p:160:p, comp checkProfit:::p:160:p}, space :p:74:p, comp checkLogs:::p:160:p}}, space ::127:x}}"
+			"$verticalGroup": "par l {seq l {space :p:35:p, par b {comp label1::b:p::p, comp logout::b:p::p}, space :p:34:p, par b {comp label2::b:p::p, comp username::b:p::p}, space :p:58:p, par l:::p {comp checkLogs::::50:x, comp checkProfit::::50:x}, space :::p, comp updateStock:::p:50:p, space ::35:x}}"
 		} ) {
 			name: "this"
+			"$sizePolicy": 1
+			"font": &Font0 new java.awt.Font( "Dialog", 0, 16 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "checkProfit"
 				"text": "Check  Bank Balance"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "checkProfitActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "checkLogs"
 				"text": "Check  Logs"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "checkLogsActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "updateStock"
 				"text": "Update Stocks"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "updateStockActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "checkLogs3"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
+				name: "logout"
 				"text": "Logout"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "logoutActionPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
@@ -35,14 +38,16 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
 				"text": "Username:"
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "username"
-				"text": "none"
+				"text": "admin"
+				"font": #Font0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 630, 345 )
+			"size": new java.awt.Dimension( 630, 365 )
 		} )
 	}
 }

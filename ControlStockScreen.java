@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.table.*;
@@ -16,6 +17,10 @@ public class ControlStockScreen extends JFrame {
         initComponents();
     }
 
+    private void closeActionPerformed(ActionEvent e) {
+        this.dispose();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Xudong Gao
@@ -24,7 +29,7 @@ public class ControlStockScreen extends JFrame {
         button1 = new JButton();
         button2 = new JButton();
         button3 = new JButton();
-        button4 = new JButton();
+        close = new JButton();
         label1 = new JLabel();
 
         //======== this ========
@@ -58,8 +63,9 @@ public class ControlStockScreen extends JFrame {
         //---- button3 ----
         button3.setText("Update Price");
 
-        //---- button4 ----
-        button4.setText("Close");
+        //---- close ----
+        close.setText("Close");
+        close.addActionListener(e -> closeActionPerformed(e));
 
         //---- label1 ----
         label1.setText("Stock management platform");
@@ -73,18 +79,18 @@ public class ControlStockScreen extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(87, 87, 87)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(button3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(39, 39, 39)
                             .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(button2)
-                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button1, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+                            .addGap(74, 74, 74)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(close, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(27, 27, 27)
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(83, 83, 83)
+                            .addGap(96, 96, 96)
                             .addComponent(label1)))
                     .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -97,13 +103,13 @@ public class ControlStockScreen extends JFrame {
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(button1)
-                        .addComponent(button2))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button2, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(button3)
-                        .addComponent(button4))
-                    .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(button3, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(close, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(43, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -117,7 +123,7 @@ public class ControlStockScreen extends JFrame {
     private JButton button1;
     private JButton button2;
     private JButton button3;
-    private JButton button4;
+    private JButton close;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
