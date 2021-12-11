@@ -9,8 +9,11 @@ import javax.swing.GroupLayout;
  * @author Xudong Gao
  */
 public class DepositWithdrawScreen extends JFrame {
+        private Client client;
+
         public DepositWithdrawScreen(boolean isDeposit, Client c) {
                 initComponents();
+                this.client = c;
                 if (!isDeposit) {
                         this.label1.setText("Please input the amount you want to withdraw");
                 }
@@ -30,7 +33,6 @@ public class DepositWithdrawScreen extends JFrame {
         private void switchAccActionPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
                 String result = getSelectedAccount(options);
-
                 // TODO add your code here
         }
 

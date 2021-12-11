@@ -42,30 +42,120 @@ public class ClientHome extends JFrame {
         }
 
         private void buttonWithdrawPerformed(ActionEvent e) {
-                String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (result != null) {
-                        new DepositWithdrawScreen(false).setVisible(true);
+                if (result.equals("Saving Account")) {
+                        if (this.client.isAccountExist("SAVING") == false) {
+                                JOptionPane.showMessageDialog(null,
+                                                "Withdraw failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else if (this.client.isAccountExist("SAVING") == true) {
+                                new DepositWithdrawScreen(false, client).setVisible(true);
+                        }
                 }
 
                 // TODO add your code here
         }
 
         private void buttonCreatAccountPerformed(ActionEvent e) {
-                String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (success) {
-                        JOptionPane.showMessageDialog(null, "Success!", "", JOptionPane.INFORMATION_MESSAGE);
+                if (result.equals("Saving Account")) {
+                        if (this.client.isAccountExist("SAVING") == false) {
+                                this.client.createAccount("SAVING");
+                                JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
+                                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Creatation failed! You already have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Checking Account")) {
+                        if (this.client.isAccountExist("CHECKING") == false) {
+                                this.client.createAccount("CHECKING");
+                                JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
+                                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Creatation failed! You already have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Securities Account")) {
+                        if (this.client.isAccountExist("STOCK") == false) {
+                                if (this.client.isAccountExist("SAVING") == false) {
+                                        JOptionPane.showMessageDialog(null,
+                                                        "Creatation failed! You need to have a saving account.",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                } else if (this.client.isAccountExist("SAVING") == true) {
+                                        if (this.client.getSavingAccount().getBalance() < 500) {
+                                                JOptionPane.showMessageDialog(null,
+                                                                "Creatation failed! You need to have 500 USD in a saving account.",
+                                                                "Error", JOptionPane.ERROR_MESSAGE);
+                                        } else if (this.client.getSavingAccount().getBalance() >= 500) {
+                                                this.client.createAccount("STOCK");
+                                                JOptionPane.showMessageDialog(null,
+                                                                "Success! You have deposited 100 USD as required.",
+                                                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                                        }
+                                }
+                        }
                 }
-                JOptionPane.showMessageDialog(null, "Creat failed!", "Error", JOptionPane.ERROR_MESSAGE);
-                // TODO add your code here
         }
 
         private void buttonCloseAccountPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
                 String result = getSelectedAccount(options);
-                JOptionPane.showMessageDialog(null, "Close failed!", "Error", JOptionPane.ERROR_MESSAGE);
-                // TODO add your code here
+                if (result.equals("Saving Account")) {
+                        if (this.client.isAccountExist("SAVING") == true) {
+                                if (this.client.getSavingAccount().getBalance() == 0) {
+                                        this.client.closeAccount("SAVING");
+                                        JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
+                                                        "Success", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                        JOptionPane.showMessageDialog(null,
+                                                        "Removal failed! Please clear out your balance.", "Error",
+                                                        JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Removal failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Checking Account")) {
+                        if (this.client.isAccountExist("CHECKING") == true) {
+                                if (this.client.getCheckingAccount().getBalance() == 0) {
+                                        this.client.closeAccount("CHECKING");
+                                        JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
+                                                        "Success", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                        JOptionPane.showMessageDialog(null,
+                                                        "Removal failed! Please clear out your balance.", "Error",
+                                                        JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Removal failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Securities Account")) {
+                        // TODO
+                        // if (this.client.isAccountExist("STOCK") == true) {
+                        // if (this.client.getStockAccount().getBalance() == 0) {
+                        // this.client.closeAccount("STOCK");
+                        // JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
+                        // "Success", JOptionPane.INFORMATION_MESSAGE);
+                        // } else {
+                        // JOptionPane.showMessageDialog(null,
+                        // "Removal failed! Please clear out your balance.", "Error",
+                        // JOptionPane.ERROR_MESSAGE);
+                        // }
+                        // } else {
+                        // JOptionPane.showMessageDialog(null,
+                        // "Removal failed! You don't have this type of account.", "Error",
+                        // JOptionPane.ERROR_MESSAGE);
+                        // }
+                }
+
         }
 
         private void buttonTransferPerformed(ActionEvent e) {

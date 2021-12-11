@@ -33,6 +33,10 @@ class User {
         this.accounts.add(account);
     }
 
+    public void removeAccount(Account account) {
+        this.accounts.remove(account);
+    }
+
     public String toString() {
         // version 1
         // String str = "Username: " + userName + "\nUser id: " + userId + "\nAccounts:
