@@ -1,0 +1,67 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:86:p, comp cancel:::p:120:p, space :p:45:p, comp confirm:::p:120:p}, seq l {space :p:121:p, comp comboBox1:::p:89:p, space u:::p, comp textField1:::p:91:p}, seq l {space :p:127:p, comp comboBox3:::p::p}, seq l {space :p:60:p, par l {comp label2:::p::p, comp label3:::p::p}}, seq l {space :p:159:p, comp label1:::p:111:p}, seq l {space :p:145:p, comp accountInfo:::p:149:p}}, space ::102:x}}"
+			"$verticalGroup": "par l {seq l {space :p:31:p, comp label1:::p:41:p, space :::p, comp accountInfo:::p:40:p, space :p:12:p, comp label2:::p::p, space :::p, par b {comp textField1::b:p::p, comp comboBox1::b:p::p}, space :p:14:p, comp label3:::p::p, space :p:1:p, comp comboBox3:::p::p, space :p:50:p, par b {comp cancel::b:p:40:p, comp confirm::b:p:40:p}, space ::54:x}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Transfer"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 24 )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "USD"
+					addElement( "USD" )
+					addElement( "EUR" )
+					addElement( "CNY" )
+					addElement( "JPY" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox3"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "saving account"
+					addElement( "saving account" )
+					addElement( "checking account" )
+					addElement( "stock account" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cancel"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "confirm"
+				"text": "Confirm"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "accountInfo"
+				"text": "Account Infomation"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "accountInfoActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "From:"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "To:"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 475, 450 )
+		} )
+	}
+}
