@@ -47,8 +47,22 @@ public class AccountManager {
         a.addMoney(m);
     }
 
-    public void payInterest(SavingAccount a, int day) {
-        a.addMoney(new Money("USD", a.interestCalculation()));
+    public void payInterest(SavingAccount a) {
+        int datediff = TimeController.getDaysDifference(a.getDate(), TimeController.getCurDate());
+        a.addMoney(new Money("USD", a.interestCalculation(datediff)));
+        // admin action
+    }
+
+    public void applyLoan(CheckingAccount a, Money m) {
+        float chargeFromAdmin = m.getMoneyAmount();
+        a.loan(m);
+        // admin action
+    }
+
+    public void payLoan(CheckingAccount a, Money m) {
+        float addToAdmin = m.getMoneyAmount();
+        a.removeMoney(m);
+        a.clearLoan();
         // admin action
     }
 

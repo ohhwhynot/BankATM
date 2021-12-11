@@ -1,26 +1,27 @@
 import java.util.ArrayList;
 
 public class StockAccount extends Account {
-    private ArrayList<Stock> stocks;
+    private ArrayList<HeldStock> stocks;
 
     public StockAccount() {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
-
-        this.stocks = new ArrayList<Stock>();
+        this.stocks = new ArrayList<HeldStock>();
+        constructMoneyList();
     }
 
-    public void addStock(Stock stock) {
-        this.stocks.add(stock);
-    }
-
-    public Stock getStock(int index) {
-        return this.stocks.get(index);
-    }
-
-    public void removeStock(int index) {
-        this.stocks.remove(index);
+    public StockAccount(int usd, int eur, int cny, int jpy, int[] date) {
+        super();
+        this.moneyList = new ArrayList<Money>();
+        this.curr = new Currency();
+        this.stocks = new ArrayList<HeldStock>();
+        constructMoneyList();
+        this.addMoney(new Money("USD", (float) usd));
+        this.addMoney(new Money("EUR", (float) eur));
+        this.addMoney(new Money("CNY", (float) cny));
+        this.addMoney(new Money("JPY", (float) jpy));
+        this.date.setDate(date);
     }
 
     public void buyStock(int amount, Stock stock) {
@@ -29,20 +30,45 @@ public class StockAccount extends Account {
             System.out.println("Incifficient balance");
         } else {
             this.moneyList.get(0).subtractMoneyAmount(totalPrice);
-            for (int i = 0; i < amount; i++) {
-                addStock(stock);
+            stocks.add(new HeldStock(stock, amount, stock.getPrice()));
+        }
+    }
+
+    public void sellStock(int amount, Stock stock, float price) {
+        float totalPrice = price * amount;
+        for (HeldStock hs : stocks) {
+            if (hs.getStock().getName().equals(stock.getName())) {
+                hs.setAmount(hs.getAmount() - amount);
+                this.moneyList.get(0).addMoneyAmount(totalPrice);
             }
         }
+    }
+
+    public boolean ifStockExist(Stock s) {
+        for (HeldStock hs : stocks) {
+            if (hs.getStock().getName().equals(s.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getAccountType() {
         return "STOCK";
     }
 
-    @Override
+    public void addHeldStock(HeldStock stock) {
+        stocks.add(stock);
+    }
+
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+        StringBuilder str = new StringBuilder();
+        for (HeldStock hs : stocks) {
+            str.append(" " + hs.getStock().getName() + "|" + hs.getAmount() + "|" + hs.getCost());
+        }
+        return String.format("STOCK %s %.2f %.2f %.2f %.2f %s", this.date, this.moneyList.get(0).getMoneyAmount(),
+                this.moneyList.get(1).getMoneyAmount(), this.moneyList.get(2).getMoneyAmount(),
+                this.moneyList.get(3).getMoneyAmount(), str.toString());
     }
 
 }

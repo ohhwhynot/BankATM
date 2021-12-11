@@ -4,6 +4,15 @@ public abstract class Account {
     protected float balance;
     protected ArrayList<Money> moneyList;
     protected Currency curr;
+    protected ATMDate date;
+
+    public ATMDate getDate() {
+        return this.date;
+    }
+
+    public void setDate(int[] date) {
+        this.date.setDate(date);
+    }
 
     public void convertToBalance() {
         this.balance = 0;

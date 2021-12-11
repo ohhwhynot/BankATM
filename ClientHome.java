@@ -45,12 +45,13 @@ public class ClientHome extends JFrame {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
                 if (result.equals("Saving Account")) {
-                        if (this.client.isAccountExist("SAVING") == false) {
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
                                                 "Withdraw failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
-                        } else if (this.client.isAccountExist("SAVING") == true) {
-                                new DepositWithdrawScreen(false, client).setVisible(true);
+                        } else if (this.client.isAccountExist(type) == true) {
+                                new DepositWithdrawScreen(false, client, type).setVisible(true);
                         }
                 }
 
@@ -61,8 +62,9 @@ public class ClientHome extends JFrame {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
                 if (result.equals("Saving Account")) {
-                        if (this.client.isAccountExist("SAVING") == false) {
-                                this.client.createAccount("SAVING");
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == false) {
+                                this.client.createAccount(type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -71,8 +73,9 @@ public class ClientHome extends JFrame {
                                                 JOptionPane.ERROR_MESSAGE);
                         }
                 } else if (result.equals("Checking Account")) {
-                        if (this.client.isAccountExist("CHECKING") == false) {
-                                this.client.createAccount("CHECKING");
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == false) {
+                                this.client.createAccount(type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -81,18 +84,19 @@ public class ClientHome extends JFrame {
                                                 JOptionPane.ERROR_MESSAGE);
                         }
                 } else if (result.equals("Securities Account")) {
-                        if (this.client.isAccountExist("STOCK") == false) {
+                        String type = "STOCK";
+                        if (this.client.isAccountExist(type) == false) {
                                 if (this.client.isAccountExist("SAVING") == false) {
                                         JOptionPane.showMessageDialog(null,
                                                         "Creatation failed! You need to have a saving account.",
                                                         "Error", JOptionPane.ERROR_MESSAGE);
                                 } else if (this.client.isAccountExist("SAVING") == true) {
-                                        if (this.client.getSavingAccount().getBalance() < 500) {
+                                        if (this.client.getSavingAccount().getBalance() < 5000) {
                                                 JOptionPane.showMessageDialog(null,
-                                                                "Creatation failed! You need to have 500 USD in a saving account.",
+                                                                "Creatation failed! You need to have 5000 USD in a saving account.",
                                                                 "Error", JOptionPane.ERROR_MESSAGE);
                                         } else if (this.client.getSavingAccount().getBalance() >= 500) {
-                                                this.client.createAccount("STOCK");
+                                                this.client.createAccount(type);
                                                 JOptionPane.showMessageDialog(null,
                                                                 "Success! You have deposited 100 USD as required.",
                                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -106,9 +110,10 @@ public class ClientHome extends JFrame {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
                 String result = getSelectedAccount(options);
                 if (result.equals("Saving Account")) {
-                        if (this.client.isAccountExist("SAVING") == true) {
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == true) {
                                 if (this.client.getSavingAccount().getBalance() == 0) {
-                                        this.client.closeAccount("SAVING");
+                                        this.client.closeAccount(type);
                                         JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
                                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
@@ -122,9 +127,10 @@ public class ClientHome extends JFrame {
                                                 JOptionPane.ERROR_MESSAGE);
                         }
                 } else if (result.equals("Checking Account")) {
-                        if (this.client.isAccountExist("CHECKING") == true) {
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == true) {
                                 if (this.client.getCheckingAccount().getBalance() == 0) {
-                                        this.client.closeAccount("CHECKING");
+                                        this.client.closeAccount(type);
                                         JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
                                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
@@ -138,6 +144,7 @@ public class ClientHome extends JFrame {
                                                 JOptionPane.ERROR_MESSAGE);
                         }
                 } else if (result.equals("Securities Account")) {
+                        String type = "STOCK";
                         // TODO
                         // if (this.client.isAccountExist("STOCK") == true) {
                         // if (this.client.getStockAccount().getBalance() == 0) {

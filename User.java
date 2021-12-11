@@ -13,6 +13,10 @@ class User {
         this.accounts = new ArrayList<Account>();
     }
 
+    public String getUserName() {
+        return this.userName;
+    }
+
     public boolean setPassword(String password) {
         if (password.contains(" ")) {
             return false;
