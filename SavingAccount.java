@@ -54,12 +54,16 @@ public class SavingAccount extends Account {
                 this.moneyList.get(3).getMoneyAmount());
     }
 
+    public String getAccountType() {
+        return "SAVING";
+    }
+
     public static void main(String[] args) {
         SavingAccount s = new SavingAccount();
         s.addMoney(new Money("USD", (float) 10000));
         s.printMoneyList();
         System.out.println(s);
-        System.out.println(s.interestCalculation(390));
+        System.out.println(s.interestCalculation());
     }
 
 }

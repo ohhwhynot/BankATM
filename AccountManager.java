@@ -7,8 +7,9 @@ public class AccountManager {
         this.admin = admin;
     }
 
-    public Account createAccount(String accountType, Money m) {
+    public Account createAccount(String accountType) {
         Account a = this.factory.createAccount(accountType);
+        Money m = new Money("USD", (float) 100);
         a.addMoney(m);
         float fee = calculateFee(m);
         m.setMoney(fee);

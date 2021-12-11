@@ -5,8 +5,6 @@ import javax.swing.*;
  * Created by JFormDesigner on Mon Dec 06 22:18:12 CST 2021
  */
 
-
-
 /**
  * @author Xudong Gao
  */
@@ -19,25 +17,23 @@ public class ATMHome extends JFrame {
     private void button2ActionPerformed(ActionEvent e) {
         String username = textField1.getText();
         String passWord = passwordField1.getText();
-        if(true){ //a function to check user
+        if (true) { // a function to check user
             textField1.setText(null);
             passwordField1.setText(null);
-            if(!username.equals("admin")){ //if it is a client
-                Client client = new Client(username,"ss",passWord);//  get a client object
-                ClientHome ch= new ClientHome(client);
+            if (!username.equals("admin")) { // if it is a client
+                Client client = new Client(username, "ss", passWord);// get a client object
+                ClientHome ch = new ClientHome(client);
                 ch.setVisible(true);
                 this.dispose();
-            }
-            else {
+            } else {
                 new AdminScreen().setVisible(true);
                 this.dispose();
                 // get an admin
             }
 
-        }else{
+        } else {
 
-            JOptionPane.showMessageDialog(null,"Invalid Login Details!","Error!",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid Login Details!", "Error!", JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -47,10 +43,9 @@ public class ATMHome extends JFrame {
         new SignUpScreen().setVisible(true);// TODO add your code here
     }
 
-
-
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        // JFormDesigner - Component initialization - DO NOT MODIFY
+        // //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Xudong Gao
         label1 = new JLabel();
         label2 = new JLabel();
@@ -62,42 +57,42 @@ public class ATMHome extends JFrame {
         passwordField1 = new JPasswordField();
         separator2 = new JSeparator();
 
-        //======== this ========
+        // ======== this ========
         setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         var contentPane = getContentPane();
         contentPane.setLayout(null);
 
-        //---- label1 ----
+        // ---- label1 ----
         label1.setText("ATM");
         label1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(240, 45), label1.getPreferredSize()));
 
-        //---- label2 ----
+        // ---- label2 ----
         label2.setText("Username:");
         label2.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         contentPane.add(label2);
         label2.setBounds(148, 118, 85, 35);
 
-        //---- label3 ----
+        // ---- label3 ----
         label3.setText("Password:");
         label3.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         contentPane.add(label3);
         label3.setBounds(148, 168, 80, 50);
 
-        //---- textField1 ----
+        // ---- textField1 ----
         textField1.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         contentPane.add(textField1);
         textField1.setBounds(255, 123, 170, 30);
 
-        //---- button2 ----
+        // ---- button2 ----
         button2.setText("log in");
         button2.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         button2.addActionListener(e -> button2ActionPerformed(e));
         contentPane.add(button2);
         button2.setBounds(285, 270, 90, 30);
 
-        //---- button3 ----
+        // ---- button3 ----
         button3.setText("sign up");
         button3.setHorizontalTextPosition(SwingConstants.CENTER);
         button3.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
@@ -107,7 +102,7 @@ public class ATMHome extends JFrame {
         contentPane.add(separator1);
         separator1.setBounds(65, 85, 400, 70);
 
-        //---- passwordField1 ----
+        // ---- passwordField1 ----
         passwordField1.setFont(new Font(Font.DIALOG, Font.BOLD, 14));
         contentPane.add(passwordField1);
         passwordField1.setBounds(255, 185, 170, 30);
@@ -117,7 +112,7 @@ public class ATMHome extends JFrame {
         {
             // compute preferred size
             Dimension preferredSize = new Dimension();
-            for(int i = 0; i < contentPane.getComponentCount(); i++) {
+            for (int i = 0; i < contentPane.getComponentCount(); i++) {
                 Rectangle bounds = contentPane.getComponent(i).getBounds();
                 preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                 preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -130,10 +125,10 @@ public class ATMHome extends JFrame {
         }
         setSize(545, 410);
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+        // JFormDesigner - End of component initialization //GEN-END:initComponents
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // JFormDesigner - Variables declaration - DO NOT MODIFY //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Xudong Gao
     private JLabel label1;
     private JLabel label2;
@@ -144,5 +139,5 @@ public class ATMHome extends JFrame {
     private JSeparator separator1;
     private JPasswordField passwordField1;
     private JSeparator separator2;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
+    // JFormDesigner - End of variables declaration //GEN-END:variables
 }

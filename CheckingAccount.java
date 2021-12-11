@@ -65,6 +65,10 @@ public class CheckingAccount extends Account {
                 this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(), this.credit, this.loan);
     }
 
+    public String getAccountType() {
+        return "CHECKING";
+    }
+
     public static void main(String[] args) {
         CheckingAccount c = new CheckingAccount();
         c.loan(new Money("EUR", (float) 1000));

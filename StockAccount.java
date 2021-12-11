@@ -35,6 +35,10 @@ public class StockAccount extends Account {
         }
     }
 
+    public String getAccountType() {
+        return "STOCK";
+    }
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub

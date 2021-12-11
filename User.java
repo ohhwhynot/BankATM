@@ -4,7 +4,7 @@ class User {
     protected String userName;
     protected String userId;
     protected String password;
-    protected List<Account> accounts;
+    protected ArrayList<Account> accounts;
 
     public User(String userName, String userId, String password) {
         this.userName = userName;
@@ -23,6 +23,14 @@ class User {
 
     public boolean matchPassword(String password) {
         return password.equalsIgnoreCase(this.password);
+    }
+
+    public ArrayList<Account> getAccounts() {
+        return this.accounts;
+    }
+
+    public void addAccount(Account account) {
+        this.accounts.add(account);
     }
 
     public String toString() {

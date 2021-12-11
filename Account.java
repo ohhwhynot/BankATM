@@ -75,4 +75,6 @@ public abstract class Account {
     }
 
     public abstract String toString();
+
+    public abstract String getAccountType();
 }

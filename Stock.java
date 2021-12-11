@@ -13,12 +13,14 @@ public class Stock {
     private List<Float> historyPrice;
     private float price;
     private float changePercent;
-    Stock(String name,String code,float price){
+
+    Stock(String name, String code, float price) {
         this.name = name;
         this.code = code;
         this.price = price;
         historyPrice = new ArrayList<>();
     }
+
     public String getName() {
         return name;
     }
@@ -26,6 +28,7 @@ public class Stock {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getCode() {
         return code;
     }
@@ -33,6 +36,7 @@ public class Stock {
     public void setCode(String code) {
         this.code = code;
     }
+
     public List<Float> getHistoryPrice() {
         return historyPrice;
     }
@@ -40,6 +44,7 @@ public class Stock {
     public void setHistoryPrice(List<Float> historyPrice) {
         this.historyPrice = historyPrice;
     }
+
     public float getPrice() {
         return price;
     }
