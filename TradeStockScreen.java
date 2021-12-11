@@ -18,7 +18,7 @@ public class TradeStockScreen extends JFrame {
     }
 
     private void buyActionPerformed(ActionEvent e) {
-        new BuyStockScreen().setVisible(true);
+        new StocksMarketScreen().setVisible(true);
     }
 
     private void sellActionPerformed(ActionEvent e) {

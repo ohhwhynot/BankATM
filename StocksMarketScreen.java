@@ -21,6 +21,7 @@ public class StocksMarketScreen extends JFrame {
     }
 
     private void buyActionPerformed(ActionEvent e) {
+        new BuyStockScreen().setVisible(true);
         // TODO add your code here
     }
 
