@@ -41,6 +41,15 @@ public abstract class Account {
         this.moneyList.add(new Money("JPY", (float) 0));
     }
 
+    public float getCurrMoney(String curr) {
+        for (Money m : moneyList) {
+            if (m.getCountryCode().equals(curr)) {
+                return m.getMoneyAmount();
+            }
+        }
+        return 0;
+    }
+
     public float getBalance() {
         convertToBalance();
         return this.balance;

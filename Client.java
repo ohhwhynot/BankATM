@@ -61,6 +61,10 @@ class Client extends User {
         return null;
     }
 
+    public AccountManager getAccountManager() {
+        return this.m;
+    }
+
     public static void main(String[] args) {
         Admin a = new Admin("admin", "1111", "2222");
         Client c = new Client("John", "1122", "3344", a);

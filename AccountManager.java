@@ -33,10 +33,18 @@ public class AccountManager {
     }
 
     public void withdraw(Account a, Money m) {
-        float totalCharge = calculateFee(m) + m.getMoneyAmount();
+        float fee = calculateFee(m);
+        float totalCharge = fee + m.getMoneyAmount();
         m.setMoney(totalCharge);
         a.removeMoney(m);
         // admin action
+    }
+
+    public void deposit(Account a, Money m) {
+        float fee = calculateFee(m);
+        float totalCharge = m.getMoneyAmount() - fee;
+        m.setMoney(totalCharge);
+        a.addMoney(m);
     }
 
     public void payInterest(SavingAccount a, int day) {
