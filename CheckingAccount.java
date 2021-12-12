@@ -37,11 +37,11 @@ public class CheckingAccount extends Account {
         this.loan = 0;
     }
 
-    public float calculateLoan(int datediff) {
+    public void calculateLoan(int datediff) {
         int months = datediff / 30;
         float interest = loan * (float) 0.02;
         interest = interest * months;
-        return interest;
+        this.loan += interest;
     }
 
     public float calculateMaxLoan() {

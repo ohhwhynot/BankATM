@@ -28,8 +28,33 @@ public class ClientHome extends JFrame {
                 // deposit
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
                 String result = getSelectedAccount(options);
-                if (result != null) {
-                        new DepositWithdrawScreen(true).setVisible(true);
+                if (result.equals("Saving Account")) {
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == false) {
+                                JOptionPane.showMessageDialog(null,
+                                                "Deposit failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else if (this.client.isAccountExist(type) == true) {
+                                new DepositWithdrawScreen(true, client, type).setVisible(true);
+                        }
+                } else if (result.equals("Checking Account")) {
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == false) {
+                                JOptionPane.showMessageDialog(null,
+                                                "Deposit failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else if (this.client.isAccountExist(type) == true) {
+                                new DepositWithdrawScreen(true, client, type).setVisible(true);
+                        }
+                } else {
+                        String type = "STOCK";
+                        if (this.client.isAccountExist(type) == false) {
+                                JOptionPane.showMessageDialog(null,
+                                                "Deposit failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else if (this.client.isAccountExist(type) == true) {
+                                new DepositWithdrawScreen(true, client, type).setVisible(true);
+                        }
                 }
 
         }
@@ -53,9 +78,25 @@ public class ClientHome extends JFrame {
                         } else if (this.client.isAccountExist(type) == true) {
                                 new DepositWithdrawScreen(false, client, type).setVisible(true);
                         }
+                } else if (result.equals("Checking Account")) {
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == false) {
+                                JOptionPane.showMessageDialog(null,
+                                                "Withdraw failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else if (this.client.isAccountExist(type) == true) {
+                                new DepositWithdrawScreen(false, client, type).setVisible(true);
+                        }
+                } else {
+                        String type = "STOCK";
+                        if (this.client.isAccountExist(type) == false) {
+                                JOptionPane.showMessageDialog(null,
+                                                "Withdraw failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else if (this.client.isAccountExist(type) == true) {
+                                new DepositWithdrawScreen(false, client, type).setVisible(true);
+                        }
                 }
-
-                // TODO add your code here
         }
 
         private void buttonCreatAccountPerformed(ActionEvent e) {
@@ -168,8 +209,34 @@ public class ClientHome extends JFrame {
         private void buttonTransferPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
                 String result = getSelectedAccount(options);
-
-                // TODO add your code here
+                if (result.equals("Saving Account")) {
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == true) {
+                                new TransferScreen(this.client.getSavingAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Checking Account")) {
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == true) {
+                                new TransferScreen(this.client.getCheckingAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else {
+                        String type = "STOCK";
+                        if (this.client.isAccountExist(type) == true) {
+                                new TransferScreen(this.client.getStockAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                }
         }
 
         private void buttonLoanPerformed(ActionEvent e) {
@@ -184,16 +251,69 @@ public class ClientHome extends JFrame {
         }
 
         private void buttonSwapPerformed(ActionEvent e) {
-                new ExchangeScreen().setVisible(true);
-                // TODO add your code here
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
+                String result = getSelectedAccount(options);
+                if (result.equals("Saving Account")) {
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == true) {
+                                new ExchangeScreen(client.getSavingAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Checking Account")) {
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == true) {
+                                new ExchangeScreen(client.getCheckingAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else {
+                        String type = "STOCK";
+                        if (this.client.isAccountExist(type) == true) {
+                                new ExchangeScreen(client.getStockAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                }
         }
 
         private void inquiryBalanceActionPerformed(ActionEvent e) {
-                String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                new AccountInfoScreen().setVisible(true);
-
-                // TODO add your code here
+                if (result.equals("Saving Account")) {
+                        String type = "SAVING";
+                        if (this.client.isAccountExist(type) == true) {
+                                new AccountInfoScreen(client.getSavingAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else if (result.equals("Checking Account")) {
+                        String type = "CHECKING";
+                        if (this.client.isAccountExist(type) == true) {
+                                new AccountInfoScreen(client.getCheckingAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                } else {
+                        String type = "STOCK";
+                        if (this.client.isAccountExist(type) == true) {
+                                new AccountInfoScreen(client.getStockAccount(), client).setVisible(true);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
+                }
         }
 
         private void buttonRepayloanPerformed(ActionEvent e) {

@@ -71,15 +71,23 @@ public class DepositWithdrawScreen extends JFrame {
                 if (isDeposit == true) {
                     if (accountType.equals("SAVING")) {
                         am.deposit(client.getSavingAccount(), m);
+                        JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                JOptionPane.INFORMATION_MESSAGE);
                     } else if (accountType.equals("CHECKING")) {
                         am.deposit(client.getCheckingAccount(), m);
+                        JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         am.deposit(client.getStockAccount(), m);
+                        JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
                     if (accountType.equals("SAVING")) {
                         if ((client.getSavingAccount().getCurrMoney(curr) + am.calculateFee(m)) >= amount) {
                             am.withdraw(client.getSavingAccount(), m);
+                            JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null, "Action failed! Not enough money.", "Error",
                                     JOptionPane.ERROR_MESSAGE);
@@ -87,6 +95,8 @@ public class DepositWithdrawScreen extends JFrame {
                     } else if (accountType.equals("CHECKING")) {
                         if ((client.getCheckingAccount().getCurrMoney(curr) + am.calculateFee(m)) >= amount) {
                             am.withdraw(client.getCheckingAccount(), m);
+                            JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null, "Action failed! Not enough money.", "Error",
                                     JOptionPane.ERROR_MESSAGE);
@@ -94,6 +104,8 @@ public class DepositWithdrawScreen extends JFrame {
                     } else {
                         if ((client.getStockAccount().getCurrMoney(curr) + am.calculateFee(m)) >= amount) {
                             am.withdraw(client.getStockAccount(), m);
+                            JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                    JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null, "Action failed! Not enough money.", "Error",
                                     JOptionPane.ERROR_MESSAGE);
@@ -101,9 +113,11 @@ public class DepositWithdrawScreen extends JFrame {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Action failed! Invalid input.", "Error",
+                JOptionPane.showMessageDialog(null, "Action failed! Invalid number.", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Action failed! Invalid input.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
