@@ -16,6 +16,7 @@ public class CheckingAccount extends Account {
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
+        this.date = new ATMDate();
         this.date.setDate(date);
         this.addMoney(new Money("USD", (float) usd));
         this.addMoney(new Money("EUR", (float) eur));
@@ -49,7 +50,7 @@ public class CheckingAccount extends Account {
     }
 
     public String toString() {
-        return String.format("SAVING %s %.2f %.2f %.2f %.2f %.2f", this.date.toString(),
+        return String.format("CHECKING %s %.2f %.2f %.2f %.2f %.2f", this.date.toString(),
                 this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
                 this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(), this.loan);
     }
