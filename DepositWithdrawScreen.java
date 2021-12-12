@@ -12,12 +12,14 @@ public class DepositWithdrawScreen extends JFrame {
     private Client client;
     private String accountType;
     private boolean isDeposit;
+    private SessionHandler s;
 
     public DepositWithdrawScreen(boolean isDeposit, Client c, String accountType) {
         initComponents();
         this.client = c;
         this.accountType = accountType;
         this.isDeposit = isDeposit;
+        this.s = SessionHandler.getInstance();
         if (!isDeposit) {
             this.label1.setText("Please input the amount you want to withdraw");
         }
@@ -71,21 +73,25 @@ public class DepositWithdrawScreen extends JFrame {
                 if (isDeposit == true) {
                     if (accountType.equals("SAVING")) {
                         am.deposit(client.getSavingAccount(), m);
+                        this.s.addLog(client.getUserName() + " deposited " + m.toString() + " into SAVING");
                         JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                 JOptionPane.INFORMATION_MESSAGE);
                     } else if (accountType.equals("CHECKING")) {
                         am.deposit(client.getCheckingAccount(), m);
+                        this.s.addLog(client.getUserName() + " deposited " + m.toString() + " into CHECKING");
                         JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                 JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         am.deposit(client.getStockAccount(), m);
+                        this.s.addLog(client.getUserName() + " deposited " + m.toString() + " into STOCK");
                         JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                 JOptionPane.INFORMATION_MESSAGE);
                     }
-                } else {
+                } else if (isDeposit == false) {
                     if (accountType.equals("SAVING")) {
                         if ((client.getSavingAccount().getCurrMoney(curr) + am.calculateFee(m)) >= amount) {
                             am.withdraw(client.getSavingAccount(), m);
+                            this.s.addLog(client.getUserName() + " withdrawn " + m.toString() + " from SAVING");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -95,6 +101,7 @@ public class DepositWithdrawScreen extends JFrame {
                     } else if (accountType.equals("CHECKING")) {
                         if ((client.getCheckingAccount().getCurrMoney(curr) + am.calculateFee(m)) >= amount) {
                             am.withdraw(client.getCheckingAccount(), m);
+                            this.s.addLog(client.getUserName() + " withdrawn " + m.toString() + " from CHECKING");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -104,6 +111,7 @@ public class DepositWithdrawScreen extends JFrame {
                     } else {
                         if ((client.getStockAccount().getCurrMoney(curr) + am.calculateFee(m)) >= amount) {
                             am.withdraw(client.getStockAccount(), m);
+                            this.s.addLog(client.getUserName() + " withdrawn " + m.toString() + " from STOCK");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -160,7 +168,6 @@ public class DepositWithdrawScreen extends JFrame {
         // ---- confirm ----
         confirm.setText("Confirm");
         confirm.addActionListener(e -> {
-            confirmActionPerformed(e);
             confirmActionPerformed(e);
         });
 

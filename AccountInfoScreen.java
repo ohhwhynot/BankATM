@@ -19,6 +19,15 @@ public class AccountInfoScreen extends JFrame {
                 this.account = a;
                 this.client = c;
                 initComponents();
+                balanceTable.setModel(new DefaultTableModel(
+                                new Object[][] { { "USD", a.getCurrMoney("USD") }, { "EUR", a.getCurrMoney("EUR") },
+                                                { "CNY", a.getCurrMoney("CNY") }, { "JPY", a.getCurrMoney("JPY") }, },
+                                new String[] { null, null }));
+                label3.setText("Balance:" + a.getBalance());
+                if (a.getAccountType() == "CHECKING") {
+                        label5.setText("" + client.getCheckingAccount().getLoan());
+                }
+
         }
 
         private void buttonConfirmPerformed(ActionEvent e) {
@@ -43,22 +52,21 @@ public class AccountInfoScreen extends JFrame {
                 var contentPane = getContentPane();
 
                 // ---- label1 ----
-                label1.setText("Username:" + client.getUserName());
+                label1.setText("Username:");
 
                 // ---- label2 ----
-                label2.setText("Account type:" + account.getAccountType());
+                label2.setText("Account type:");
 
                 // ======== scrollPane1 ========
                 {
                         scrollPane1.setName("a");
 
                         // ---- balanceTable ----
-                        balanceTable.setModel(new DefaultTableModel(
-                                        new Object[][] { { "USD", account.getCurrMoney("USD") },
-                                                        { "EUR", account.getCurrMoney("EUR") },
-                                                        { "CNY", account.getCurrMoney("CNY") },
-                                                        { "JPY", account.getCurrMoney("JPY") }, },
-                                        new String[] { null, null }));
+                        balanceTable.setModel(
+                                        new DefaultTableModel(
+                                                        new Object[][] { { "USD", "0" }, { "EUR", "0" }, { "CNY", "0" },
+                                                                        { "JPY", "0" }, },
+                                                        new String[] { null, null }));
                         balanceTable.setToolTipText("mm");
                         balanceTable.setBorder(null);
                         balanceTable.setAutoCreateColumnsFromModel(false);
@@ -72,11 +80,7 @@ public class AccountInfoScreen extends JFrame {
                 label4.setText("Loan:");
 
                 // ---- label5 ----
-                if (account.getAccountType().equals("CHECKING")) {
-                        label5.setText(String.valueOf(client.getCheckingAccount().getLoan()));
-                } else {
-                        label5.setText("None");
-                }
+                label5.setText("None");
 
                 // ---- button1 ----
                 button1.setText("Confirm");

@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 /*
  * Created by JFormDesigner on Tue Dec 07 21:04:03 CST 2021
@@ -10,11 +12,13 @@ import javax.swing.*;
  */
 public class ClientHome extends JFrame {
         private Client client;
+        private SessionHandler s;
 
         public ClientHome(Client client) {
                 initComponents();
                 this.client = client;
                 realName.setText(client.userName);
+                this.s = SessionHandler.getInstance();
 
         }
 
@@ -106,6 +110,7 @@ public class ClientHome extends JFrame {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == false) {
                                 this.client.createAccount(type);
+                                this.s.addLog(client.getUserName() + " created" + type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -117,6 +122,7 @@ public class ClientHome extends JFrame {
                         String type = "CHECKING";
                         if (this.client.isAccountExist(type) == false) {
                                 this.client.createAccount(type);
+                                this.s.addLog(client.getUserName() + " created" + type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -138,6 +144,7 @@ public class ClientHome extends JFrame {
                                                                 "Error", JOptionPane.ERROR_MESSAGE);
                                         } else if (this.client.getSavingAccount().getBalance() >= 500) {
                                                 this.client.createAccount(type);
+                                                this.s.addLog(client.getUserName() + " created" + type);
                                                 JOptionPane.showMessageDialog(null,
                                                                 "Success! You have deposited 100 USD as required.",
                                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -153,14 +160,15 @@ public class ClientHome extends JFrame {
                 if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == true) {
-                                if (this.client.getSavingAccount().getBalance() == 0) {
+                                if (this.client.getSavingAccount().getBalance() == 3) {
                                         this.client.closeAccount(type);
+                                        this.s.addLog(client.getUserName() + " closed" + type);
                                         JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
                                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
                                         JOptionPane.showMessageDialog(null,
-                                                        "Removal failed! Please clear out your balance.", "Error",
-                                                        JOptionPane.ERROR_MESSAGE);
+                                                        "Removal failed! Please leave only 3 dollars in your account as closing fee.",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
                                 }
                         } else {
                                 JOptionPane.showMessageDialog(null,
@@ -170,14 +178,15 @@ public class ClientHome extends JFrame {
                 } else if (result.equals("Checking Account")) {
                         String type = "CHECKING";
                         if (this.client.isAccountExist(type) == true) {
-                                if (this.client.getCheckingAccount().getBalance() == 0) {
+                                if (this.client.getCheckingAccount().getBalance() == 3) {
                                         this.client.closeAccount(type);
+                                        this.s.addLog(client.getUserName() + " closed" + type);
                                         JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
                                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
                                         JOptionPane.showMessageDialog(null,
-                                                        "Removal failed! Please clear out your balance.", "Error",
-                                                        JOptionPane.ERROR_MESSAGE);
+                                                        "Removal failed! Please leave only 3 dollars in your account as closing fee.",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
                                 }
                         } else {
                                 JOptionPane.showMessageDialog(null,
@@ -240,9 +249,23 @@ public class ClientHome extends JFrame {
         }
 
         private void buttonLoanPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Your credit score is not good enough", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                // TODO add your code here
+                if (this.client.isAccountExist("CHECKING") == true) {
+                        if (this.client.getCheckingAccount().getBalance() >= 500) {
+                                Money m = new Money("USD", this.client.getCheckingAccount().getBalance() * 2);
+                                this.client.getAccountManager().applyLoan(this.client.getCheckingAccount(), m);
+                                this.s.addLog(client.getUserName() + " loaned" + m.toString() + " to CHECKING");
+                                JOptionPane.showMessageDialog(null,
+                                                "Success! You loaned " + m.toString() + "to your Checking Account!",
+                                                "Success", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Action failed! You need Account balance of 500 in your Checking Account to loan.",
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                } else {
+                        JOptionPane.showMessageDialog(null, "Action failed! You don't Checking account.", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                }
         }
 
         private void buttonTradeStockPerformed(ActionEvent e) {
@@ -317,8 +340,31 @@ public class ClientHome extends JFrame {
         }
 
         private void buttonRepayloanPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "You don't have a loan to pay", "Error", JOptionPane.ERROR_MESSAGE);
-                // TODO add your code here
+                if (this.client.isAccountExist("CHECKING") == true) {
+                        if (this.client.getCheckingAccount().getLoan() == 0) {
+                                JOptionPane.showMessageDialog(null, "You don't have a loan to pay", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else {
+                                if (this.client.getCheckingAccount().getBalance() >= this.client.getCheckingAccount()
+                                                .getLoan()) {
+                                        Money m = new Money("USD", this.client.getCheckingAccount().getLoan());
+                                        this.client.getAccountManager().payLoan(this.client.getCheckingAccount(), m);
+                                        this.s.addLog(client.getUserName() + " payed" + m.toString() + " to CHECKING");
+                                        JOptionPane.showMessageDialog(null,
+                                                        "Success! You payed " + m.toString()
+                                                                        + "to your Checking Account!",
+                                                        "Success", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                        JOptionPane.showMessageDialog(null,
+                                                        "Action failed! You don't have enough money to pay your loan.",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        }
+
+                } else {
+                        JOptionPane.showMessageDialog(null, "Action failed! You don't have a Checking account.",
+                                        "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
 
         private void initComponents() {
