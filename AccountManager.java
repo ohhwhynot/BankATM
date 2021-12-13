@@ -60,6 +60,7 @@ public class AccountManager {
     }
 
     public void payLoan(CheckingAccount a, Money m) {
+        a.convertAllToUSD();
         float addToAdmin = m.getMoneyAmount();
         a.removeMoney(m);
         a.clearLoan();

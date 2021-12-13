@@ -28,9 +28,11 @@ public class CheckingAccount extends Account {
     public void loan(Money m) {
         this.loan = m.getMoneyAmount();
         addMoney(m);
+        this.date = TimeController.getCurDate();
     }
 
     public float getLoan() {
+        calculateLoan();
         return this.loan;
     }
 
@@ -38,11 +40,14 @@ public class CheckingAccount extends Account {
         this.loan = 0;
     }
 
-    public void calculateLoan(int datediff) {
+    public void calculateLoan() {
+        float oldLoan = this.loan;
+        int datediff = TimeController.getDaysDifference(getDate(), TimeController.getCurDate());
         int months = datediff / 30;
         float interest = loan * (float) 0.02;
         interest = interest * months;
-        this.loan += interest;
+        this.loan = interest + oldLoan;
+        this.date = TimeController.getCurDate();
     }
 
     public float calculateMaxLoan() {

@@ -19,6 +19,7 @@ public class ExchangeScreen extends JFrame {
                 this.account = a;
                 this.curr = new Currency();
                 initComponents();
+                label3.setText("Exchanged Amount:");
         }
 
         private void buttonCancelActionPerformed(ActionEvent e) {
@@ -120,7 +121,7 @@ public class ExchangeScreen extends JFrame {
                 buttonConfirm.addActionListener(e -> buttonConfirmActionPerformed(e));
 
                 // ---- label3 ----
-                label3.setText("Exchanged amount:");
+                label3.setText("Service charge:");
 
                 // ---- ServiceFee ----
                 ServiceFee.setText("0");

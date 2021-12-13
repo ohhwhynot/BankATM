@@ -12,11 +12,13 @@ import javax.swing.GroupLayout;
 public class TransferScreen extends JFrame {
     private Client client;
     private Account account;
+    private SessionHandler s;
 
     public TransferScreen(Account a, Client c) {
         this.account = a;
         this.client = c;
         initComponents();
+        this.s = SessionHandler.getInstance();
     }
 
     private void accountInfoActionPerformed(ActionEvent e) {
@@ -40,6 +42,8 @@ public class TransferScreen extends JFrame {
                     if (this.client.isAccountExist("SAVING") == true) {
                         if (account.getCurrMoney(curr) >= amount) {
                             client.getAccountManager().transferMoney(this.account, this.client.getSavingAccount(), m);
+                            this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                                    + this.account.getAccountType() + " to SAVING");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -54,6 +58,8 @@ public class TransferScreen extends JFrame {
                     if (this.client.isAccountExist("CHECKING") == true) {
                         if (account.getCurrMoney(curr) >= amount) {
                             client.getAccountManager().transferMoney(this.account, this.client.getCheckingAccount(), m);
+                            this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                                    + this.account.getAccountType() + " to CHECKING");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -68,6 +74,8 @@ public class TransferScreen extends JFrame {
                     if (this.client.isAccountExist("STOCK") == true) {
                         if (account.getCurrMoney(curr) >= amount) {
                             client.getAccountManager().transferMoney(this.account, this.client.getStockAccount(), m);
+                            this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                                    + this.account.getAccountType() + " to STOCK");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {

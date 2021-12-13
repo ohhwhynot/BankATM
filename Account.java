@@ -10,9 +10,9 @@ public abstract class Account {
         return this.date;
     }
 
-    public void setDate(int[] date) {
-        this.date.setDate(date);
-    }
+    // public void setDate(int[] date) {
+    // this.date.setDate(date);
+    // }
 
     public void convertToBalance() {
         this.balance = 0;
