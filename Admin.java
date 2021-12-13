@@ -1,6 +1,17 @@
 class Admin extends User {
 
-    public Admin(String userName, String userId, String password) {
-        super(userName, userId, password);
+    private Account account;
+
+    public Admin(String userName, String password) {
+        super(userName, password);
+        this.account = new SavingAccount();
+    }
+
+    public void addMoney(Money money) {
+        account.addMoney(money);
+    }
+
+    public void removeMoney(Money money) {
+        account.removeMoney(money);
     }
 }

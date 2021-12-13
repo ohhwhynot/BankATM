@@ -31,43 +31,52 @@ class UserManager {
             line = br.readLine();
             if (line != null) {
                 String[] strs = line.split(" ");
-                user = new User(strs[0], strs[1], strs[2]);
+                user = new User(strs[0], strs[1]);
                 line = br.readLine();
                 while (line != null) {
                     strs = line.split(" ");
-                    if (strs[0].equalsIgnoreCase("#CHECKING")) {
-                        int day = Integer.parseInt(strs[1]);
-                        int usd = Integer.parseInt(strs[2]);
-                        int eur = Integer.parseInt(strs[3]);
-                        int cny = Integer.parseInt(strs[4]);
-                        int jpy = Integer.parseInt(strs[5]);
-                        int loan = Integer.parseInt(strs[6]);
-                        int[] date = new int[strs.length - 7];
-                        for(int i = 0; i < date.length; i++) {
-                            date[i] = Integer.parseInt(strs[i + 7]);
-                        }
-                        CheckingAccount acc = new CheckingAccount(day, usd, eur, cny, jpy, loan, date);
+                    if (strs[0].equalsIgnoreCase("CHECKING")) {
+                        String dateStr = strs[1];
+                        String[] days = dateStr.split("/");
+
+                        String time = strs[2];
+                        String[] times = time.split(":");
+                        int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
+
+                        float usd = Float.parseFloat(strs[3]);
+                        float eur = Float.parseFloat(strs[4]);
+                        float cny = Float.parseFloat(strs[5]);
+                        float jpy = Float.parseFloat(strs[6]);
+                        float loan = Float.parseFloat(strs[7]);
+                        
+                        CheckingAccount acc = new CheckingAccount(0, usd, eur, cny, jpy, loan, date);
                         user.addAccount(acc);
-                    } else if (strs[0].equalsIgnoreCase("#SAVING")) {
-                        int usd = Integer.parseInt(strs[1]);
-                        int eur = Integer.parseInt(strs[2]);
-                        int cny = Integer.parseInt(strs[3]);
-                        int jpy = Integer.parseInt(strs[4]);
-                        int[] date = new int[strs.length - 5];
-                        for(int i = 0; i < date.length; i++) {
-                            date[i] = Integer.parseInt(strs[i + 5]);
-                        }
+                    } else if (strs[0].equalsIgnoreCase("SAVING")) {
+                        String dateStr = strs[1];
+                        String[] days = dateStr.split("/");
+
+                        String time = strs[2];
+                        String[] times = time.split(":");
+                        int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
+
+                        float usd = Float.parseFloat(strs[3]);
+                        float eur = Float.parseFloat(strs[4]);
+                        float cny = Float.parseFloat(strs[5]);
+                        float jpy = Float.parseFloat(strs[6]);
                         SavingAccount acc = new SavingAccount(usd, eur, cny, jpy, date);
                         user.addAccount(acc);
-                    } else if (strs[0].equalsIgnoreCase("#STOCK")) {
-                        int usd = Integer.parseInt(strs[1]);
-                        int eur = Integer.parseInt(strs[2]);
-                        int cny = Integer.parseInt(strs[3]);
-                        int jpy = Integer.parseInt(strs[4]);
-                        int[] date = new int[strs.length - 5];
-                        for(int i = 0; i < date.length; i++) {
-                            date[i] = Integer.parseInt(strs[i + 5]);
-                        }
+                    } else if (strs[0].equalsIgnoreCase("STOCK")) {
+                        String dateStr = strs[1];
+                        String[] days = dateStr.split("/");
+
+                        String time = strs[2];
+                        String[] times = time.split(":");
+                        int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
+
+                        float usd = Float.parseFloat(strs[3]);
+                        float eur = Float.parseFloat(strs[4]);
+                        float cny = Float.parseFloat(strs[5]);
+                        float jpy = Float.parseFloat(strs[6]);
                         StockAccount acc = new StockAccount(usd, eur, cny, jpy, date);
                         user.addAccount(acc);
                     } else {
@@ -87,13 +96,19 @@ class UserManager {
         this.users.add(user);
     }
 
+    public List<User> getUsers() {
+        return this.users;
+    }
+
     public void printUsers() {
+        System.out.println("printing users...");
         for (User user : users) {
             System.out.println(user);
             for(Account acc : user.getAccounts()) {
                 System.out.println(acc);
             }
         }
+        System.out.println("done.");
     }
 
     // public User createClient(String userName, String userId, String password) {
@@ -101,25 +116,38 @@ class UserManager {
     // }
 
     public void storeUsers() {
-        // String userInfo = user.toString() + "\r\n";
-        User u1 = new User("John", "1", "123456");
-        String userInfo = u1.toString() + "\r\n";
-
-        try {
-            File writename = new File("Users.txt");
-            writename.createNewFile();
-            BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-            out.write(userInfo);
-            out.flush();
-            out.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (User user : this.users) {
+            
+            try {
+                String username = user.getUserName();
+                System.out.println(username);
+                File writename = new File("./Users/" + username + ".txt");
+                writename.createNewFile();
+                BufferedWriter out = new BufferedWriter(new FileWriter(writename));
+                String userInfo = user.toString() + "\n";
+                out.write(userInfo);
+                for (Account acc : user.getAccounts()) {
+                    System.out.println(acc);
+                    out.write(acc.toString() + "\n");
+                }
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void main(String[] args) {
         UserManager um = new UserManager("./Users");
+        User u1 = new User("John", "123456");
+        User u2 = new User("Bob", "123456");
+        User u3 = new User("Tom", "123456");
+
+        um.addUser(u1);
+        um.addUser(u2);
+        um.addUser(u3);
         um.printUsers();
+        um.storeUsers();
     }
 }

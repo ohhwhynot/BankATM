@@ -9,7 +9,7 @@ public class SavingAccount extends Account {
         constructMoneyList();
     }
 
-    public SavingAccount(int usd, int eur, int cny, int jpy, int[] date) {
+    public SavingAccount(float usd, float eur, float cny, float jpy, int[] date) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();

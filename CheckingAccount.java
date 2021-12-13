@@ -11,7 +11,7 @@ public class CheckingAccount extends Account {
         this.loan = 0;
     }
 
-    public CheckingAccount(int day, int usd, int eur, int cny, int jpy, int loan, int[] date) {
+    public CheckingAccount(int day, float usd, float eur, float cny, float jpy, float loan, int[] date) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();

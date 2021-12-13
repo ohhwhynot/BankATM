@@ -2,13 +2,15 @@ import java.util.*;
 
 class User {
     protected String userName;
-    protected String userId;
     protected String password;
     protected ArrayList<Account> accounts;
 
-    public User(String userName, String userId, String password) {
+    public User() {
+        this.accounts = new ArrayList<Account>();
+    }
+
+    public User(String userName, String password) {
         this.userName = userName;
-        this.userId = userId;
         this.password = password;
         this.accounts = new ArrayList<Account>();
     }
@@ -50,14 +52,14 @@ class User {
         // }
 
         // version 2
-        String str = userName + " " + userId + " " + password;
+        String str = userName + " " + password;
         return str;
     }
 
     public static void main(String[] args) {
-        User u1 = new User("John", "1", "123456");
-        User u2 = new User("Bob", "2", "123456");
-        User u3 = new User("Tom", "3", "123456");
+        User u1 = new User("John", "123456");
+        User u2 = new User("Bob", "123456");
+        User u3 = new User("Tom", "123456");
 
         System.out.println(u1);
         System.out.println(u2);

@@ -1,8 +1,8 @@
 class Client extends User {
     private AccountManager m;
 
-    public Client(String userName, String userId, String password, Admin a) {
-        super(userName, userId, password);
+    public Client(String userName, String password, Admin a) {
+        super(userName, password);
         m = new AccountManager(a);
     }
 
@@ -66,8 +66,8 @@ class Client extends User {
     }
 
     public static void main(String[] args) {
-        Admin a = new Admin("admin", "1111", "2222");
-        Client c = new Client("John", "1122", "3344", a);
+        Admin a = new Admin("admin", "2222");
+        Client c = new Client("John", "3344", a);
         c.createAccount("SAVING");
         System.out.println(c.getSavingAccount());
         System.out.println(c.isAccountExist("STOCK"));

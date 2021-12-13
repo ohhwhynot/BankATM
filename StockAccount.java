@@ -11,7 +11,7 @@ public class StockAccount extends Account {
         constructMoneyList();
     }
 
-    public StockAccount(int usd, int eur, int cny, int jpy, int[] date) {
+    public StockAccount(float usd, float eur, float cny, float jpy, int[] date) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
