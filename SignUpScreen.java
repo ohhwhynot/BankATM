@@ -27,7 +27,7 @@ public class SignUpScreen extends JFrame {
         String username = UsernameF.getText();
         String password = passwordField1.getText();
         String passwordC = passwordField2.getText();
-        if (um.checkDuplicateName(username)) { // check if existed
+        if (um.checkDuplicateName(username) || username.equals(admin.getUserName())) { // check if existed
             JOptionPane.showMessageDialog(null, "That username is taken", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!password.equals(passwordC)) {
             JOptionPane.showMessageDialog(null, "Those passwords didn’t match", "Error", JOptionPane.ERROR_MESSAGE);
