@@ -10,20 +10,23 @@ import javax.swing.GroupLayout;
  * @author Xudong Gao
  */
 public class AdminScreen extends JFrame {
+        private Admin admin;
         public AdminScreen() {
+                this.admin = Admin.getInstance();
                 initComponents();
         }
 
         private void logoutActionPerformed(ActionEvent e) {
                 new ATMHome().setVisible(true);
+                UserManager um = admin.getUserManager();
+                um.storeUsers();
                 this.dispose();
-                // TODO add your code here
         }
 
         private void checkProfitActionPerformed(ActionEvent e) {
-
-                // new AccountInfoScreen(account, user).setVisible(true);
-                // TODO add your code here
+                UserManager um = admin.getUserManager();
+                float balance = um.getTotalBalance();
+                JOptionPane.showMessageDialog(null, "Total Balance: " + balance, "Balance", JOptionPane.INFORMATION_MESSAGE);
         }
 
         private void checkLogsActionPerformed(ActionEvent e) {

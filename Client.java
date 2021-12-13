@@ -66,10 +66,10 @@ class Client extends User {
     }
 
     public static void main(String[] args) {
-        Admin a = new Admin("admin", "2222");
-        Client c = new Client("John", "3344", a);
-        c.createAccount("SAVING");
-        System.out.println(c.getSavingAccount());
-        System.out.println(c.isAccountExist("STOCK"));
+        // Admin a = new Admin("admin", "2222");
+        // Client c = new Client("John", "3344", a);
+        // c.createAccount("SAVING");
+        // System.out.println(c.getSavingAccount());
+        // System.out.println(c.isAccountExist("STOCK"));
     }
 }

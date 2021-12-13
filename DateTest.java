@@ -10,9 +10,10 @@ public class DateTest {
     public static void main(String[] args) throws InterruptedException, IOException {
         // UserManager um = new UserManager("./Users");
         TimeController.startTime();
-        Admin a = new Admin("john", "1122", "3344");
-        Client c = new Client("john", "1122", "3344", a);
-        new ClientHome(c).setVisible(true);
+        ATMHome atmHome = new ATMHome();
+        atmHome.setVisible(true);
+        // Client c = new Client("john", "3344", Admin.getInstance());
+        // new ClientHome(c).setVisible(true);
         // new StocksMarketScreen().setVisible(true);
         // SessionHandler log = SessionHandler.getInstance();
         // log.addLog("aaaaaaaa");

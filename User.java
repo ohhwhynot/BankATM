@@ -19,6 +19,10 @@ class User {
         return this.userName;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
     public boolean setPassword(String password) {
         if (password.contains(" ")) {
             return false;

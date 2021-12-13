@@ -111,9 +111,15 @@ class UserManager {
         System.out.println("done.");
     }
 
-    // public User createClient(String userName, String userId, String password) {
-    //     return new Client(userName, userId, password);
-    // }
+    public float getTotalBalance() {
+        float sum = 0;
+        for (User user : this.users) {
+            for (Account acc : user.getAccounts()) {
+                sum += acc.getBalance();
+            }
+        }
+        return (float) sum;
+    }
 
     public void storeUsers() {
         for (User user : this.users) {
@@ -138,6 +144,23 @@ class UserManager {
         }
     }
 
+    public boolean checkDuplicateName(String name) {
+        for (User user : users) {
+            if (user.getUserName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public User getUserByName(String name) {
+        for (User user : users) {
+            if (user.getUserName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
     public static void main(String[] args) {
         UserManager um = new UserManager("./Users");
         User u1 = new User("John", "123456");

@@ -10,7 +10,10 @@ import javax.swing.*;
  */
 public class ATMHome extends JFrame {
 
+    private Admin admin;
+
     public ATMHome() {
+        this.admin = Admin.getInstance();
         initComponents();
     }
 
@@ -20,15 +23,27 @@ public class ATMHome extends JFrame {
         if (true) { // a function to check user
             textField1.setText(null);
             passwordField1.setText(null);
-            if (!username.equals("admin")) { // if it is a client
-                Client client = new Client(username, "ss", passWord);// get a client object
-                ClientHome ch = new ClientHome(client);
-                ch.setVisible(true);
-                this.dispose();
+            if (!username.equals(admin.getUserName())) { // if it is a client
+                User user = admin.getUserManager().getUserByName(username);
+                Client client = new Client(user.getUserName(), user.getPassword(), admin);
+                if(user == null) {
+                    JOptionPane.showMessageDialog(null, "Username not found, sign up first!", "Error!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if(client.matchPassword(passWord)) {
+                        ClientHome ch = new ClientHome(client);
+                        ch.setVisible(true);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Password incorrect!", "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             } else {
-                new AdminScreen().setVisible(true);
-                this.dispose();
-                // get an admin
+                if (admin.matchPassword(passWord)) {
+                    new AdminScreen().setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Password incorrect!", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
             }
 
         } else {
@@ -40,7 +55,7 @@ public class ATMHome extends JFrame {
     }
 
     private void signUpPerformed(ActionEvent e) {
-        new SignUpScreen().setVisible(true);// TODO add your code here
+        new SignUpScreen(admin).setVisible(true);// TODO add your code here
     }
 
     private void initComponents() {
