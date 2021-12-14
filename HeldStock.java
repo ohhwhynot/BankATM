@@ -26,6 +26,10 @@ public class HeldStock {
         return this.cost;
     }
 
+    public void setCost(float cost) {
+        this.cost = cost;
+    }
+
     public float getTotalCost() {
         return this.cost * this.amount;
     }

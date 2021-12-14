@@ -28,14 +28,27 @@ public class StockAccount extends Account {
 
     public boolean buyStock(int amount, Stock stock) {
         float totalPrice = stock.getPrice() * amount;
-        if (totalPrice > this.getBalance()) {
+        if (totalPrice <= this.getBalance()) {
+            if (ifStockExist(stock) == false) {
+                this.moneyList.get(0).subtractMoneyAmount(totalPrice);
+                stocks.add(new HeldStock(stock, amount, stock.getPrice()));
+                return true;
+            } else {
+                for (HeldStock hs : stocks) {
+                    if (hs.getStock().getName().equals(stock.getName())) {
+                        this.moneyList.get(0).subtractMoneyAmount(totalPrice);
+                        hs.setCost((hs.getCost() * hs.getAmount() + stock.getPrice() * amount)
+                                / (amount + hs.getAmount()));
+                        hs.setAmount(hs.getAmount() + amount);
+                        return true;
+                    }
+                }
+            }
+        } else {
             System.out.println("Insufficient balance");
             return false;
-        } else {
-            this.moneyList.get(0).subtractMoneyAmount(totalPrice);
-            stocks.add(new HeldStock(stock, amount, stock.getPrice()));
-            return true;
         }
+        return false;
     }
 
     public void sellStock(int amount, Stock stock, float price) {
@@ -78,11 +91,9 @@ public class StockAccount extends Account {
         for (HeldStock hs : stocks) {
             str.append(" " + hs.getStock().getName() + "|" + hs.getAmount() + "|" + hs.getCost());
         }
-        String stockString =  String.format("STOCK %s %.2f %.2f %.2f %.2f %s", this.date.toString(),
+        return String.format("STOCK %s %.2f %.2f %.2f %.2f %s", this.date.toString(),
                 this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
                 this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(), str.toString());
-
-        return stockString;
     }
 
 }
