@@ -22,6 +22,9 @@ public class SavingAccount extends Account {
         this.addMoney(new Money("EUR", (float) eur));
         this.addMoney(new Money("CNY", (float) cny));
         this.addMoney(new Money("JPY", (float) jpy));
+        if (this.getBalance() >= 5000) {
+            this.updateTrigger = true;
+        }
         this.date = new ATMDate();
         this.date.setDate(date);
     }
