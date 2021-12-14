@@ -42,7 +42,8 @@ public class StocksMarketScreen extends JFrame {
                 }else {
                     JOptionPane.showMessageDialog(null, "Purchase succeeds!",
                             "Succeed!", JOptionPane.INFORMATION_MESSAGE);
-
+                    SessionHandler.getInstance().addLog("Client "+ client.getUserName()+" bought "+amount+ " shares of "
+                    +stock.getName()+" stocks at "+stock.getPrice()+" USD each");
                 }
             } catch (Exception err) {
                 JOptionPane.showMessageDialog(null, "The amount must be an integer!",

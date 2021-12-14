@@ -63,7 +63,7 @@ public class BackupController {
         return new StockMarket(marketInfo);
 
     }
-    public void storeStockMarket(StockMarket stockMarket){
+    public static void storeStockMarket(StockMarket stockMarket){
         List<String> lines = new ArrayList<>();
         lines.add(stockMarket.getCode()+"");
         for(Stock stock:stockMarket.getStocks()){

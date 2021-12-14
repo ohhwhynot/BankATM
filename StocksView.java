@@ -36,11 +36,11 @@ public class StocksView {
             totValues+=value;
         }
         for(HeldStock heldStock:stocks){
-            Stock stock = heldStock.getStock();
+            Stock stock = Admin.getInstance().getStockController().getStock(heldStock.getStock().getName());
             data[i][0]= stock.getName();
             data[i][1] = stock.getCode();
             data[i][2] = Float.toString(heldStock.getCost());
-            data[i][3] = Float.toString(Admin.getInstance().getStockController().getStock(stock.getName()).getPrice());
+            data[i][3] = Float.toString(stock.getPrice());
             data[i][4] = Integer.toString(heldStock.getAmount());
             data[i][5] = Double.toString((stock.getPrice()*heldStock.getAmount())/(totValues+ account.getBalance()));
             data[i][6] = Float.toString((stock.getPrice()-heldStock.getCost())*heldStock.getAmount());

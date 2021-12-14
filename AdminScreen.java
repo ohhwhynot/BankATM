@@ -22,7 +22,9 @@ public class AdminScreen extends JFrame {
 
                 UserManager um = admin.getUserManager();
                 um.storeUsers();
+                BackupController.storeStockMarket(Admin.getInstance().getStockController().getMarket());
                 this.dispose();
+
                 new ATMHome().setVisible(true);
         }
 
@@ -34,6 +36,7 @@ public class AdminScreen extends JFrame {
 
         private void checkLogsActionPerformed(ActionEvent e) {
                 new LogScreen().setVisible(true);
+
                 // TODO add your code here
         }
 

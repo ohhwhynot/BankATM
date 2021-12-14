@@ -66,6 +66,8 @@ public class ClientHome extends JFrame {
         private void buttonLogoutPerformed(ActionEvent e) {
                 UserManager um = Admin.getInstance().getUserManager();
                 um.storeUsers();
+                BackupController.storeStockMarket(Admin.getInstance().getStockController().getMarket());
+                SessionHandler.getInstance().writeLogs();
                 new ATMHome().setVisible(true);
                 this.dispose();
         }

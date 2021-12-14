@@ -63,6 +63,9 @@ public class Stock {
     public boolean isBought(){
         return isBought;
     }
+    public void setBought(boolean b){
+        isBought=b;
+    }
 
     public void setChangePercent(float changePercent) {
         this.changePercent = changePercent;

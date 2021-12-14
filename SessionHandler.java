@@ -25,8 +25,11 @@ public class SessionHandler {
         line = TimeController.getCurDate() + " "+ line;
         logs.add(line);
     }
+    public void loadLogs(){
+        logs = BackupController.readTxt("log.txt");
+    }
 
-    public void writeLogs() throws IOException {
+    public void writeLogs()  {
         BackupController.writeTxt("log.txt",logs,true);
     }
     public List<String> getLogs(){

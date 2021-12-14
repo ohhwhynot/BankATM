@@ -90,9 +90,7 @@ class UserManager {
                         for(int i = 7; i < strs.length; i++) {
                             
                             if(strs[i].length() > 1) {
-                                System.out.println("[" + strs[i] + "]");
                                 String[] stockInfo = strs[i].split("\\|");
-                                System.out.println(Admin.getInstance()==null);
                                 acc.addHeldStock(new HeldStock(getStockController().getStock(stockInfo[0]), 
                                                             Integer.parseInt(stockInfo[1]), 
                                                             Float.parseFloat(stockInfo[2])));

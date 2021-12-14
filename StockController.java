@@ -39,4 +39,5 @@ public class StockController {
     public List<Stock> getStocks(){
         return market.getStocks();
     }
+    public StockMarket getMarket(){return market;}
 }

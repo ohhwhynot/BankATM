@@ -44,6 +44,7 @@ public class StockAccount extends Account {
                     }
                 }
             }
+            stock.setBought(true);
         } else {
             System.out.println("Insufficient balance");
             return false;
