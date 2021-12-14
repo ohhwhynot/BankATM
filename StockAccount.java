@@ -9,6 +9,7 @@ public class StockAccount extends Account {
         this.curr = new Currency();
         this.stocks = new ArrayList<HeldStock>();
         constructMoneyList();
+        this.date = TimeController.getCurDate();
     }
 
     public StockAccount(float usd, float eur, float cny, float jpy, int[] date) {
@@ -56,7 +57,7 @@ public class StockAccount extends Account {
         return false;
     }
 
-    public ArrayList<HeldStock> getStocks(){
+    public ArrayList<HeldStock> getStocks() {
         return stocks;
     }
 
@@ -68,7 +69,7 @@ public class StockAccount extends Account {
         stocks.add(stock);
     }
 
-    public HeldStock getHeldStock(int index){
+    public HeldStock getHeldStock(int index) {
         return stocks.get(index);
     }
 

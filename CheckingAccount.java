@@ -9,6 +9,7 @@ public class CheckingAccount extends Account {
         this.curr = new Currency();
         constructMoneyList();
         this.loan = 0;
+        this.date = TimeController.getCurDate();
     }
 
     public CheckingAccount(int day, float usd, float eur, float cny, float jpy, float loan, int[] date) {

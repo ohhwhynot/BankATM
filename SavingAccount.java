@@ -2,11 +2,15 @@ import java.util.ArrayList;
 
 public class SavingAccount extends Account {
 
+    private boolean updateTrigger;
+
     public SavingAccount() {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
+        this.updateTrigger = false;
+        this.date = TimeController.getCurDate();
     }
 
     public SavingAccount(float usd, float eur, float cny, float jpy, int[] date) {
@@ -26,6 +30,7 @@ public class SavingAccount extends Account {
         float interest = 0;
         float balance = this.getBalance();
         if (balance >= 5000) {
+            updateTime();
             if (datediff <= 7) {
                 interest = 0;
             } else if (datediff > 7 && datediff <= 30) {
@@ -41,8 +46,17 @@ public class SavingAccount extends Account {
                 interest = balance * (float) 0.0005;
                 interest = interest * (datediff / 30);
             }
+        } else {
+            interest = 0;
         }
         return interest;
+    }
+
+    public void updateTime() {
+        if (this.updateTrigger == false) {
+            this.date = TimeController.getCurDate();
+            this.updateTrigger = true;
+        }
     }
 
     @Override
