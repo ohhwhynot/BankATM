@@ -13,7 +13,10 @@ import java.util.Scanner;
  * @Date: Dec 2021
  */
 public class BackupController {
-    static String fRoot = System.getProperty("user.dir") + "/BankATM/ConfigFiles/";
+    static String fRoot = System.getProperty("user.dir") + "/ConfigFiles/";
+    public static BackupController getInstance(){return instance;}
+    private static BackupController instance = new BackupController();
+    private BackupController(){};
 
     public static List<String> readTxt(String fileName) throws FileNotFoundException {
         Scanner inf = new Scanner(new File(fRoot + fileName));
@@ -49,6 +52,15 @@ public class BackupController {
 
     }
 
+    public StockMarket loadUpStockMarket(){
+        try {
+            List<String> marketInfo = readTxt("StockMarket.txt");
+            return new StockMarket(marketInfo);
+        }catch (IOException error){
+            throw new RuntimeException(error);
+        }
+
+    }
     // public static void readCSV();
 
 }

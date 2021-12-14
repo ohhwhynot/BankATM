@@ -4,95 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:169:p, comp buy:::p:110:p, space :p:53:p, comp sell:::p:110:p, space ::211:x}, seq t {space :::x, par l {seq {comp label1:::p::p, space :::p, comp username:::p::p, space :p:100:p, comp label2:::p::p, space :::p, comp balance:::p::p, space :p:61:p, comp label3:::p::p, space :::p, comp totProfit:::p:19:p}, par l:::p {comp table1:::::x, comp table2:::::x}}, space :p:63:p}}"
-			"$verticalGroup": "par l {seq t {space :p:24:p, par b {comp label1::b:p::p, comp label2::b:p::p, comp label3::b:p::p, comp username::b:p::p, comp balance::b:p::p, comp totProfit::b:p::p}, space ::50:x, comp table2:::p::p, space :::p, comp table1:::p::p, space :p:35:p, par b {comp sell::b:p:50:p, comp buy::b:p:50:p}, space :p:61:p}}"
+			"$horizontalGroup": "par l {seq t {space :::x, comp label1:::p::p, space :::p, comp username:::p::p, space :p:93:p, comp label2:::p::p, space :::p, comp balance:::p:37:p, space :p:100:p, comp label3:::p::p, space :::p, comp totProfit:::p:19:p, space :p:131:p}, seq {par l {seq {space :p:149:p, comp buy:::p:110:p, space :p:135:p, comp sell:::p:110:p}, seq l {space :p:32:p, comp scrollPane1:::p:581:p}}, space ::40:x}}"
+			"$verticalGroup": "par l {seq t {space :p:38:p, par b {comp label2::b:p::p, comp label3::b:p::p, comp totProfit::b:p::p, comp label1::b:p::p, comp username::b:p::p, comp balance::b:p::p}, space u:::p, comp scrollPane1:::p:226:p, space u:::p, par b {comp buy::b:p:50:p, comp sell::b:p:50:p}, space ::38:x}}"
 		} ) {
 			name: "this"
 			"title": "My stocks"
 			"$sizePolicy": 1
 			"font": &Font0 new java.awt.Font( "Dialog", 0, 14 )
-			add( new FormComponent( "javax.swing.JTable" ) {
-				name: "table1"
-				"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
-					add( new java.util.Vector {
-						add( "" )
-						add( "" )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					} )
-					add( new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					} )
-					add( new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					} )
-					add( new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					} )
-					add( new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					} )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				} )
-			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buy"
 				"text": "Buy"
@@ -102,53 +20,6 @@ new FormModel {
 				name: "sell"
 				"text": "Sell"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sellActionPerformed", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JTable" ) {
-				name: "table2"
-				"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
-					add( new java.util.Vector {
-						add( "Name" )
-						add( "Code" )
-						add( "Cost price" )
-						add( "Cur price" )
-						add( "Number" )
-						add( "Postion" )
-						add( "Profit" )
-					} )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				}, new java.util.Vector {
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-					add( null )
-				} )
-				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
@@ -180,8 +51,92 @@ new FormModel {
 				"text": "0"
 				"font": #Font0
 			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 5 )
+			"location": new java.awt.Point( 80, 35 )
 			"size": new java.awt.Dimension( 655, 435 )
 		} )
 	}

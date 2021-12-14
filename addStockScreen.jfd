@@ -1,0 +1,48 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:81:p, par l {seq {space :p:54:p, comp label1:::p::p}, par t:l {seq l {comp label3:::p::p, space s:::p, comp listPrice:::p:124:p}, seq {comp label2:::p::p, space s:::p, comp stockName:::p:125:p}}, seq l {comp cancel:::p:107:p, space :p:45:p, comp confirm:::p:107:p}}, space ::108:x}}"
+			"$verticalGroup": "par l {seq l {space :p:34:p, comp label1:::p::p, space :p:43:p, par b {comp label2::b:p::p, comp stockName::b:p::p}, space :p:33:p, par b {comp label3::b:p::p, comp listPrice::b:p::p}, space s:::p, par b {comp confirm::b:p:40:p, comp cancel::b:p:40:p}, space ::54:x}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Add a new stock"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Stock name:"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Listing price:"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "stockName"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "listPrice"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cancel"
+				"text": "Cancel"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "confirm"
+				"text": "Confirm"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 100, 115 )
+			"size": new java.awt.Dimension( 450, 365 )
+		} )
+	}
+}

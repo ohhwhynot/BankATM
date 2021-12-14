@@ -12,7 +12,9 @@ import javax.swing.GroupLayout;
  * @author Xudong Gao
  */
 public class BuyStockScreen extends JFrame {
-    public BuyStockScreen() {
+    private Client client;
+    public BuyStockScreen(Client client) {
+        this.client = client;
         initComponents();
     }
 

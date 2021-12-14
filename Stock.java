@@ -13,11 +13,14 @@ public class Stock {
     private List<Float> historyPrice;
     private float price;
     private float changePercent;
+    private boolean isBought;
 
-    Stock(String name, String code, float price) {
+    Stock(String name, String code, float price,float changePercent,boolean isBought) {
         this.name = name;
         this.code = code;
         this.price = price;
+        this.changePercent = changePercent;
+        this.isBought = isBought;
         historyPrice = new ArrayList<>();
     }
 
@@ -54,7 +57,11 @@ public class Stock {
     }
 
     public float getChangePercent() {
+
         return changePercent;
+    }
+    public boolean isBought(){
+        return isBought;
     }
 
     public void setChangePercent(float changePercent) {

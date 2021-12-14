@@ -9,7 +9,11 @@ import javax.swing.*;
  * @author Xudong Gao
  */
 public class SignUpScreen extends JFrame {
-    public SignUpScreen() {
+    private Admin admin;
+    private UserManager um;
+    public SignUpScreen(Admin admin) {
+        this.admin = admin;
+        this.um = admin.getUserManager();
         initComponents();
     }
 
@@ -23,13 +27,17 @@ public class SignUpScreen extends JFrame {
         String username = UsernameF.getText();
         String password = passwordField1.getText();
         String passwordC = passwordField2.getText();
-        if (!true) { // check if existed
+        if (um.checkDuplicateName(username) || username.equals(admin.getUserName())) { // check if existed
             JOptionPane.showMessageDialog(null, "That username is taken", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        if (!password.equals(passwordC)) {
+        } else if (!password.equals(passwordC)) {
             JOptionPane.showMessageDialog(null, "Those passwords didn’t match", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             // todo sign
+            User user = new User(username, password);
+            um.addUser(user);
+            JOptionPane.showMessageDialog(null, "You have successfully signud up", "Success", JOptionPane.INFORMATION_MESSAGE);
+            um.storeUsers();
+            this.dispose();
         }
     }
 

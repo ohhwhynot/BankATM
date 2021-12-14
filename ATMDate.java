@@ -8,7 +8,8 @@ import java.util.Arrays;
  */
 public class ATMDate {
     private int[] date;
-    ATMDate(){
+
+    ATMDate() {
         this.date = new int[4];
     }
 
@@ -20,21 +21,24 @@ public class ATMDate {
         this.date = date;
     }
 
-    public int getYear(){
+    public int getYear() {
         return this.date[0];
     }
-    public int getMonth(){
+
+    public int getMonth() {
         return this.date[1];
     }
-    public int getDay(){
+
+    public int getDay() {
         return this.date[2];
     }
-    public int getHour(){
+
+    public int getHour() {
         return this.date[3];
     }
 
     @Override
     public String toString() {
-        return date[0]+"/"+date[1]+"/"+date[2]+" "+date[3]+":00";
+        return date[0] + "/" + date[1] + "/" + date[2] + " " + date[3] + ":00";
     }
 }

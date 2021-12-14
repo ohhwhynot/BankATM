@@ -4,6 +4,15 @@ public abstract class Account {
     protected float balance;
     protected ArrayList<Money> moneyList;
     protected Currency curr;
+    protected ATMDate date;
+
+    public ATMDate getDate() {
+        return this.date;
+    }
+
+    // public void setDate(int[] date) {
+    // this.date.setDate(date);
+    // }
 
     public void convertToBalance() {
         this.balance = 0;
@@ -39,6 +48,15 @@ public abstract class Account {
         this.moneyList.add(new Money("EUR", (float) 0));
         this.moneyList.add(new Money("CNY", (float) 0));
         this.moneyList.add(new Money("JPY", (float) 0));
+    }
+
+    public float getCurrMoney(String curr) {
+        for (Money m : moneyList) {
+            if (m.getCountryCode().equals(curr)) {
+                return m.getMoneyAmount();
+            }
+        }
+        return 0;
     }
 
     public float getBalance() {

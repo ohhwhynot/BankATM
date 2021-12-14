@@ -1,30 +1,28 @@
 import java.util.ArrayList;
 
 public class SavingAccount extends Account {
-    private int day;
 
     public SavingAccount() {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
-        this.day = 0;
     }
 
-    public SavingAccount(int day, int usd, int eur, int cny, int jpy) {
+    public SavingAccount(float usd, float eur, float cny, float jpy, int[] date) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
         constructMoneyList();
-        this.day = day;
         this.addMoney(new Money("USD", (float) usd));
         this.addMoney(new Money("EUR", (float) eur));
         this.addMoney(new Money("CNY", (float) cny));
         this.addMoney(new Money("JPY", (float) jpy));
+        this.date = new ATMDate();
+        this.date.setDate(date);
     }
 
-    public float interestCalculation() {
-        int datediff = this.day;
+    public float interestCalculation(int datediff) {
         float interest = 0;
         float balance = this.getBalance();
         if (balance >= 5000) {
@@ -49,9 +47,9 @@ public class SavingAccount extends Account {
 
     @Override
     public String toString() {
-        return String.format("SAVING %d %.2f %.2f %.2f %.2f", this.day, this.moneyList.get(0).getMoneyAmount(),
-                this.moneyList.get(1).getMoneyAmount(), this.moneyList.get(2).getMoneyAmount(),
-                this.moneyList.get(3).getMoneyAmount());
+        return String.format("SAVING %s %.2f %.2f %.2f %.2f", this.date.toString(),
+                this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
+                this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount());
     }
 
     public String getAccountType() {
@@ -63,7 +61,7 @@ public class SavingAccount extends Account {
         s.addMoney(new Money("USD", (float) 10000));
         s.printMoneyList();
         System.out.println(s);
-        System.out.println(s.interestCalculation());
+        System.out.println(s.interestCalculation(1000));
     }
 
 }

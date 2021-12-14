@@ -11,8 +11,20 @@ public class StockMarket {
 
 
     private List<Stock> stocks;
+
+
+    private int code;
     public StockMarket(){
         stocks = new ArrayList<>();
+    }
+    public StockMarket(List<String> list){
+        code = Integer.parseInt(list.remove(0));
+        stocks = new ArrayList<>();
+        for (String i:list){
+            String[] args = i.split(" ");
+            stocks.add(new Stock(args[0],args[1],Float.parseFloat(args[2]),Float.parseFloat(args[3]),
+                            Boolean.parseBoolean(args[4])));
+        }
     }
     public List<Stock> getStocks() {
         return stocks;
@@ -29,20 +41,31 @@ public class StockMarket {
                 return stock;
             }
         }
-        if(isFound==false) {
-            //todo notfound
-            return null;
-        }
         return null;
     }
-    public void addStock(String name,String code,float price){
-        stocks.add(new Stock(name,code,price));
+    public Stock getStock(int index){
+        return stocks.get(index);
     }
-    public void deleteStock(String info){
-        for(Stock stock:stocks){
-            if(stock.getCode().equals(info)||stock.getName().equals(info)){
-                stocks.remove(stock);
+    public int getCode() {
+        return code;
+    }
+
+    public boolean isExisted(String name){
+        for (Stock stock:stocks){
+            if (stock.getName().equals(name)){
+                return true;
             }
         }
+        return false;
+    }
+    public void setCode(int code) {
+        this.code = code;
+    }
+    public void addStock(String name,String code,float price){
+        stocks.add(new Stock(name,code,price,0,false));
+    }
+    public void deleteStock(int index){
+        stocks.remove(index);
+
     }
 }

@@ -13,50 +13,75 @@ import javax.swing.table.*;
  * @author Xudong Gao
  */
 public class TradeStockScreen extends JFrame {
-    public TradeStockScreen() {
+    private StockAccount stockAccount;
+    private Client client;
+    public TradeStockScreen(Client client) {
         initComponents();
+        username.setText(client.getUserName());
+        stockAccount = client.getStockAccount();
+        balance.setText(Float.toString(stockAccount.getBalance()));
+        this.client = client;
+        DefaultTableModel model =  Admin.getInstance().getStockController().getView().getTableModel_7(client.getStockAccount());
+        table1.setModel(model);
+        balance.setText(Float.toString(client.getStockAccount().getBalance()));
+    }
+    public void refresh(){
+        DefaultTableModel model =  Admin.getInstance().getStockController().getView().getTableModel_7(client.getStockAccount());
+        table1.setModel(model);
+        balance.setText(Float.toString(stockAccount.getBalance()));
     }
 
     private void buyActionPerformed(ActionEvent e) {
-        new StocksMarketScreen().setVisible(true);
+        new StocksMarketScreen(this,client).setVisible(true);
     }
 
     private void sellActionPerformed(ActionEvent e) {
-        new SellStockScreen().setVisible(true);
+
+        int selectedRow = table1.getSelectedRow();
+        if(selectedRow==-1){
+            JOptionPane.showMessageDialog(null, "You have to click on one of the stocks!", "Error!", JOptionPane.ERROR_MESSAGE);
+        }else {
+
+            HeldStock heldStock = client.getStockAccount().getHeldStock(selectedRow);
+            Stock stock = heldStock.getStock();
+            String amount = JOptionPane.showInputDialog(this, "Please input the amount you want to sell for " + stock.getName() + ":");
+            float amountF = 0;
+            try {
+                amountF = Integer.parseInt(amount);
+            }catch (Exception err) {
+                JOptionPane.showMessageDialog(null, "The amount must be an integer!",
+                        "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+            if(amountF>heldStock.getAmount()) {
+                JOptionPane.showMessageDialog(null, "You don't have that many shares!",
+                        "Error!", JOptionPane.ERROR_MESSAGE);
+            }else {
+                client.getStockAccount().sellStock(Integer.parseInt(amount),stock,stock.getPrice());
+                JOptionPane.showMessageDialog(null, "Sell succeeds!",
+                        "Succeed!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        this.refresh();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Xudong Gao
-        table1 = new JTable();
         buy = new JButton();
         sell = new JButton();
-        table2 = new JTable();
         label1 = new JLabel();
         label2 = new JLabel();
         label3 = new JLabel();
         username = new JLabel();
         balance = new JLabel();
         totProfit = new JLabel();
+        scrollPane1 = new JScrollPane();
+        table1 = new JTable();
 
         //======== this ========
         setTitle("My stocks");
         setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
         var contentPane = getContentPane();
-
-        //---- table1 ----
-        table1.setModel(new DefaultTableModel(
-            new Object[][] {
-                {"", "", null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-            },
-            new String[] {
-                null, null, null, null, null, null, null
-            }
-        ));
 
         //---- buy ----
         buy.setText("Buy");
@@ -65,17 +90,6 @@ public class TradeStockScreen extends JFrame {
         //---- sell ----
         sell.setText("Sell");
         sell.addActionListener(e -> sellActionPerformed(e));
-
-        //---- table2 ----
-        table2.setModel(new DefaultTableModel(
-            new Object[][] {
-                {"Name", "Code", "Cost price", "Cur price", "Number", "Postion", "Profit"},
-            },
-            new String[] {
-                null, null, null, null, null, null, null
-            }
-        ));
-        table2.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
         //---- label1 ----
         label1.setText("Username:");
@@ -101,56 +115,72 @@ public class TradeStockScreen extends JFrame {
         totProfit.setText("0");
         totProfit.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
+        //======== scrollPane1 ========
+        {
+
+            //---- table1 ----
+            table1.setModel(new DefaultTableModel(
+                new Object[][] {
+                    {null, null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null, null},
+                },
+                new String[] {
+                    null, null, null, null, null, null, null, null
+                }
+            ));
+            scrollPane1.setViewportView(table1);
+        }
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(169, 169, 169)
-                    .addComponent(buy, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                    .addGap(53, 53, 53)
-                    .addComponent(sell, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(211, Short.MAX_VALUE))
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label1)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(username)
+                    .addGap(93, 93, 93)
+                    .addComponent(label2)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(balance, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                    .addGap(100, 100, 100)
+                    .addComponent(label3)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    .addGap(131, 131, 131))
+                .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(label1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(username)
-                            .addGap(100, 100, 100)
-                            .addComponent(label2)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(balance)
-                            .addGap(61, 61, 61)
-                            .addComponent(label3)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(table1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(table2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGap(63, 63, 63))
+                            .addGap(149, 149, 149)
+                            .addComponent(buy, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                            .addGap(135, 135, 135)
+                            .addComponent(sell, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 581, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(40, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addGap(24, 24, 24)
+                    .addGap(38, 38, 38)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label1)
                         .addComponent(label2)
                         .addComponent(label3)
+                        .addComponent(totProfit)
+                        .addComponent(label1)
                         .addComponent(username)
-                        .addComponent(balance)
-                        .addComponent(totProfit))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                    .addComponent(table2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(table1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(35, 35, 35)
+                        .addComponent(balance))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(sell, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buy, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                    .addGap(61, 61, 61))
+                        .addComponent(buy, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sell, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(38, Short.MAX_VALUE))
         );
         setSize(655, 435);
         setLocationRelativeTo(getOwner());
@@ -159,15 +189,15 @@ public class TradeStockScreen extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Xudong Gao
-    private JTable table1;
     private JButton buy;
     private JButton sell;
-    private JTable table2;
     private JLabel label1;
     private JLabel label2;
     private JLabel label3;
     private JLabel username;
     private JLabel balance;
     private JLabel totProfit;
+    private JScrollPane scrollPane1;
+    private JTable table1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
