@@ -78,9 +78,11 @@ public class StockAccount extends Account {
         for (HeldStock hs : stocks) {
             str.append(" " + hs.getStock().getName() + "|" + hs.getAmount() + "|" + hs.getCost());
         }
-        return String.format("STOCK %s %.2f %.2f %.2f %.2f %s", this.date.toString(),
+        String stockString =  String.format("STOCK %s %.2f %.2f %.2f %.2f %s", this.date.toString(),
                 this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
                 this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(), str.toString());
+
+        return stockString;
     }
 
 }

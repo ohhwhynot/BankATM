@@ -29,7 +29,9 @@ public class SessionHandler {
     public void writeLogs() throws IOException {
         BackupController.writeTxt("log.txt",logs,true);
     }
-
+    public List<String> getLogs(){
+        return logs;
+    }
 
 
 }

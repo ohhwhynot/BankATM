@@ -59,8 +59,20 @@ public class BackupController {
         }catch (IOException error){
             throw new RuntimeException(error);
         }
-
     }
-    // public static void readCSV();
+    public void storeStockMarket(StockMarket stockMarket){
+        List<String> lines = new ArrayList<>();
+        lines.add(stockMarket.getCode()+"");
+        for(Stock stock:stockMarket.getStocks()){
+            String line = stock.getName()+" "+stock.getCode()+" "+stock.getPrice()+" "+stock.getChangePercent()+" "+
+                    stock.isBought();
+            lines.add(line);
+        }
+        try {
+            writeTxt("StockMarket.txt",lines,true);
+        }catch (IOException error){
+            throw new RuntimeException(error);
+        }
+    }
 
 }

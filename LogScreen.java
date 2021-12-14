@@ -12,6 +12,10 @@ import javax.swing.GroupLayout;
 public class LogScreen extends JFrame {
     public LogScreen() {
         initComponents();
+
+        DefaultListModel model = new DefaultListModel();
+        model.addAll(SessionHandler.getInstance().getLogs());
+        list1.setModel(model);
     }
 
     private void confirmActionPerformed(ActionEvent e) {
@@ -27,38 +31,50 @@ public class LogScreen extends JFrame {
         label1 = new JLabel();
         confirm = new JButton();
 
-        // ======== this ========
+        //======== this ========
         var contentPane = getContentPane();
 
-        // ======== scrollPane1 ========
+        //======== scrollPane1 ========
         {
             scrollPane1.setViewportView(list1);
         }
 
-        // ---- label1 ----
+        //---- label1 ----
         label1.setText("Logs");
         label1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 22));
 
-        // ---- confirm ----
+        //---- confirm ----
         confirm.setText("Confirm");
         confirm.addActionListener(e -> confirmActionPerformed(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup().addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup().addGap(206, 206, 206).addComponent(label1))
-                        .addGroup(contentPaneLayout.createSequentialGroup().addGap(68, 68, 68).addComponent(scrollPane1,
-                                GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(
-                                contentPaneLayout.createSequentialGroup().addGap(195, 195, 195).addComponent(confirm)))
-                        .addContainerGap(72, Short.MAX_VALUE)));
-        contentPaneLayout.setVerticalGroup(contentPaneLayout.createParallelGroup().addGroup(
-                GroupLayout.Alignment.TRAILING,
-                contentPaneLayout.createSequentialGroup().addGap(36, 36, 36).addComponent(label1).addGap(18, 18, 18)
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30).addComponent(confirm).addContainerGap(35, Short.MAX_VALUE)));
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(206, 206, 206)
+                            .addComponent(label1))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(68, 68, 68)
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(195, 195, 195)
+                            .addComponent(confirm)))
+                    .addContainerGap(72, Short.MAX_VALUE))
+        );
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addGap(36, 36, 36)
+                    .addComponent(label1)
+                    .addGap(18, 18, 18)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(30, 30, 30)
+                    .addComponent(confirm)
+                    .addContainerGap(35, Short.MAX_VALUE))
+        );
         setSize(500, 430);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization //GEN-END:initComponents
