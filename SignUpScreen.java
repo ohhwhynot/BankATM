@@ -33,8 +33,8 @@ public class SignUpScreen extends JFrame {
             JOptionPane.showMessageDialog(null, "Those passwords didn’t match", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             // todo sign
-            User user = new User(username, password);
-            um.addUser(user);
+            Client client = new Client(username, password, Admin.getInstance());
+            um.addUser(client);
             JOptionPane.showMessageDialog(null, "You have successfully signud up", "Success", JOptionPane.INFORMATION_MESSAGE);
             um.storeUsers();
             this.dispose();

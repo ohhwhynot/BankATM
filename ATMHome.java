@@ -30,7 +30,8 @@ public class ATMHome extends JFrame {
                 if(user == null) {
                     JOptionPane.showMessageDialog(null, "Username not found, sign up first!", "Error!", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    Client client = new Client(user.getUserName(), user.getPassword(), admin);
+                    // Client client = new Client(user.getUserName(), user.getPassword(), admin);
+                    Client client = (Client) user;
                     if(client.matchPassword(passWord)) {
                         ClientHome ch = new ClientHome(client);
                         ch.setVisible(true);

@@ -3,10 +3,10 @@ import java.util.*;
 
 class UserManager {
     // private String filename;
-    private List<User> users;
+    private List<Client> clients;
 
     public UserManager(String dirname) {
-        users = new ArrayList<User>();
+        clients = new ArrayList<Client>();
         File dir = new File(dirname);
         String[] userfiles = dir.list();
         if (userfiles == null) {
@@ -16,13 +16,14 @@ class UserManager {
             for (int i=0; i< userfiles.length; i++) {
                 String filename = userfiles[i];
                 System.out.println(filename);
-                users.add(loadUser(dirname+"/"+filename));
+                clients.add(loadClient(dirname+"/"+filename));
             }
         }
     }
 
-    public User loadUser(String filename) {
-        User user = new User();
+    public Client loadClient(String filename) {
+        Admin admin = Admin.getInstance();
+        
         try {
             File file = new File(filename);
             InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
@@ -31,7 +32,8 @@ class UserManager {
             line = br.readLine();
             if (line != null) {
                 String[] strs = line.split(" ");
-                user = new User(strs[0], strs[1]);
+                Client client = new Client(strs[0], strs[1], admin);
+                System.out.println(client.getUserName());
                 line = br.readLine();
                 while (line != null) {
                     strs = line.split(" ");
@@ -50,7 +52,7 @@ class UserManager {
                         float loan = Float.parseFloat(strs[7]);
                         
                         CheckingAccount acc = new CheckingAccount(0, usd, eur, cny, jpy, loan, date);
-                        user.addAccount(acc);
+                        client.addAccount(acc);
                     } else if (strs[0].equalsIgnoreCase("SAVING")) {
                         String dateStr = strs[1];
                         String[] days = dateStr.split("/");
@@ -64,7 +66,7 @@ class UserManager {
                         float cny = Float.parseFloat(strs[5]);
                         float jpy = Float.parseFloat(strs[6]);
                         SavingAccount acc = new SavingAccount(usd, eur, cny, jpy, date);
-                        user.addAccount(acc);
+                        client.addAccount(acc);
                     } else if (strs[0].equalsIgnoreCase("STOCK")) {
                         String dateStr = strs[1];
                         String[] days = dateStr.split("/");
@@ -78,31 +80,32 @@ class UserManager {
                         float cny = Float.parseFloat(strs[5]);
                         float jpy = Float.parseFloat(strs[6]);
                         StockAccount acc = new StockAccount(usd, eur, cny, jpy, date);
-                        user.addAccount(acc);
+                        client.addAccount(acc);
                     } else {
                         //
                     }
                     line = br.readLine();
                 }
+                return client;
             }
+            return null;
             
-            return user;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void addUser(User user) {
-        this.users.add(user);
+    public void addUser(Client user) {
+        this.clients.add(user);
     }
 
-    public List<User> getUsers() {
-        return this.users;
+    public List<Client> getUsers() {
+        return this.clients;
     }
 
     public void printUsers() {
         System.out.println("printing users...");
-        for (User user : users) {
+        for (User user : clients) {
             System.out.println(user);
             for(Account acc : user.getAccounts()) {
                 System.out.println(acc);
@@ -113,7 +116,7 @@ class UserManager {
 
     public float getTotalBalance() {
         float sum = 0;
-        for (User user : this.users) {
+        for (Client user : this.clients) {
             for (Account acc : user.getAccounts()) {
                 sum += acc.getBalance();
             }
@@ -122,7 +125,7 @@ class UserManager {
     }
 
     public void storeUsers() {
-        for (User user : this.users) {
+        for (User user : this.clients) {
             
             try {
                 String username = user.getUserName();
@@ -145,7 +148,7 @@ class UserManager {
     }
 
     public boolean checkDuplicateName(String name) {
-        for (User user : users) {
+        for (User user : clients) {
             if (user.getUserName().equals(name)) {
                 return true;
             }
@@ -154,7 +157,7 @@ class UserManager {
     }
 
     public User getUserByName(String name) {
-        for (User user : users) {
+        for (Client user : clients) {
             if (user.getUserName().equals(name)) {
                 return user;
             }
@@ -162,15 +165,15 @@ class UserManager {
         return null;
     }
     public static void main(String[] args) {
-        UserManager um = new UserManager("./Users");
-        User u1 = new User("John", "123456");
-        User u2 = new User("Bob", "123456");
-        User u3 = new User("Tom", "123456");
+        // UserManager um = new UserManager("./Users");
+        // User u1 = new User("John", "123456");
+        // User u2 = new User("Bob", "123456");
+        // User u3 = new User("Tom", "123456");
 
-        um.addUser(u1);
-        um.addUser(u2);
-        um.addUser(u3);
-        um.printUsers();
-        um.storeUsers();
+        // um.addUser(u1);
+        // um.addUser(u2);
+        // um.addUser(u3);
+        // um.printUsers();
+        // um.storeUsers();
     }
 }
