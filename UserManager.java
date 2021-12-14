@@ -4,8 +4,11 @@ import java.util.*;
 class UserManager {
     // private String filename;
     private List<Client> clients;
-
+    private StockController stockController;
     public UserManager(String dirname) {
+        StockMarket market = BackupController.getInstance().loadUpStockMarket();
+        this.stockController = new StockController(new StocksView(),market);
+
         clients = new ArrayList<Client>();
         File dir = new File(dirname);
         String[] userfiles = dir.list();
@@ -20,6 +23,8 @@ class UserManager {
             }
         }
     }
+
+    public StockController getStockController(){return  stockController;};
 
     public Client loadClient(String filename) {
         Admin admin = Admin.getInstance();
@@ -83,10 +88,15 @@ class UserManager {
                         StockAccount acc = new StockAccount(usd, eur, cny, jpy, date);
                         
                         for(int i = 7; i < strs.length; i++) {
-                            String[] stockInfo = strs[i].split("/");
-                            acc.addHeldStock(new HeldStock(Admin.getInstance().getStockController().getStock(stockInfo[0]), 
+                            
+                            if(strs[i].length() > 1) {
+                                System.out.println("[" + strs[i] + "]");
+                                String[] stockInfo = strs[i].split("\\|");
+                                System.out.println(Admin.getInstance()==null);
+                                acc.addHeldStock(new HeldStock(getStockController().getStock(stockInfo[0]), 
                                                             Integer.parseInt(stockInfo[1]), 
                                                             Float.parseFloat(stockInfo[2])));
+                            }
                         }
 
                         client.addAccount(acc);

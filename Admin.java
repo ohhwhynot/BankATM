@@ -14,9 +14,11 @@ class Admin extends User {
         super(userName, password);
         this.account = new SavingAccount();
 
-        this.um = new UserManager("./Users");
+        
         StockMarket market = BackupController.getInstance().loadUpStockMarket();
         this.stockController = new StockController(new StocksView(),market);
+
+        this.um = new UserManager("./Users");
     }
 
     public static Admin getInstance() {
