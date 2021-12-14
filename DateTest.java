@@ -7,7 +7,7 @@ import java.io.IOException;
  * @Date: Dec 2021
  */
 public class DateTest {
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args)  {
         // UserManager um = new UserManager("./Users");
         TimeController.startTime();
         ATMHome atmHome = new ATMHome();

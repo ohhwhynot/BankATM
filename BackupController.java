@@ -18,47 +18,50 @@ public class BackupController {
     private static BackupController instance = new BackupController();
     private BackupController(){};
 
-    public static List<String> readTxt(String fileName) throws FileNotFoundException {
-        Scanner inf = new Scanner(new File(fRoot + fileName));
-        List<String> content = new ArrayList<>();
-        String line;
-        while (inf.hasNext()) {
-            line = inf.nextLine();
-            content.add(line);
+    public static List<String> readTxt(String fileName)  {
+        try {
+            Scanner inf = new Scanner(new File(fRoot + fileName));
+            List<String> content = new ArrayList<>();
+            String line;
+            while (inf.hasNext()) {
+                line = inf.nextLine();
+                content.add(line);
+            }
+            return content;
+        }catch (IOException error){
+            error.printStackTrace();
         }
-        return content;
+        return null;
     }
 
-    public static void writeTxt(String fileName, List<String> lines, boolean isReplace) throws IOException {
+    public static void writeTxt(String fileName, List<String> lines, boolean isReplace)  {
 
-        File F = new File(fRoot + fileName);
-        System.out.println(fRoot + fileName);
-        if (!F.exists()) {
-            F.createNewFile();
-        }
-        FileWriter fw = null;
+
 
         try {
+            File F = new File(fRoot + fileName);
+            System.out.println(fRoot + fileName);
+            if (!F.exists()) {
+                F.createNewFile();
+            }
+            FileWriter fw = null;
             fw = new FileWriter(F, !isReplace);
             for (String line : lines)
                 fw.write(line + "\r\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
             if (fw != null) {
                 fw.close();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
 
     public StockMarket loadUpStockMarket(){
-        try {
-            List<String> marketInfo = readTxt("StockMarket.txt");
-            return new StockMarket(marketInfo);
-        }catch (IOException error){
-            throw new RuntimeException(error);
-        }
+
+        List<String> marketInfo = readTxt("StockMarket.txt");
+        return new StockMarket(marketInfo);
+
     }
     public void storeStockMarket(StockMarket stockMarket){
         List<String> lines = new ArrayList<>();
@@ -68,11 +71,9 @@ public class BackupController {
                     stock.isBought();
             lines.add(line);
         }
-        try {
+
             writeTxt("StockMarket.txt",lines,true);
-        }catch (IOException error){
-            throw new RuntimeException(error);
-        }
+
     }
 
 }
