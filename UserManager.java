@@ -79,7 +79,16 @@ class UserManager {
                         float eur = Float.parseFloat(strs[4]);
                         float cny = Float.parseFloat(strs[5]);
                         float jpy = Float.parseFloat(strs[6]);
+
                         StockAccount acc = new StockAccount(usd, eur, cny, jpy, date);
+                        
+                        for(int i = 7; i < strs.length; i++) {
+                            String[] stockInfo = strs[i].split("/");
+                            acc.addHeldStock(new HeldStock(Admin.getInstance().getStockController().getStock(stockInfo[0]), 
+                                                            Integer.parseInt(stockInfo[1]), 
+                                                            Float.parseFloat(stockInfo[2])));
+                        }
+
                         client.addAccount(acc);
                     } else {
                         //
