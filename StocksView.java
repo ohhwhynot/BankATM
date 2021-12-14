@@ -44,6 +44,7 @@ public class StocksView {
             data[i][4] = Integer.toString(heldStock.getAmount());
             data[i][5] = Double.toString((stock.getPrice()*heldStock.getAmount())/(totValues+ account.getBalance()));
             data[i][6] = Float.toString((stock.getPrice()-heldStock.getCost())*heldStock.getAmount());
+            i++;
         }
         String[] colName = {"Name","Code","CostPrice","CurPrice","Amount","Position","Profit"};
         return new DefaultTableModel(data,colName);
