@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * @ClassName: CheckingAccount
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class CheckingAccount extends Account {
     private float loan;
 

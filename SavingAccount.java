@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * @ClassName: SavingAccount
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class SavingAccount extends Account {
 
     private boolean updateTrigger;

@@ -1,3 +1,9 @@
+/**
+ * @ClassName: AccountManager
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class AccountManager {
     private AccountFactory factory;
     private Admin admin;

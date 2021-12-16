@@ -1,5 +1,11 @@
 import java.util.HashMap;
 
+/**
+ * @ClassName: Currency
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class Currency {
     private HashMap<String, Float> currency;
 

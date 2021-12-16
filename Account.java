@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * @ClassName: Account
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public abstract class Account {
     protected float balance;
     protected ArrayList<Money> moneyList;

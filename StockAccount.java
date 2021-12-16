@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * @ClassName: StockAccount
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class StockAccount extends Account {
     private ArrayList<HeldStock> stocks;
-
-
 
     private float realizedProfit = 0;
 
@@ -16,7 +20,7 @@ public class StockAccount extends Account {
         this.date = TimeController.getCurDate();
     }
 
-    public StockAccount(float usd, float eur, float cny, float jpy, int[] date,float realizedProfit) {
+    public StockAccount(float usd, float eur, float cny, float jpy, int[] date, float realizedProfit) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
@@ -30,6 +34,7 @@ public class StockAccount extends Account {
         this.date.setDate(date);
         this.realizedProfit = realizedProfit;
     }
+
     public float getRealizedProfit() {
         return realizedProfit;
     }
@@ -37,8 +42,9 @@ public class StockAccount extends Account {
     public void setRealizedProfit(float unrealizedProfit) {
         this.realizedProfit = unrealizedProfit;
     }
+
     public boolean buyStock(int amount, Stock stock) {
-        float totalPrice = (stock.getPrice()+2) * amount;
+        float totalPrice = (stock.getPrice() + 2) * amount;
         if (totalPrice <= this.getBalance()) {
             if (ifStockExist(stock) == false) {
                 this.moneyList.get(0).subtractMoneyAmount(totalPrice);
@@ -48,7 +54,7 @@ public class StockAccount extends Account {
                 for (HeldStock hs : stocks) {
                     if (hs.getStock().getName().equals(stock.getName())) {
                         this.moneyList.get(0).subtractMoneyAmount(totalPrice);
-                        Admin.getInstance().addMoney(new Money("USD", (float) (2*amount)));
+                        Admin.getInstance().addMoney(new Money("USD", (float) (2 * amount)));
                         hs.setCost((hs.getCost() * hs.getAmount() + stock.getPrice() * amount)
                                 / (amount + hs.getAmount()));
                         hs.setAmount(hs.getAmount() + amount);
@@ -65,14 +71,14 @@ public class StockAccount extends Account {
     }
 
     public void sellStock(int amount, Stock stock, float price) {
-        int fee =1;
+        int fee = 1;
         float totalPrice = price * amount;
         for (HeldStock hs : stocks) {
             if (hs.getStock().getName().equals(stock.getName())) {
                 hs.setAmount(hs.getAmount() - amount);
-                this.moneyList.get(0).addMoneyAmount(totalPrice-amount*fee);
-                this.setRealizedProfit(this.getRealizedProfit()+ (totalPrice-(fee+hs.getCost())*amount));
-                Admin.getInstance().addMoney(new Money("USD", (float) (fee*amount)));
+                this.moneyList.get(0).addMoneyAmount(totalPrice - amount * fee);
+                this.setRealizedProfit(this.getRealizedProfit() + (totalPrice - (fee + hs.getCost()) * amount));
+                Admin.getInstance().addMoney(new Money("USD", (float) (fee * amount)));
             }
         }
     }
@@ -109,8 +115,8 @@ public class StockAccount extends Account {
         }
         return String.format("STOCK %s %.2f %.2f %.2f %.2f %.2f %s", this.date.toString(),
                 this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
-                this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(),
-                this.realizedProfit, str.toString());
+                this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(), this.realizedProfit,
+                str.toString());
     }
 
 }

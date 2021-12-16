@@ -1,3 +1,9 @@
+/**
+ * @ClassName: Money
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class Money {
     private String CountryCode;
     private Float MoneyAmount;

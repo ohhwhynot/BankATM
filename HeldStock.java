@@ -1,3 +1,10 @@
+
+/**
+ * @ClassName: HeldStock
+ * @Author: Junyang Li
+ * @Description:
+ * @Date: Dec 2021
+ */
 public class HeldStock {
 
     private Stock stock;
