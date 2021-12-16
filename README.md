@@ -1,4 +1,4 @@
-###BankATM
+BankATM
 
 Compile and run commands:\
 javac Main.java\
