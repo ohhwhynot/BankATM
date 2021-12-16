@@ -1,0 +1,32 @@
+JFDML JFormDesigner: "7.0.2.4.305" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:96:p, comp time:::p::p}, seq l {space :p:59:p, comp refresh:::p:111:p, space :p:44:p, comp confirm:::p:111:p}}, space ::73:x}}"
+			"$verticalGroup": "par l {seq t {space :p:84:p, comp time:::p::p, space ::54:x, par b {comp refresh::b:p:48:p, comp confirm::b:p:48:p}, space :p:42:p}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "time"
+				"text": "2020 09 2 11:22"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 1, 24 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "confirm"
+				"text": "Confirm"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "refresh"
+				"text": "Refesh"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "refreshActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 65, 50 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

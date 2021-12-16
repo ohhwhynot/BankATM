@@ -49,77 +49,95 @@ public class AccountInfoScreen extends JFrame {
                 label5 = new JLabel();
                 button1 = new JButton();
 
-                // ======== this ========
+                //======== this ========
                 setTitle("Account information");
                 var contentPane = getContentPane();
 
-                // ---- label1 ----
+                //---- label1 ----
                 label1.setText("Username:");
 
-                // ---- label2 ----
+                //---- label2 ----
                 label2.setText("Account type:");
 
-                // ======== scrollPane1 ========
+                //======== scrollPane1 ========
                 {
-                        scrollPane1.setName("a");
+                    scrollPane1.setName("a");
 
-                        // ---- balanceTable ----
-                        balanceTable.setModel(
-                                        new DefaultTableModel(
-                                                        new Object[][] { { "USD", "0" }, { "EUR", "0" }, { "CNY", "0" },
-                                                                        { "JPY", "0" }, },
-                                                        new String[] { null, null }));
-                        balanceTable.setToolTipText("mm");
-                        balanceTable.setBorder(null);
-                        balanceTable.setAutoCreateColumnsFromModel(false);
-                        scrollPane1.setViewportView(balanceTable);
+                    //---- balanceTable ----
+                    balanceTable.setModel(new DefaultTableModel(
+                        new Object[][] {
+                            {"USD", "0"},
+                            {"EUR", "0"},
+                            {"CNY", "0"},
+                            {"JPY", "0"},
+                        },
+                        new String[] {
+                            null, null
+                        }
+                    ));
+                    balanceTable.setToolTipText("mm");
+                    balanceTable.setBorder(null);
+                    balanceTable.setAutoCreateColumnsFromModel(false);
+                    scrollPane1.setViewportView(balanceTable);
                 }
 
-                // ---- label3 ----
+                //---- label3 ----
                 label3.setText("Balance:");
 
-                // ---- label4 ----
+                //---- label4 ----
                 label4.setText("Loan:");
 
-                // ---- label5 ----
+                //---- label5 ----
                 label5.setText("None");
 
-                // ---- button1 ----
+                //---- button1 ----
                 button1.setText("Confirm");
                 button1.addActionListener(e -> buttonConfirmPerformed(e));
 
                 GroupLayout contentPaneLayout = new GroupLayout(contentPane);
                 contentPane.setLayout(contentPaneLayout);
-                contentPaneLayout.setHorizontalGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
-                                .createSequentialGroup()
-                                .addGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
-                                                .createSequentialGroup().addGap(24, 24, 24).addGroup(contentPaneLayout
-                                                                .createParallelGroup().addComponent(label1)
-                                                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 95,
-                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(label3)
-                                                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                                                                .addComponent(label4)
-                                                                                .addPreferredGap(
-                                                                                                LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(label5))))
-                                                .addGroup(contentPaneLayout.createSequentialGroup().addGap(98, 98, 98)
-                                                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE,
-                                                                                237, GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(98, Short.MAX_VALUE))
-                                .addGroup(GroupLayout.Alignment.TRAILING,
-                                                contentPaneLayout.createSequentialGroup()
-                                                                .addGap(0, 170, Short.MAX_VALUE).addComponent(button1)
-                                                                .addGap(165, 165, 165)));
-                contentPaneLayout.setVerticalGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
-                                .createSequentialGroup().addGap(33, 33, 33).addComponent(label1).addGap(18, 18, 18)
-                                .addComponent(label2).addGap(18, 18, 18).addComponent(label3).addGap(1, 1, 1)
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label4).addComponent(label5))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(button1)
-                                .addGap(36, 36, 36)));
+                contentPaneLayout.setHorizontalGroup(
+                    contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(24, 24, 24)
+                                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                            .addComponent(label4)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(label1, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                        .addComponent(label2, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(98, 98, 98)
+                                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap(98, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addGap(0, 170, Short.MAX_VALUE)
+                            .addComponent(button1)
+                            .addGap(165, 165, 165))
+                );
+                contentPaneLayout.setVerticalGroup(
+                    contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addComponent(label1)
+                            .addGap(18, 18, 18)
+                            .addComponent(label2)
+                            .addGap(18, 18, 18)
+                            .addComponent(label3)
+                            .addGap(1, 1, 1)
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4)
+                                .addComponent(label5))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(button1)
+                            .addGap(36, 36, 36))
+                );
                 setSize(435, 430);
                 setLocationRelativeTo(getOwner());
                 // JFormDesigner - End of component initialization //GEN-END:initComponents

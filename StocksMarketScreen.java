@@ -40,6 +40,7 @@ public class StocksMarketScreen extends JFrame {
                     JOptionPane.showMessageDialog(null, "Insufficient balance!",
                             "Error!", JOptionPane.ERROR_MESSAGE);
                 }else {
+
                     JOptionPane.showMessageDialog(null, "Purchase succeeds!",
                             "Succeed!", JOptionPane.INFORMATION_MESSAGE);
                     SessionHandler.getInstance().addLog("Client "+ client.getUserName()+" bought "+amount+ " shares of "

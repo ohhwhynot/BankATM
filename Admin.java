@@ -16,6 +16,7 @@ class Admin extends User {
         SessionHandler.getInstance().loadLogs();
         
         StockMarket market = BackupController.getInstance().loadUpStockMarket();
+        TimeController.setStartTime(BackupController.getInstance().loadTime());
         this.stockController = new StockController(new StocksView(),market);
 
         this.um = new UserManager("./Users");

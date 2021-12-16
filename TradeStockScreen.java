@@ -24,11 +24,14 @@ public class TradeStockScreen extends JFrame {
         DefaultTableModel model =  Admin.getInstance().getStockController().getView().getTableModel_7(client.getStockAccount());
         table1.setModel(model);
         balance.setText(Float.toString(client.getStockAccount().getBalance()));
+        totProfit.setText(Float.toString(Admin.getInstance().getStockController().getView().getTotProfits(client.getStockAccount())));
     }
+
     public void refresh(){
         DefaultTableModel model =  Admin.getInstance().getStockController().getView().getTableModel_7(client.getStockAccount());
         table1.setModel(model);
         balance.setText(Float.toString(stockAccount.getBalance()));
+        totProfit.setText(Float.toString(Admin.getInstance().getStockController().getView().getTotProfits(client.getStockAccount())));
     }
 
     private void buyActionPerformed(ActionEvent e) {
@@ -59,6 +62,8 @@ public class TradeStockScreen extends JFrame {
                 client.getStockAccount().sellStock(Integer.parseInt(amount),stock,stock.getPrice());
                 JOptionPane.showMessageDialog(null, "Sell succeeds!",
                         "Succeed!", JOptionPane.INFORMATION_MESSAGE);
+                SessionHandler.getInstance().addLog("Client "+ client.getUserName()+" sold "+amount+ " shares of "
+                        +stock.getName()+" stocks at "+stock.getPrice()+" USD each");
             }
         }
         this.refresh();
@@ -145,12 +150,12 @@ public class TradeStockScreen extends JFrame {
                     .addGap(93, 93, 93)
                     .addComponent(label2)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(balance, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                    .addGap(100, 100, 100)
+                    .addComponent(balance, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                    .addGap(51, 51, 51)
                     .addComponent(label3)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    .addGap(131, 131, 131))
+                    .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+                    .addGap(71, 71, 71))
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
@@ -170,9 +175,9 @@ public class TradeStockScreen extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label2)
                         .addComponent(label3)
-                        .addComponent(totProfit)
                         .addComponent(label1)
                         .addComponent(username)
+                        .addComponent(totProfit)
                         .addComponent(balance))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)

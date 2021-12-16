@@ -68,6 +68,7 @@ public class ClientHome extends JFrame {
         private void buttonLogoutPerformed(ActionEvent e) {
                 UserManager um = Admin.getInstance().getUserManager();
                 um.storeUsers();
+                BackupController.storeTime();
                 BackupController.storeStockMarket(Admin.getInstance().getStockController().getMarket());
                 SessionHandler.getInstance().writeLogs();
                 new ATMHome().setVisible(true);
@@ -81,25 +82,25 @@ public class ClientHome extends JFrame {
                         System.out.println("You have canceled the operation");
                 } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
-                        if (this.client.isAccountExist(type) == false) {
+                        if (!this.client.isAccountExist(type)) {
                                 JOptionPane.showMessageDialog(null,
                                                 "Withdraw failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
-                        } else if (this.client.isAccountExist(type) == true) {
+                        } else if (this.client.isAccountExist(type)) {
                                 new DepositWithdrawScreen(false, client, type).setVisible(true);
                         }
                 } else if (result.equals("Checking Account")) {
                         String type = "CHECKING";
-                        if (this.client.isAccountExist(type) == false) {
+                        if (!this.client.isAccountExist(type)) {
                                 JOptionPane.showMessageDialog(null,
                                                 "Withdraw failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
-                        } else if (this.client.isAccountExist(type) == true) {
+                        } else if (this.client.isAccountExist(type)) {
                                 new DepositWithdrawScreen(false, client, type).setVisible(true);
                         }
                 } else {
                         String type = "STOCK";
-                        if (this.client.isAccountExist(type) == false) {
+                        if (!this.client.isAccountExist(type)) {
                                 JOptionPane.showMessageDialog(null,
                                                 "Withdraw failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
@@ -116,7 +117,7 @@ public class ClientHome extends JFrame {
                         System.out.println("You have canceled the operation");
                 } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
-                        if (this.client.isAccountExist(type) == false) {
+                        if (!this.client.isAccountExist(type)) {
                                 this.client.createAccount(type);
                                 this.s.addLog(client.getUserName() + " created" + type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",

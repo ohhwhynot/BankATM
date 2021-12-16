@@ -31,18 +31,18 @@ public class TransferScreen extends JFrame {
     }
 
     private void confirmActionPerformed(ActionEvent e) {
-        String acc = (String) comboBox3.getSelectedItem().toString();
-        String curr = (String) comboBox1.getSelectedItem().toString();
+        String acc = (String) comboBox3.getSelectedItem();
+        String curr = (String) comboBox1.getSelectedItem();
         String number = textField1.getText();
-        if (isPositiveNum(number) == true) {
+        if (isPositiveNum(number)) {
             float amount = Float.parseFloat(number);
             if (amount > 0) {
                 Money m = new Money(curr, amount);
                 if (acc.equals("Saving Account")) {
-                    if (this.client.isAccountExist("SAVING") == true) {
+                    if (this.client.isAccountExist("SAVING")) {
                         if (account.getCurrMoney(curr) >= amount) {
                             client.getAccountManager().transferMoney(this.account, this.client.getSavingAccount(), m);
-                            this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                            this.s.addLog(client.getUserName() + " transferred" + m.toString() + " from "
                                     + this.account.getAccountType() + " to SAVING");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
@@ -55,10 +55,10 @@ public class TransferScreen extends JFrame {
                                 "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else if (acc.equals("Checking Account")) {
-                    if (this.client.isAccountExist("CHECKING") == true) {
+                    if (this.client.isAccountExist("CHECKING")) {
                         if (account.getCurrMoney(curr) >= amount) {
                             client.getAccountManager().transferMoney(this.account, this.client.getCheckingAccount(), m);
-                            this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                            this.s.addLog(client.getUserName() + " transferred" + m + " from "
                                     + this.account.getAccountType() + " to CHECKING");
                             JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
@@ -71,18 +71,19 @@ public class TransferScreen extends JFrame {
                                 "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    if (this.client.isAccountExist("STOCK") == true) {
+                    if (this.client.isAccountExist("STOCK")) {
                         if (this.account.getAccountType() == "SAVING") {
                             if (account.getCurrMoney(curr) >= amount && amount >= 1000
-                                    && this.client.getSavingAccount().getBalance() - amount >= 2500) {
+                                    && (this.client.getSavingAccount().getBalance() - amount) >= 2500) {
                                 client.getAccountManager().transferMoney(this.account, this.client.getStockAccount(),
                                         m);
-                                this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                                this.s.addLog(client.getUserName() + " transferred" + m.toString() + " from "
                                         + this.account.getAccountType() + " to STOCK");
                                 JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                                         JOptionPane.INFORMATION_MESSAGE);
                             } else {
-                                JOptionPane.showMessageDialog(null, "Action failed! Insufficient balance.", "Error",
+                                JOptionPane.showMessageDialog(null, "You should transfer at least" +
+                                                " $1,000 and leave more than $2,500.", "Error",
                                         JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
@@ -139,7 +140,7 @@ public class TransferScreen extends JFrame {
 
         // ---- comboBox3 ----
         comboBox3.setModel(
-                new DefaultComboBoxModel<>(new String[] { "Saving Account", "Checking account", "Stock account" }));
+                new DefaultComboBoxModel<>(new String[] { "Saving Account", "Checking Account", "Stock Account" }));
 
         // ---- cancel ----
         cancel.setText("Cancel");
@@ -150,7 +151,7 @@ public class TransferScreen extends JFrame {
         confirm.addActionListener(e -> confirmActionPerformed(e));
 
         // ---- accountInfo ----
-        accountInfo.setText("Account Infomation");
+        accountInfo.setText("Account Information");
         accountInfo.addActionListener(e -> accountInfoActionPerformed(e));
 
         // ---- label2 ----

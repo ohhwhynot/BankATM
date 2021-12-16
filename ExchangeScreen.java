@@ -19,7 +19,6 @@ public class ExchangeScreen extends JFrame {
         this.account = a;
         this.curr = new Currency();
         initComponents();
-        label3.setText("Exchanged Amount:");
     }
 
     private void buttonCancelActionPerformed(ActionEvent e) {
@@ -36,8 +35,8 @@ public class ExchangeScreen extends JFrame {
             if (amount > 0) {
                 if (this.account.getCurrMoney(currout) >= amount) {
                     account.convertTo(convertToIndex(currout), convertToIndex(currin), amount);
-                    moneyT.setText(String.valueOf(curr.getValue(currin)));
-                    ServiceFee.setText(String.valueOf(account.getCurrMoney(currin)));
+                    moneyT.setText(Float.toString(curr.getValue(currin)*amount));
+                    rate.setText(String.valueOf(curr.getValue(currin)));
                     JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
                             JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -90,137 +89,133 @@ public class ExchangeScreen extends JFrame {
         moneyT = new JLabel();
         buttonCancel = new JButton();
         buttonConfirm = new JButton();
-        label3 = new JLabel();
-        ServiceFee = new JLabel();
         viewAccountInfo = new JButton();
         label4 = new JLabel();
         separator1 = new JSeparator();
+        rate = new JLabel();
 
-        // ======== this ========
+        //======== this ========
         var contentPane = getContentPane();
 
-        // ---- comboBox1 ----
-        comboBox1.setModel(new DefaultComboBoxModel<>(new String[] { "USD", "EUR", "CNY", "JPY" }));
+        //---- comboBox1 ----
+        comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+            "USD",
+            "EUR",
+            "CNY",
+            "JPY"
+        }));
 
-        // ---- comboBox2 ----
-        comboBox2.setModel(new DefaultComboBoxModel<>(new String[] { "USD", "EUR", "CNY", "JPY" }));
+        //---- comboBox2 ----
+        comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
+            "USD",
+            "EUR",
+            "CNY",
+            "JPY"
+        }));
 
-        // ---- label2 ----
+        //---- label2 ----
         label2.setText("Currency exchange rate:");
 
-        // ---- moneyT ----
+        //---- moneyT ----
         moneyT.setText("0");
 
-        // ---- buttonCancel ----
+        //---- buttonCancel ----
         buttonCancel.setText("Cancel");
         buttonCancel.addActionListener(e -> buttonCancelActionPerformed(e));
 
-        // ---- buttonConfirm ----
+        //---- buttonConfirm ----
         buttonConfirm.setText("Confirm");
         buttonConfirm.addActionListener(e -> buttonConfirmActionPerformed(e));
 
-        // ---- label3 ----
-        label3.setText("Service charge:");
-
-        // ---- ServiceFee ----
-        ServiceFee.setText("0");
-
-        // ---- viewAccountInfo ----
+        //---- viewAccountInfo ----
         viewAccountInfo.setText("Account Information");
         viewAccountInfo.addActionListener(e -> viewAccountInfoActionPerformed(e));
 
-        // ---- label4 ----
+        //---- label4 ----
         label4.setText("EXCHANGE");
         label4.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 26));
 
+        //---- rate ----
+        rate.setText("0");
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(contentPaneLayout.createParallelGroup()
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                        .addGroup(contentPaneLayout.createParallelGroup()
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(contentPaneLayout
-                                                .createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(GroupLayout.Alignment.TRAILING,
-                                                        contentPaneLayout.createSequentialGroup()
-                                                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE,
-                                                                        100, GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(moneyT, GroupLayout.PREFERRED_SIZE, 115,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(50, 50, 50))
-                                                .addGroup(GroupLayout.Alignment.TRAILING,
-                                                        contentPaneLayout.createSequentialGroup()
-                                                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE,
-                                                                        100, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-                                                                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(
-                                                                        scr, GroupLayout.PREFERRED_SIZE, 103,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(45, 45, 45))))
+                                    .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(moneyT, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(50, 50, 50))
+                                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                    .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(scr, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(45, 45, 45))))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup()
                                 .addGroup(contentPaneLayout.createSequentialGroup()
-                                        .addGroup(contentPaneLayout.createParallelGroup()
-                                                .addGroup(contentPaneLayout.createSequentialGroup().addGap(96, 96, 96)
-                                                        .addComponent(label4))
-                                                .addGroup(contentPaneLayout.createSequentialGroup().addGap(39, 39, 39)
-                                                        .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 289,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(contentPaneLayout.createSequentialGroup().addGap(79, 79, 79)
-                                                        .addComponent(viewAccountInfo, GroupLayout.PREFERRED_SIZE, 188,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(contentPaneLayout.createSequentialGroup().addGap(61, 61, 61)
-                                                        .addComponent(label3).addGap(18, 18, 18)
-                                                        .addComponent(ServiceFee, GroupLayout.PREFERRED_SIZE, 87,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(contentPaneLayout.createSequentialGroup().addGap(59, 59, 59)
-                                                        .addGroup(contentPaneLayout
-                                                                .createParallelGroup(GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addGroup(GroupLayout.Alignment.LEADING,
-                                                                        contentPaneLayout.createSequentialGroup()
-                                                                                .addComponent(buttonCancel)
-                                                                                .addPreferredGap(
-                                                                                        LayoutStyle.ComponentPlacement.RELATED,
-                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                                .addComponent(buttonConfirm))
-                                                                .addGroup(GroupLayout.Alignment.LEADING,
-                                                                        contentPaneLayout.createSequentialGroup()
-                                                                                .addComponent(label2).addGap(46, 46, 46)
-                                                                                .addComponent(exRate,
-                                                                                        GroupLayout.PREFERRED_SIZE, 38,
-                                                                                        GroupLayout.PREFERRED_SIZE)))))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(25, Short.MAX_VALUE)));
-        contentPaneLayout.setVerticalGroup(contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup().addGap(22, 22, 22).addComponent(label4)
-                        .addGap(9, 9, 9)
-                        .addComponent(separator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewAccountInfo, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(scr, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
-                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(exRate)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(label2)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
-                                .addComponent(moneyT))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label3).addComponent(ServiceFee))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(buttonCancel).addComponent(buttonConfirm))
-                        .addGap(53, 53, 53)));
+                                    .addGap(96, 96, 96)
+                                    .addComponent(label4))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(39, 39, 39)
+                                    .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(79, 79, 79)
+                                    .addComponent(viewAccountInfo, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(59, 59, 59)
+                                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(GroupLayout.Alignment.LEADING, contentPaneLayout.createSequentialGroup()
+                                            .addComponent(buttonCancel)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(buttonConfirm))
+                                        .addGroup(GroupLayout.Alignment.LEADING, contentPaneLayout.createSequentialGroup()
+                                            .addComponent(label2)
+                                            .addGroup(contentPaneLayout.createParallelGroup()
+                                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                                    .addGap(46, 46, 46)
+                                                    .addComponent(exRate, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(rate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(25, Short.MAX_VALUE))
+        );
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(label4)
+                    .addGap(9, 9, 9)
+                    .addComponent(separator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(viewAccountInfo, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(scr, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(exRate)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label2)
+                        .addComponent(rate))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(moneyT))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonCancel)
+                        .addComponent(buttonConfirm))
+                    .addGap(53, 53, 53))
+        );
         setSize(355, 420);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization //GEN-END:initComponents
@@ -236,10 +231,9 @@ public class ExchangeScreen extends JFrame {
     private JLabel moneyT;
     private JButton buttonCancel;
     private JButton buttonConfirm;
-    private JLabel label3;
-    private JLabel ServiceFee;
     private JButton viewAccountInfo;
     private JLabel label4;
     private JSeparator separator1;
+    private JLabel rate;
     // JFormDesigner - End of variables declaration //GEN-END:variables
 }

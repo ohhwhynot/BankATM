@@ -13,7 +13,10 @@ public class TimeController {
         startRealTime = System.currentTimeMillis();
         startDate.setDate(new int[]{2020, 1, 1, 0});
     }
-
+    public static void setStartTime(ATMDate start){
+        startRealTime = System.currentTimeMillis();
+        startDate = start;
+    }
     public static ATMDate getCurDate(){
         long curRealTime = System.currentTimeMillis();
         long timeD = curRealTime - startRealTime;

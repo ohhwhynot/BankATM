@@ -76,4 +76,16 @@ public class BackupController {
 
     }
 
+    public ATMDate loadTime(){
+        List<String> timeInfo = readTxt("time.txt");
+        return new ATMDate(timeInfo.get(0));
+    }
+    public static void storeTime(){
+        List<String> lines = new ArrayList<>();
+        lines.add(TimeController.getCurDate().getYear()+" "+TimeController.getCurDate().getMonth()+" "
+        +TimeController.getCurDate().getDay()+" "+TimeController.getCurDate().getHour());
+        writeTxt("time.txt",lines,true);
+    }
+
+
 }

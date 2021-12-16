@@ -9,7 +9,7 @@ import java.io.IOException;
 public class DateTest {
     public static void main(String[] args)  {
         // UserManager um = new UserManager("./Users");
-        TimeController.startTime();
+
         ATMHome atmHome = new ATMHome();
         atmHome.setVisible(true);
         // Client c = new Client("john", "3344", Admin.getInstance());

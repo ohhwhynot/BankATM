@@ -13,6 +13,14 @@ public class ATMDate {
         this.date = new int[4];
     }
 
+    ATMDate(String time) {
+        String[] date = time.split(" ");
+        this.date = new int[4];
+        for(int i = 0;i<4;i++) {
+            this.date[i] = Integer.parseInt(date[i]);
+        }
+    }
+
     public int[] getDate() {
         return date;
     }

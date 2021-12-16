@@ -27,7 +27,7 @@ public class StockAccount extends Account {
     }
 
     public boolean buyStock(int amount, Stock stock) {
-        float totalPrice = stock.getPrice() * amount;
+        float totalPrice = (stock.getPrice()+2) * amount;
         if (totalPrice <= this.getBalance()) {
             if (ifStockExist(stock) == false) {
                 this.moneyList.get(0).subtractMoneyAmount(totalPrice);
@@ -37,6 +37,7 @@ public class StockAccount extends Account {
                 for (HeldStock hs : stocks) {
                     if (hs.getStock().getName().equals(stock.getName())) {
                         this.moneyList.get(0).subtractMoneyAmount(totalPrice);
+                        Admin.getInstance().addMoney(new Money("USD", (float) (2*amount)));
                         hs.setCost((hs.getCost() * hs.getAmount() + stock.getPrice() * amount)
                                 / (amount + hs.getAmount()));
                         hs.setAmount(hs.getAmount() + amount);
@@ -53,11 +54,13 @@ public class StockAccount extends Account {
     }
 
     public void sellStock(int amount, Stock stock, float price) {
+        int fee =1;
         float totalPrice = price * amount;
         for (HeldStock hs : stocks) {
             if (hs.getStock().getName().equals(stock.getName())) {
                 hs.setAmount(hs.getAmount() - amount);
-                this.moneyList.get(0).addMoneyAmount(totalPrice);
+                this.moneyList.get(0).addMoneyAmount(totalPrice-amount*fee);
+                Admin.getInstance().addMoney(new Money("USD", (float) (fee*amount)));
             }
         }
     }

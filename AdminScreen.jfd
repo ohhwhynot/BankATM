@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::205:x, comp label1:::p::p, space :p:74:p, comp logout:::p::p, space :p:61:p}, seq l {space :p:107:p, par l {seq l {comp label2:::p::p, space :::p, comp username:::p::p}, seq {par l {comp updateStock:::p:160:p, comp checkProfit:::p:160:p}, space :p:74:p, comp checkLogs:::p:160:p}}, space ::127:x}}"
-			"$verticalGroup": "par l {seq l {space :p:35:p, par b {comp label1::b:p::p, comp logout::b:p::p}, space :p:34:p, par b {comp label2::b:p::p, comp username::b:p::p}, space :p:58:p, par l:::p {comp checkLogs::::50:x, comp checkProfit::::50:x}, space :::p, comp updateStock:::p:50:p, space ::35:x}}"
+			"$horizontalGroup": "par l {seq t {space ::205:x, comp label1:::p::p, space :p:74:p, comp logout:::p::p, space :p:61:p}, seq l {space :p:107:p, par l {seq l {comp label2:::p::p, space :::p, comp username:::p::p}, seq {par l {comp updateStock:::p:160:p, comp checkProfit:::p:160:p}, space :p:74:p, par l:::p {comp checkLogs::::160:x, comp buttonTime::::160:x}}}, space ::127:x}}"
+			"$verticalGroup": "par l {seq l {space :p:35:p, par b {comp label1::b:p::p, comp logout::b:p::p}, space :p:34:p, par b {comp label2::b:p::p, comp username::b:p::p}, space :p:58:p, par l:::p {comp checkLogs::::50:x, comp checkProfit::::50:x}, space :::p, par l:::p {comp buttonTime::::50:x, comp updateStock::::50:x}, space ::33:x}}"
 		} ) {
 			name: "this"
 			"$sizePolicy": 1
@@ -44,6 +44,11 @@ new FormModel {
 				name: "username"
 				"text": "admin"
 				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonTime"
+				"text": "Check Time"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonTimeActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

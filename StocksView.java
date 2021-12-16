@@ -49,6 +49,14 @@ public class StocksView {
         String[] colName = {"Name","Code","CostPrice","CurPrice","Amount","Position","Profit"};
         return new DefaultTableModel(data,colName);
     }
-
+    public float getTotProfits(StockAccount account){
+        List<HeldStock> stocks = account.getStocks();
+        float totProfits = 0;
+        for(HeldStock heldStock:stocks){
+            Stock stock = Admin.getInstance().getStockController().getStock(heldStock.getStock().getName());
+            totProfits += (stock.getPrice()-heldStock.getCost())*heldStock.getAmount();
+        }
+        return  totProfits;
+    }
 
 }
