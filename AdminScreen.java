@@ -8,6 +8,7 @@ import javax.swing.GroupLayout;
 
 /**
  * @author Xudong Gao
+ *
  */
 public class AdminScreen extends JFrame {
         private Admin admin;

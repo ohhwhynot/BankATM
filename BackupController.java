@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * @ClassName: BackupController
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class provides  functions to load and store data.
  * @Date: Dec 2021
  */
 public class BackupController {
