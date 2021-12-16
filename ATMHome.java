@@ -7,6 +7,7 @@ import javax.swing.*;
 
 /**
  * @author Xudong Gao
+ * @Despription: This is a home screen for all users to sign up and log in.
  */
 public class ATMHome extends JFrame {
 

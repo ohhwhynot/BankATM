@@ -9,6 +9,7 @@ import javax.swing.*;
 
 /**
  * @author Xudong Gao
+ * @Despription: This is a home screen for a client. A client can choose their action.
  */
 public class ClientHome extends JFrame {
         private Client client;

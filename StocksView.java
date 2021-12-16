@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @ClassName: StocksView
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class can transform the stock data to tables.
  * @Date: Dec 2021
  */
 public class StocksView {

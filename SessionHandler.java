@@ -1,13 +1,11 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @ClassName: SessionHandler
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class can handle the logs produced by users.
  * @Date: Dec 2021
  */
 public class SessionHandler {

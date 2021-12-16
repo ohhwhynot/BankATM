@@ -3,7 +3,7 @@ import java.util.List;
 /**
  * @ClassName: StockController
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class provides methods for the bank admin to operate stocks.
  * @Date: Dec 2021
  */
 public class StockController {

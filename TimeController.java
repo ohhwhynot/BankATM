@@ -2,7 +2,7 @@
 /**
  * @ClassName: TimeController
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class can control ATM time, which is used in logs and computing interests.
  * @Date: Dec 2021
  */
 public class TimeController {

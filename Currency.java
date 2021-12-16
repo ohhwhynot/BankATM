@@ -30,8 +30,4 @@ public class Currency {
         }
     }
 
-    public static void main(String[] args) {
-        Currency c = new Currency();
-        System.out.print(c.getCurrency());
-    }
 }

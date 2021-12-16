@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * @ClassName: Stock
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class represents a stock in this program.
  * @Date: Dec 2021
  */
 public class Stock {

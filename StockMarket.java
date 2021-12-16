@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * @ClassName: StockMarket
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class represents a stock market which provides methods to operate stock.
  * @Date: Dec 2021
  */
 public class StockMarket {

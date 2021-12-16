@@ -1,9 +1,8 @@
-import java.util.Arrays;
 
 /**
  * @ClassName: ATMDate
  * @Author: Xudong Gao
- * @Description:
+ * @Description: This class represents virtual time for this ATM program. 1 real seconds will be 2 ATM hour.
  * @Date: Dec 2021
  */
 public class ATMDate {
