@@ -7,3 +7,4 @@
 2020/1/1 18:00 Client xdgao log in successfully
 2020/1/5 12:00 xdgao deposited 10777.67 USD into SAVING
 2020/1/7 22:00 xdgao transfered1077.67 USD from SAVING to STOCK
+2020/1/1 10:00 Client gja log in successfully

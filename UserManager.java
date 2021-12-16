@@ -42,49 +42,26 @@ class UserManager {
                 line = br.readLine();
                 while (line != null) {
                     strs = line.split(" ");
+                    String dateStr = strs[1];
+                    String[] days = dateStr.split("/");
+
+                    String time = strs[2];
+                    String[] times = time.split(":");
+                    int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
+
+                    float usd = Float.parseFloat(strs[3]);
+                    float eur = Float.parseFloat(strs[4]);
+                    float cny = Float.parseFloat(strs[5]);
+                    float jpy = Float.parseFloat(strs[6]);
                     if (strs[0].equalsIgnoreCase("CHECKING")) {
-                        String dateStr = strs[1];
-                        String[] days = dateStr.split("/");
-
-                        String time = strs[2];
-                        String[] times = time.split(":");
-                        int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
-
-                        float usd = Float.parseFloat(strs[3]);
-                        float eur = Float.parseFloat(strs[4]);
-                        float cny = Float.parseFloat(strs[5]);
-                        float jpy = Float.parseFloat(strs[6]);
                         float loan = Float.parseFloat(strs[7]);
                         
                         CheckingAccount acc = new CheckingAccount(0, usd, eur, cny, jpy, loan, date);
                         client.addAccount(acc);
                     } else if (strs[0].equalsIgnoreCase("SAVING")) {
-                        String dateStr = strs[1];
-                        String[] days = dateStr.split("/");
-
-                        String time = strs[2];
-                        String[] times = time.split(":");
-                        int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
-
-                        float usd = Float.parseFloat(strs[3]);
-                        float eur = Float.parseFloat(strs[4]);
-                        float cny = Float.parseFloat(strs[5]);
-                        float jpy = Float.parseFloat(strs[6]);
                         SavingAccount acc = new SavingAccount(usd, eur, cny, jpy, date);
                         client.addAccount(acc);
                     } else if (strs[0].equalsIgnoreCase("STOCK")) {
-                        String dateStr = strs[1];
-                        String[] days = dateStr.split("/");
-
-                        String time = strs[2];
-                        String[] times = time.split(":");
-                        int[] date = {Integer.parseInt(days[0]), Integer.parseInt(days[1]), Integer.parseInt(days[2]), Integer.parseInt(times[0])};
-
-                        float usd = Float.parseFloat(strs[3]);
-                        float eur = Float.parseFloat(strs[4]);
-                        float cny = Float.parseFloat(strs[5]);
-                        float jpy = Float.parseFloat(strs[6]);
-
                         StockAccount acc = new StockAccount(usd, eur, cny, jpy, date);
                         
                         for(int i = 7; i < strs.length; i++) {
