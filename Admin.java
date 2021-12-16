@@ -8,10 +8,6 @@
  */
 class Admin extends User {
 
-    private Admin() {
-
-    }
-
     private UserManager um;
     private Account account;
     private StockController stockController;

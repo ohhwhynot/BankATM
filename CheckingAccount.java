@@ -71,10 +71,4 @@ public class CheckingAccount extends Account {
         return "CHECKING";
     }
 
-    public static void main(String[] args) {
-        CheckingAccount c = new CheckingAccount();
-        c.loan(new Money("EUR", (float) 1000));
-        c.addMoney(new Money("USD", (float) 1000));
-        System.out.println(c);
-    }
 }

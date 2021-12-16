@@ -160,16 +160,5 @@ class UserManager {
         }
         return null;
     }
-    public static void main(String[] args) {
-        // UserManager um = new UserManager("./Users");
-        // User u1 = new User("John", "123456");
-        // User u2 = new User("Bob", "123456");
-        // User u3 = new User("Tom", "123456");
 
-        // um.addUser(u1);
-        // um.addUser(u2);
-        // um.addUser(u3);
-        // um.printUsers();
-        // um.storeUsers();
-    }
 }

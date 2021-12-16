@@ -54,26 +54,11 @@ class User {
     }
 
     public String toString() {
-        // version 1
-        // String str = "Username: " + userName + "\nUser id: " + userId + "\nAccounts:
-        // ";
-        // for(Account acc : this.accounts) {
-        // str = str + "\n" + acc.toString();
-        // }
 
-        // version 2
         String str = userName + " " + password;
         return str;
     }
 
-    public static void main(String[] args) {
-        User u1 = new User("John", "123456");
-        User u2 = new User("Bob", "123456");
-        User u3 = new User("Tom", "123456");
 
-        System.out.println(u1);
-        System.out.println(u2);
-        System.out.println(u3);
-    }
 
 }
