@@ -50,7 +50,9 @@ public class ClientHome extends JFrame {
                         } else if (this.client.isAccountExist(type) == true) {
                                 new DepositWithdrawScreen(true, client, type).setVisible(true);
                         }
-                } else {
+                } else if(result.equals(null)){
+
+                }else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
@@ -93,7 +95,9 @@ public class ClientHome extends JFrame {
                         } else if (this.client.isAccountExist(type) == true) {
                                 new DepositWithdrawScreen(false, client, type).setVisible(true);
                         }
-                } else {
+                } else if(result.equals(null)){
+
+                } else{
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
@@ -117,7 +121,7 @@ public class ClientHome extends JFrame {
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                                 JOptionPane.showMessageDialog(null,
-                                                "Creatation failed! You already have this type of account.", "Error",
+                                                "Creation failed! You already have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
                 } else if (result.equals("Checking Account")) {
@@ -129,7 +133,7 @@ public class ClientHome extends JFrame {
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                                 JOptionPane.showMessageDialog(null,
-                                                "Creatation failed! You already have this type of account.", "Error",
+                                                "Creation failed! You already have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
                 } else if (result.equals("Securities Account")) {
@@ -137,12 +141,12 @@ public class ClientHome extends JFrame {
                         if (this.client.isAccountExist(type) == false) {
                                 if (this.client.isAccountExist("SAVING") == false) {
                                         JOptionPane.showMessageDialog(null,
-                                                        "Creatation failed! You need to have a saving account.",
+                                                        "Creation failed! You need to have a saving account.",
                                                         "Error", JOptionPane.ERROR_MESSAGE);
                                 } else if (this.client.isAccountExist("SAVING") == true) {
                                         if (this.client.getSavingAccount().getBalance() < 5000) {
                                                 JOptionPane.showMessageDialog(null,
-                                                                "Creatation failed! You need to have 5000 USD in a saving account.",
+                                                                "Creation failed! You need to have 5000 USD in a saving account.",
                                                                 "Error", JOptionPane.ERROR_MESSAGE);
                                         } else if (this.client.getSavingAccount().getBalance() >= 500) {
                                                 this.client.createAccount(type);
@@ -153,11 +157,13 @@ public class ClientHome extends JFrame {
                                         }
                                 }
                         }
+                }else {
+
                 }
         }
 
         private void buttonCloseAccountPerformed(ActionEvent e) {
-                String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
                 if (result.equals("Saving Account")) {
                         String type = "SAVING";
@@ -197,22 +203,23 @@ public class ClientHome extends JFrame {
                         }
                 } else if (result.equals("Securities Account")) {
                         String type = "STOCK";
-                        // TODO
-                        // if (this.client.isAccountExist("STOCK") == true) {
-                        // if (this.client.getStockAccount().getBalance() == 0) {
-                        // this.client.closeAccount("STOCK");
-                        // JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
-                        // "Success", JOptionPane.INFORMATION_MESSAGE);
-                        // } else {
-                        // JOptionPane.showMessageDialog(null,
-                        // "Removal failed! Please clear out your balance.", "Error",
-                        // JOptionPane.ERROR_MESSAGE);
-                        // }
-                        // } else {
-                        // JOptionPane.showMessageDialog(null,
-                        // "Removal failed! You don't have this type of account.", "Error",
-                        // JOptionPane.ERROR_MESSAGE);
-                        // }
+                         if (this.client.isAccountExist("STOCK") == true) {
+                         if (this.client.getStockAccount().getBalance() == 3&&this.client.getStockAccount().getStocks().isEmpty()) {
+                                this.client.closeAccount("STOCK");
+                                JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
+                         "Success", JOptionPane.INFORMATION_MESSAGE);
+                         } else {
+                         JOptionPane.showMessageDialog(null,
+                         "Removal failed! Please leave only 3 dollars in your account as closing fee and clear your stocks.", "Error",
+                         JOptionPane.ERROR_MESSAGE);
+                         }
+                         } else {
+                         JOptionPane.showMessageDialog(null,
+                         "Removal failed! You don't have this type of account.", "Error",
+                         JOptionPane.ERROR_MESSAGE);
+                         }
+                }else {
+                        System.out.println("?????");
                 }
 
         }
@@ -238,7 +245,9 @@ public class ClientHome extends JFrame {
                                                 "Action failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else {
+                }else if(result.equals(null)){
+
+                } else{
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == true) {
                                 new TransferScreen(this.client.getStockAccount(), client).setVisible(true);
@@ -303,7 +312,10 @@ public class ClientHome extends JFrame {
                                                 "Action failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else {
+                } else if(result.equals(null)) {
+
+                }
+                else{
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == true) {
                                 new ExchangeScreen(client.getStockAccount(), client).setVisible(true);
@@ -318,6 +330,7 @@ public class ClientHome extends JFrame {
         private void inquiryBalanceActionPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
+                System.out.println(result);
                 if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == true) {
@@ -336,7 +349,9 @@ public class ClientHome extends JFrame {
                                                 "Action failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else {
+                } else if(result.equals(null)){
+
+                }else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == true) {
                                 new AccountInfoScreen(client.getStockAccount(), client).setVisible(true);
