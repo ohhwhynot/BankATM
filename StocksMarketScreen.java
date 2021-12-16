@@ -25,7 +25,7 @@ public class StocksMarketScreen extends JFrame {
     }
 
     private void closeActionPerformed(ActionEvent e) {
-        this.dispose();// TODO add your code here
+        this.dispose();
     }
 
     private void buyActionPerformed(ActionEvent e) {

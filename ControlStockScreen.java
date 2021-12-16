@@ -49,7 +49,7 @@ public class ControlStockScreen extends JFrame {
                 refreshActionPerformed(e);
             }
         }
-        // TODO add your code here
+
     }
 
     public void updatePriceActionPerformed(ActionEvent e) {

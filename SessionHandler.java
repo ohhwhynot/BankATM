@@ -36,5 +36,9 @@ public class SessionHandler {
         return logs;
     }
 
+    public void clearLogs(){
+        logs.clear();
+    }
+
 
 }

@@ -52,6 +52,15 @@ public class AdminScreen extends JFrame {
                 new TimeScreen().setVisible(true);
         }
 
+        private void thisWindowClosing(WindowEvent e) {
+                UserManager um = admin.getUserManager();
+                um.storeUsers();
+                BackupController.storeTime();
+                BackupController.storeStockMarket(Admin.getInstance().getStockController().getMarket());
+                SessionHandler.getInstance().writeLogs();
+                System.exit(0);
+        }
+
         private void initComponents() {
                 // JFormDesigner - Component initialization - DO NOT MODIFY
                 // //GEN-BEGIN:initComponents
@@ -67,6 +76,12 @@ public class AdminScreen extends JFrame {
 
                 //======== this ========
                 setFont(new Font(Font.DIALOG, Font.PLAIN, 16));
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        thisWindowClosing(e);
+                    }
+                });
                 var contentPane = getContentPane();
 
                 //---- checkProfit ----

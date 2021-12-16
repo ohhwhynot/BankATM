@@ -31,15 +31,15 @@ public class TimeController {
         }else {
             dateTemp[3] = (int)hourD%24+startDate.getHour();
         }
-        if(((int)dayD%30+startDate.getDay())>30){
-            dateTemp[3] += ((int)dayD%30+startDate.getDay())%30;
-            dateTemp[2] = 1;
-        }else {
-            dateTemp[3] += (int)dayD%30+startDate.getDay();
-        }
-        if(((int)monthD%12+startDate.getMonth())>12){
-            dateTemp[2] += ((int)monthD%12+startDate.getMonth())%12;
+        if(((int)dayD%30+startDate.getDay()+dateTemp[2])>30){
+            dateTemp[2] += ((int)dayD%30+startDate.getDay())%30;
             dateTemp[1] = 1;
+        }else {
+            dateTemp[2] += (int)dayD%30+startDate.getDay();
+        }
+        if(((int)monthD%12+startDate.getMonth()+dateTemp[1])>12){
+            dateTemp[1] += ((int)monthD%12+startDate.getMonth())%12;
+            dateTemp[0] = 1;
         }else {
             dateTemp[1] += (int)monthD%12+startDate.getMonth();
         }

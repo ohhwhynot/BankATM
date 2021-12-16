@@ -17,11 +17,11 @@ public class SellStockScreen extends JFrame {
     }
 
     private void buttonConfirmPerformed(ActionEvent e) {
-        // TODO add your code here
+
     }
 
     private void buttonCancelPerformed(ActionEvent e) {
-        this.dispose();// TODO add your code here
+        this.dispose();
     }
 
     private void initComponents() {

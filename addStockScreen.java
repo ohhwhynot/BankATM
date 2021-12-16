@@ -21,7 +21,7 @@ public class addStockScreen extends JFrame {
 
     private void cancelActionPerformed(ActionEvent e) {
         this.dispose();
-        // TODO add your code here
+
     }
 
     private void confirmActionPerformed(ActionEvent e) {

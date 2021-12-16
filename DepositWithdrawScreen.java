@@ -43,7 +43,7 @@ public class DepositWithdrawScreen extends JFrame {
     }
 
     private void switchAccActionPerformed(ActionEvent e) {
-        String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+        String[] options = { "Saving Account", "Checking Account", "Securities Account" };
         String result = getSelectedAccount(options);
         if (result.equals("Saving Account")) {
             this.accountType = "SAVING";

@@ -23,6 +23,10 @@ public class LogScreen extends JFrame {
         this.dispose();
     }
 
+    private void clearActionPerformed(ActionEvent e) {
+        SessionHandler.getInstance().clearLogs();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY
         // //GEN-BEGIN:initComponents
@@ -31,6 +35,7 @@ public class LogScreen extends JFrame {
         list1 = new JList();
         label1 = new JLabel();
         confirm = new JButton();
+        clear = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -48,6 +53,10 @@ public class LogScreen extends JFrame {
         confirm.setText("Confirm");
         confirm.addActionListener(e -> confirmActionPerformed(e));
 
+        //---- clear ----
+        clear.setText("Clear");
+        clear.addActionListener(e -> clearActionPerformed(e));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -59,11 +68,14 @@ public class LogScreen extends JFrame {
                             .addComponent(label1))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(68, 68, 68)
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(195, 195, 195)
-                            .addComponent(confirm)))
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(72, Short.MAX_VALUE))
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(105, Short.MAX_VALUE)
+                    .addComponent(clear, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+                    .addGap(64, 64, 64)
+                    .addComponent(confirm, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+                    .addGap(113, 113, 113))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -71,10 +83,12 @@ public class LogScreen extends JFrame {
                     .addGap(36, 36, 36)
                     .addComponent(label1)
                     .addGap(18, 18, 18)
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(30, 30, 30)
-                    .addComponent(confirm)
-                    .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(clear, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(confirm, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(22, Short.MAX_VALUE))
         );
         setSize(500, 430);
         setLocationRelativeTo(getOwner());
@@ -87,5 +101,6 @@ public class LogScreen extends JFrame {
     private JList list1;
     private JLabel label1;
     private JButton confirm;
+    private JButton clear;
     // JFormDesigner - End of variables declaration //GEN-END:variables
 }

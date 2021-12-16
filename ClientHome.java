@@ -119,7 +119,7 @@ public class ClientHome extends JFrame {
                         String type = "SAVING";
                         if (!this.client.isAccountExist(type)) {
                                 this.client.createAccount(type);
-                                this.s.addLog(client.getUserName() + " created" + type);
+                                this.s.addLog(client.getUserName() + " created " + type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -131,7 +131,7 @@ public class ClientHome extends JFrame {
                         String type = "CHECKING";
                         if (this.client.isAccountExist(type) == false) {
                                 this.client.createAccount(type);
-                                this.s.addLog(client.getUserName() + " created" + type);
+                                this.s.addLog(client.getUserName() + " created " + type);
                                 JOptionPane.showMessageDialog(null, "Success! You have deposited 100 USD as required.",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -153,7 +153,7 @@ public class ClientHome extends JFrame {
                                                                 "Error", JOptionPane.ERROR_MESSAGE);
                                         } else if (this.client.getSavingAccount().getBalance() >= 500) {
                                                 this.client.createAccount(type);
-                                                this.s.addLog(client.getUserName() + " created" + type);
+                                                this.s.addLog(client.getUserName() + " created " + type);
                                                 JOptionPane.showMessageDialog(null,
                                                                 "Success! You have deposited 100 USD as required.",
                                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -173,7 +173,7 @@ public class ClientHome extends JFrame {
                         if (this.client.isAccountExist(type) == true) {
                                 if (this.client.getSavingAccount().getBalance() == 3) {
                                         this.client.closeAccount(type);
-                                        this.s.addLog(client.getUserName() + " closed" + type);
+                                        this.s.addLog(client.getUserName() + " closed " + type);
                                         JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
                                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
@@ -191,7 +191,7 @@ public class ClientHome extends JFrame {
                         if (this.client.isAccountExist(type) == true) {
                                 if (this.client.getCheckingAccount().getBalance() == 3) {
                                         this.client.closeAccount(type);
-                                        this.s.addLog(client.getUserName() + " closed" + type);
+                                        this.s.addLog(client.getUserName() + " closed " + type);
                                         JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
                                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
@@ -226,7 +226,7 @@ public class ClientHome extends JFrame {
         }
 
         private void buttonTransferPerformed(ActionEvent e) {
-                String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
                 if (result == null) {
                         System.out.println("You have canceled the operation");
@@ -265,7 +265,7 @@ public class ClientHome extends JFrame {
                         if (this.client.getCheckingAccount().getBalance() >= 500) {
                                 Money m = new Money("USD", this.client.getCheckingAccount().getBalance() * 2);
                                 this.client.getAccountManager().applyLoan(this.client.getCheckingAccount(), m);
-                                this.s.addLog(client.getUserName() + " loaned" + m.toString() + " to CHECKING");
+                                this.s.addLog(client.getUserName() + " loaned " + m.toString() + " to CHECKING");
                                 JOptionPane.showMessageDialog(null,
                                                 "Success! You loaned " + m.toString() + "to your Checking Account!",
                                                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -372,7 +372,7 @@ public class ClientHome extends JFrame {
                                                 .getLoan()) {
                                         Money m = new Money("USD", this.client.getCheckingAccount().getLoan());
                                         this.client.getAccountManager().payLoan(this.client.getCheckingAccount(), m);
-                                        this.s.addLog(client.getUserName() + " payed" + m.toString() + " to CHECKING");
+                                        this.s.addLog(client.getUserName() + " payed " + m.toString() + " to CHECKING");
                                         JOptionPane.showMessageDialog(null,
                                                         "Success! You payed " + m.toString()
                                                                         + "to your Checking Account!",
@@ -388,6 +388,15 @@ public class ClientHome extends JFrame {
                         JOptionPane.showMessageDialog(null, "Action failed! You don't have a Checking account.",
                                         "Error", JOptionPane.ERROR_MESSAGE);
                 }
+        }
+
+        private void thisWindowClosing(WindowEvent e) {
+                UserManager um = Admin.getInstance().getUserManager();
+                um.storeUsers();
+                BackupController.storeTime();
+                BackupController.storeStockMarket(Admin.getInstance().getStockController().getMarket());
+                SessionHandler.getInstance().writeLogs();
+                System.exit(0);
         }
 
         private void initComponents() {
@@ -409,162 +418,132 @@ public class ClientHome extends JFrame {
                 inquiryBalance = new JButton();
                 button11 = new JButton();
 
-                // ======== this ========
+                //======== this ========
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        thisWindowClosing(e);
+                    }
+                });
                 var contentPane = getContentPane();
 
-                // ---- label5 ----
+                //---- label5 ----
                 label5.setText("Username:");
 
-                // ---- label8 ----
+                //---- label8 ----
                 label8.setText("Please choose the business you want to do:");
 
-                // ---- button2 ----
+                //---- button2 ----
                 button2.setText("Create a new account");
                 button2.addActionListener(e -> buttonCreatAccountPerformed(e));
 
-                // ---- button4 ----
+                //---- button4 ----
                 button4.setText("Deposit");
                 button4.addActionListener(e -> button4ActionPerformed(e));
 
-                // ---- button3 ----
+                //---- button3 ----
                 button3.setText("Close a new account");
                 button3.addActionListener(e -> buttonCloseAccountPerformed(e));
 
-                // ---- button5 ----
+                //---- button5 ----
                 button5.setText("Withdraw");
                 button5.addActionListener(e -> buttonWithdrawPerformed(e));
 
-                // ---- button6 ----
+                //---- button6 ----
                 button6.setText("Transfer");
                 button6.addActionListener(e -> buttonTransferPerformed(e));
 
-                // ---- button7 ----
+                //---- button7 ----
                 button7.setText("Apply for loan");
                 button7.addActionListener(e -> buttonLoanPerformed(e));
 
-                // ---- button8 ----
+                //---- button8 ----
                 button8.setText("Trade stocks");
                 button8.addActionListener(e -> buttonTradeStockPerformed(e));
 
-                // ---- button9 ----
+                //---- button9 ----
                 button9.setText("Exchange");
                 button9.addActionListener(e -> buttonSwapPerformed(e));
 
-                // ---- button10 ----
+                //---- button10 ----
                 button10.setText("logout");
                 button10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                 button10.addActionListener(e -> buttonLogoutPerformed(e));
 
-                // ---- inquiryBalance ----
+                //---- inquiryBalance ----
                 inquiryBalance.setText("Check balance");
                 inquiryBalance.addActionListener(e -> inquiryBalanceActionPerformed(e));
 
-                // ---- button11 ----
+                //---- button11 ----
                 button11.setText("Repay loan");
                 button11.addActionListener(e -> buttonRepayloanPerformed(e));
 
                 GroupLayout contentPaneLayout = new GroupLayout(contentPane);
                 contentPane.setLayout(contentPaneLayout);
-                contentPaneLayout.setHorizontalGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
-                                .createSequentialGroup().addGap(38, 38, 38)
-                                .addGroup(contentPaneLayout.createParallelGroup().addGroup(
-                                                GroupLayout.Alignment.TRAILING,
-                                                contentPaneLayout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(label5)
-                                                                .addPreferredGap(
-                                                                                LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(realName).addGap(248, 248, 248)
-                                                                .addComponent(button10, GroupLayout.PREFERRED_SIZE, 81,
-                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(31, 31, 31))
-                                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                                                .addGroup(contentPaneLayout.createParallelGroup()
-                                                                                .addComponent(label8)
-                                                                                .addGroup(contentPaneLayout
-                                                                                                .createSequentialGroup()
-                                                                                                .addGroup(contentPaneLayout
-                                                                                                                .createParallelGroup()
-                                                                                                                .addComponent(button2,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button4,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button6,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button8,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button7,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE))
-                                                                                                .addGap(44, 44, 44)
-                                                                                                .addGroup(contentPaneLayout
-                                                                                                                .createParallelGroup()
-                                                                                                                .addComponent(button11,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button5,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button3,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(inquiryBalance,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                .addComponent(button9,
-                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                170,
-                                                                                                                                GroupLayout.PREFERRED_SIZE))))
-                                                                .addGap(0, 66, Short.MAX_VALUE)))));
-                contentPaneLayout.setVerticalGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
-                                .createSequentialGroup().addGap(9, 9, 9)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(label5).addComponent(realName).addComponent(button10,
-                                                                GroupLayout.PREFERRED_SIZE, 32,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                .addGap(17, 17, 17).addComponent(label8).addGap(18, 18, 18)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(button6, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(button8, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button9, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(button7, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button11, GroupLayout.PREFERRED_SIZE, 40,
-                                                                GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(31, Short.MAX_VALUE)));
+                contentPaneLayout.setHorizontalGroup(
+                    contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(label5)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(realName)
+                                    .addGap(248, 248, 248)
+                                    .addComponent(button10, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(31, 31, 31))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(label8)
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                            .addGroup(contentPaneLayout.createParallelGroup()
+                                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button6, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button8, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button7, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(44, 44, 44)
+                                            .addGroup(contentPaneLayout.createParallelGroup()
+                                                .addComponent(button11, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button9, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(0, 66, Short.MAX_VALUE))))
+                );
+                contentPaneLayout.setVerticalGroup(
+                    contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label5)
+                                .addComponent(realName)
+                                .addComponent(button10, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                            .addGap(17, 17, 17)
+                            .addComponent(label8)
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(button6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(button8, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button9, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(button7, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button11, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap(31, Short.MAX_VALUE))
+                );
                 setSize(490, 390);
                 setLocationRelativeTo(getOwner());
                 // JFormDesigner - End of component initialization //GEN-END:initComponents

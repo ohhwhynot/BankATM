@@ -59,12 +59,12 @@ public class ATMHome extends JFrame {
     }
 
     private void signUpPerformed(ActionEvent e) {
-        new SignUpScreen(admin).setVisible(true);// TODO add your code here
+        new SignUpScreen(admin).setVisible(true);
     }
 
     private void thisWindowClosing(WindowEvent e) {
-        System.out.println("ddddd");
-        // TODO add your code here
+        System.out.println("Exit!");
+        System.exit(0);
     }
 
     private void initComponents() {

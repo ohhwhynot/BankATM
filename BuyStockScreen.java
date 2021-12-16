@@ -19,11 +19,11 @@ public class BuyStockScreen extends JFrame {
     }
 
     private void cancelActionPerformed(ActionEvent e) {
-        this.dispose();// TODO add your code here
+        this.dispose();
     }
 
     private void confirmActionPerformed(ActionEvent e) {
-        // TODO add your code here
+
     }
 
     private void initComponents() {
