@@ -22,7 +22,16 @@ public abstract class Account {
         }
     }
 
-    public void convertTo(int index, int index2) {
+    public void convertTo(int index, int index2, float amount) {
+        Money sellM = new Money(this.moneyList.get(index).getCountryCode(), amount);
+        Money buyM = new Money(this.moneyList.get(index2).getCountryCode(), (float) 0);
+        this.moneyList.get(index).subtractMoneyAmount(amount);
+        float buyUSD = amount / this.curr.getValue(sellM.getCountryCode());
+        float buyAmount = buyUSD * this.curr.getValue(buyM.getCountryCode());
+        this.moneyList.get(index2).addMoneyAmount(buyAmount);
+    }
+
+    public void convertAllTo(int index, int index2) {
         Money sellM = this.moneyList.get(index);
         Money buyM = this.moneyList.get(index2);
         float sellAmount = sellM.getMoneyAmount();
@@ -34,7 +43,7 @@ public abstract class Account {
 
     public void convertAllToUSD() {
         for (int i = moneyList.size() - 1; i >= 0; i--) {
-            convertTo(i, 0);
+            convertAllTo(i, 0);
         }
     }
 
