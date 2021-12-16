@@ -14,7 +14,7 @@ public class AccountManager {
         float fee = calculateFee(m);
         m.setMoney(fee);
         a.removeMoney(m);
-        // admin action
+        Admin.getInstance().addMoney(new Money("USD", fee));
         return a;
     }
 
@@ -29,7 +29,7 @@ public class AccountManager {
         m.setMoney(transfer);
         outAcc.removeMoney(m);
         inAcc.addMoney(m);
-        // admin action
+        Admin.getInstance().addMoney(new Money("USD", fee));
     }
 
     public void withdraw(Account a, Money m) {
@@ -37,7 +37,7 @@ public class AccountManager {
         float totalCharge = fee + m.getMoneyAmount();
         m.setMoney(totalCharge);
         a.removeMoney(m);
-        // admin action
+        Admin.getInstance().addMoney(new Money("USD", fee));
     }
 
     public void deposit(Account a, Money m) {
@@ -45,18 +45,19 @@ public class AccountManager {
         float totalCharge = m.getMoneyAmount() - fee;
         m.setMoney(totalCharge);
         a.addMoney(m);
+        Admin.getInstance().addMoney(new Money("USD", fee));
     }
 
     public void payInterest(SavingAccount a) {
         int datediff = TimeController.getDaysDifference(a.getDate(), TimeController.getCurDate());
         a.addMoney(new Money("USD", a.interestCalculation(datediff)));
-        // admin action
+        Admin.getInstance().removeMoney(new Money("USD", a.interestCalculation(datediff)));
     }
 
     public void applyLoan(CheckingAccount a, Money m) {
         float chargeFromAdmin = m.getMoneyAmount();
         a.loan(m);
-        // admin action
+        Admin.getInstance().removeMoney(new Money("USD", chargeFromAdmin));
     }
 
     public void payLoan(CheckingAccount a, Money m) {
@@ -64,7 +65,7 @@ public class AccountManager {
         float addToAdmin = m.getMoneyAmount();
         a.removeMoney(m);
         a.clearLoan();
-        // admin action
+        Admin.getInstance().addMoney(new Money("USD", addToAdmin));
     }
 
     public void save(Account a, Money m) {
