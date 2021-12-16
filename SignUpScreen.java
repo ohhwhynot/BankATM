@@ -37,6 +37,7 @@ public class SignUpScreen extends JFrame {
             um.addUser(client);
             JOptionPane.showMessageDialog(null, "You have successfully signud up", "Success", JOptionPane.INFORMATION_MESSAGE);
             um.storeUsers();
+            SessionHandler.getInstance().addLog("Client " + username + " signed up successfully");
             this.dispose();
         }
     }

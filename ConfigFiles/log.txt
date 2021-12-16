@@ -1,1 +1,2 @@
 2020/1/3 10:00 Client xdgao bought 3shares of Stark stocks at 33.0 USD each
+2020/1/1 12:00 Client gja log in successfully

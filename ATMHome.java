@@ -33,6 +33,7 @@ public class ATMHome extends JFrame {
                     // Client client = new Client(user.getUserName(), user.getPassword(), admin);
                     Client client = (Client) user;
                     if(client.matchPassword(passWord)) {
+                        SessionHandler.getInstance().addLog("Client " + username + " log in successfully");
                         ClientHome ch = new ClientHome(client);
                         ch.setVisible(true);
                         this.dispose();
@@ -42,6 +43,7 @@ public class ATMHome extends JFrame {
                 }
             } else {
                 if (admin.matchPassword(passWord)) {
+                    SessionHandler.getInstance().addLog("Admin " + username + " log in successfully");
                     new AdminScreen().setVisible(true);
                     this.dispose();
                 } else {

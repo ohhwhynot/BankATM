@@ -32,6 +32,7 @@ public class AdminScreen extends JFrame {
                 UserManager um = admin.getUserManager();
                 float balance = um.getTotalBalance();
                 JOptionPane.showMessageDialog(null, "Total Balance: " + balance, "Balance", JOptionPane.INFORMATION_MESSAGE);
+                SessionHandler.getInstance().addLog("Admin " + admin.getUserName() + " checked balanced");
         }
 
         private void checkLogsActionPerformed(ActionEvent e) {
