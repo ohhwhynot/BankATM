@@ -20,7 +20,7 @@ public class ATMHome extends JFrame {
 
     private void button2ActionPerformed(ActionEvent e) {
         String username = textField1.getText();
-        String passWord = passwordField1.getText();
+        String passWord = String.valueOf(passwordField1.getPassword());
         if (true) { // a function to check user
             textField1.setText(null);
             passwordField1.setText(null);

@@ -36,7 +36,7 @@ class UserManager {
             line = br.readLine();
             if (line != null) {
                 String[] strs = line.split(" ");
-                Client client = new Client(strs[0], strs[1], admin);\
+                Client client = new Client(strs[0], strs[1], admin);
                 line = br.readLine();
                 while (line != null) {
                     strs = line.split(" ");
