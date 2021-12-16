@@ -30,9 +30,11 @@ public class ClientHome extends JFrame {
 
         private void button4ActionPerformed(ActionEvent e) {
                 // deposit
-                String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
+                String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
@@ -50,9 +52,7 @@ public class ClientHome extends JFrame {
                         } else if (this.client.isAccountExist(type) == true) {
                                 new DepositWithdrawScreen(true, client, type).setVisible(true);
                         }
-                } else if(result.equals(null)){
-
-                }else {
+                } else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
@@ -77,7 +77,9 @@ public class ClientHome extends JFrame {
         private void buttonWithdrawPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
@@ -95,9 +97,7 @@ public class ClientHome extends JFrame {
                         } else if (this.client.isAccountExist(type) == true) {
                                 new DepositWithdrawScreen(false, client, type).setVisible(true);
                         }
-                } else if(result.equals(null)){
-
-                } else{
+                } else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == false) {
                                 JOptionPane.showMessageDialog(null,
@@ -112,7 +112,9 @@ public class ClientHome extends JFrame {
         private void buttonCreatAccountPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == false) {
                                 this.client.createAccount(type);
@@ -136,13 +138,13 @@ public class ClientHome extends JFrame {
                                                 "Creation failed! You already have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else if (result.equals("Securities Account")) {
+                } else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == false) {
                                 if (this.client.isAccountExist("SAVING") == false) {
                                         JOptionPane.showMessageDialog(null,
-                                                        "Creation failed! You need to have a saving account.",
-                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                                        "Creation failed! You need to have a saving account.", "Error",
+                                                        JOptionPane.ERROR_MESSAGE);
                                 } else if (this.client.isAccountExist("SAVING") == true) {
                                         if (this.client.getSavingAccount().getBalance() < 5000) {
                                                 JOptionPane.showMessageDialog(null,
@@ -157,15 +159,15 @@ public class ClientHome extends JFrame {
                                         }
                                 }
                         }
-                }else {
-
                 }
         }
 
         private void buttonCloseAccountPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == true) {
                                 if (this.client.getSavingAccount().getBalance() == 3) {
@@ -201,25 +203,23 @@ public class ClientHome extends JFrame {
                                                 "Removal failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else if (result.equals("Securities Account")) {
-                        String type = "STOCK";
-                         if (this.client.isAccountExist("STOCK") == true) {
-                         if (this.client.getStockAccount().getBalance() == 3&&this.client.getStockAccount().getStocks().isEmpty()) {
-                                this.client.closeAccount("STOCK");
-                                JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
-                         "Success", JOptionPane.INFORMATION_MESSAGE);
-                         } else {
-                         JOptionPane.showMessageDialog(null,
-                         "Removal failed! Please leave only 3 dollars in your account as closing fee and clear your stocks.", "Error",
-                         JOptionPane.ERROR_MESSAGE);
-                         }
-                         } else {
-                         JOptionPane.showMessageDialog(null,
-                         "Removal failed! You don't have this type of account.", "Error",
-                         JOptionPane.ERROR_MESSAGE);
-                         }
-                }else {
-                        System.out.println("?????");
+                } else {
+                        if (this.client.isAccountExist("STOCK") == true) {
+                                if (this.client.getStockAccount().getBalance() == 3
+                                                && this.client.getStockAccount().getStocks().isEmpty()) {
+                                        this.client.closeAccount("STOCK");
+                                        JOptionPane.showMessageDialog(null, "Success! You have closed this account.",
+                                                        "Success", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                        JOptionPane.showMessageDialog(null,
+                                                        "Removal failed! Please leave only 3 dollars in your account as closing fee and clear your stocks.",
+                                                        "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                        } else {
+                                JOptionPane.showMessageDialog(null,
+                                                "Removal failed! You don't have this type of account.", "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
                 }
 
         }
@@ -227,7 +227,9 @@ public class ClientHome extends JFrame {
         private void buttonTransferPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };// todo
                 String result = getSelectedAccount(options);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == true) {
                                 new TransferScreen(this.client.getSavingAccount(), client).setVisible(true);
@@ -245,9 +247,7 @@ public class ClientHome extends JFrame {
                                                 "Action failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                }else if(result.equals(null)){
-
-                } else{
+                } else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == true) {
                                 new TransferScreen(this.client.getStockAccount(), client).setVisible(true);
@@ -280,13 +280,12 @@ public class ClientHome extends JFrame {
         }
 
         private void buttonTradeStockPerformed(ActionEvent e) {
-                if(this.client.isAccountExist("STOCK")){
+                if (this.client.isAccountExist("STOCK")) {
                         new TradeStockScreen(client).setVisible(true);
 
-                }else{
-                        JOptionPane.showMessageDialog(null,
-                                "Action failed! You don't have a securities account!", "Error",
-                                JOptionPane.ERROR_MESSAGE);
+                } else {
+                        JOptionPane.showMessageDialog(null, "Action failed! You don't have a securities account!",
+                                        "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
         }
@@ -294,7 +293,9 @@ public class ClientHome extends JFrame {
         private void buttonSwapPerformed(ActionEvent e) {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == true) {
                                 new ExchangeScreen(client.getSavingAccount(), client).setVisible(true);
@@ -312,10 +313,7 @@ public class ClientHome extends JFrame {
                                                 "Action failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else if(result.equals(null)) {
-
-                }
-                else{
+                } else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == true) {
                                 new ExchangeScreen(client.getStockAccount(), client).setVisible(true);
@@ -331,7 +329,9 @@ public class ClientHome extends JFrame {
                 String[] options = { "Saving Account", "Checking Account", "Securities Account" };
                 String result = getSelectedAccount(options);
                 System.out.println(result);
-                if (result.equals("Saving Account")) {
+                if (result == null) {
+                        System.out.println("You have canceled the operation");
+                } else if (result.equals("Saving Account")) {
                         String type = "SAVING";
                         if (this.client.isAccountExist(type) == true) {
                                 new AccountInfoScreen(client.getSavingAccount(), client).setVisible(true);
@@ -349,9 +349,7 @@ public class ClientHome extends JFrame {
                                                 "Action failed! You don't have this type of account.", "Error",
                                                 JOptionPane.ERROR_MESSAGE);
                         }
-                } else if(result.equals(null)){
-
-                }else {
+                } else {
                         String type = "STOCK";
                         if (this.client.isAccountExist(type) == true) {
                                 new AccountInfoScreen(client.getStockAccount(), client).setVisible(true);
@@ -410,126 +408,162 @@ public class ClientHome extends JFrame {
                 inquiryBalance = new JButton();
                 button11 = new JButton();
 
-                //======== this ========
+                // ======== this ========
                 var contentPane = getContentPane();
 
-                //---- label5 ----
+                // ---- label5 ----
                 label5.setText("Username:");
 
-                //---- label8 ----
+                // ---- label8 ----
                 label8.setText("Please choose the business you want to do:");
 
-                //---- button2 ----
+                // ---- button2 ----
                 button2.setText("Create a new account");
                 button2.addActionListener(e -> buttonCreatAccountPerformed(e));
 
-                //---- button4 ----
+                // ---- button4 ----
                 button4.setText("Deposit");
                 button4.addActionListener(e -> button4ActionPerformed(e));
 
-                //---- button3 ----
+                // ---- button3 ----
                 button3.setText("Close a new account");
                 button3.addActionListener(e -> buttonCloseAccountPerformed(e));
 
-                //---- button5 ----
+                // ---- button5 ----
                 button5.setText("Withdraw");
                 button5.addActionListener(e -> buttonWithdrawPerformed(e));
 
-                //---- button6 ----
+                // ---- button6 ----
                 button6.setText("Transfer");
                 button6.addActionListener(e -> buttonTransferPerformed(e));
 
-                //---- button7 ----
+                // ---- button7 ----
                 button7.setText("Apply for loan");
                 button7.addActionListener(e -> buttonLoanPerformed(e));
 
-                //---- button8 ----
+                // ---- button8 ----
                 button8.setText("Trade stocks");
                 button8.addActionListener(e -> buttonTradeStockPerformed(e));
 
-                //---- button9 ----
+                // ---- button9 ----
                 button9.setText("Exchange");
                 button9.addActionListener(e -> buttonSwapPerformed(e));
 
-                //---- button10 ----
+                // ---- button10 ----
                 button10.setText("logout");
                 button10.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
                 button10.addActionListener(e -> buttonLogoutPerformed(e));
 
-                //---- inquiryBalance ----
+                // ---- inquiryBalance ----
                 inquiryBalance.setText("Check balance");
                 inquiryBalance.addActionListener(e -> inquiryBalanceActionPerformed(e));
 
-                //---- button11 ----
+                // ---- button11 ----
                 button11.setText("Repay loan");
                 button11.addActionListener(e -> buttonRepayloanPerformed(e));
 
                 GroupLayout contentPaneLayout = new GroupLayout(contentPane);
                 contentPane.setLayout(contentPaneLayout);
-                contentPaneLayout.setHorizontalGroup(
-                    contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(label5)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(realName)
-                                    .addGap(248, 248, 248)
-                                    .addComponent(button10, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(31, 31, 31))
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addComponent(label8)
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                            .addGroup(contentPaneLayout.createParallelGroup()
-                                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button6, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button8, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button7, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(44, 44, 44)
-                                            .addGroup(contentPaneLayout.createParallelGroup()
-                                                .addComponent(button11, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(button9, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))))
-                                    .addGap(0, 66, Short.MAX_VALUE))))
-                );
-                contentPaneLayout.setVerticalGroup(
-                    contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label5)
-                                .addComponent(realName)
-                                .addComponent(button10, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                            .addGap(17, 17, 17)
-                            .addComponent(label8)
-                            .addGap(18, 18, 18)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button8, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(button9, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button7, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(button11, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(31, Short.MAX_VALUE))
-                );
+                contentPaneLayout.setHorizontalGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
+                                .createSequentialGroup().addGap(38, 38, 38)
+                                .addGroup(contentPaneLayout.createParallelGroup().addGroup(
+                                                GroupLayout.Alignment.TRAILING,
+                                                contentPaneLayout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
+                                                                .addComponent(label5)
+                                                                .addPreferredGap(
+                                                                                LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(realName).addGap(248, 248, 248)
+                                                                .addComponent(button10, GroupLayout.PREFERRED_SIZE, 81,
+                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(31, 31, 31))
+                                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                                                .addGroup(contentPaneLayout.createParallelGroup()
+                                                                                .addComponent(label8)
+                                                                                .addGroup(contentPaneLayout
+                                                                                                .createSequentialGroup()
+                                                                                                .addGroup(contentPaneLayout
+                                                                                                                .createParallelGroup()
+                                                                                                                .addComponent(button2,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button4,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button6,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button8,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button7,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE))
+                                                                                                .addGap(44, 44, 44)
+                                                                                                .addGroup(contentPaneLayout
+                                                                                                                .createParallelGroup()
+                                                                                                                .addComponent(button11,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button5,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button3,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(inquiryBalance,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE)
+                                                                                                                .addComponent(button9,
+                                                                                                                                GroupLayout.PREFERRED_SIZE,
+                                                                                                                                170,
+                                                                                                                                GroupLayout.PREFERRED_SIZE))))
+                                                                .addGap(0, 66, Short.MAX_VALUE)))));
+                contentPaneLayout.setVerticalGroup(contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout
+                                .createSequentialGroup().addGap(9, 9, 9)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(label5).addComponent(realName).addComponent(button10,
+                                                                GroupLayout.PREFERRED_SIZE, 32,
+                                                                GroupLayout.PREFERRED_SIZE))
+                                .addGap(17, 17, 17).addComponent(label8).addGap(18, 18, 18)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button3, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(button6, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(inquiryBalance, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(button8, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button9, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(button7, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(button11, GroupLayout.PREFERRED_SIZE, 40,
+                                                                GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(31, Short.MAX_VALUE)));
                 setSize(490, 390);
                 setLocationRelativeTo(getOwner());
                 // JFormDesigner - End of component initialization //GEN-END:initComponents

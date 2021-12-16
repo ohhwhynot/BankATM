@@ -27,6 +27,8 @@ public class AccountInfoScreen extends JFrame {
                 if (a.getAccountType() == "CHECKING") {
                         label5.setText("" + client.getCheckingAccount().getLoan());
                 }
+                label1.setText("Username: " + this.client.getUserName());
+                label2.setText("Account type:" + this.account.getAccountType());
 
         }
 
