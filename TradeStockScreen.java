@@ -82,6 +82,7 @@ public class TradeStockScreen extends JFrame {
         totProfit = new JLabel();
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
+        label4 = new JLabel();
 
         //======== this ========
         setTitle("My stocks");
@@ -105,7 +106,7 @@ public class TradeStockScreen extends JFrame {
         label2.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
         //---- label3 ----
-        label3.setText("Total profit:");
+        label3.setText("Total unrealized profit:");
         label3.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
         //---- username ----
@@ -138,24 +139,13 @@ public class TradeStockScreen extends JFrame {
             scrollPane1.setViewportView(table1);
         }
 
+        //---- label4 ----
+        label4.setText("Total realized profit:  ");
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label1)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(username)
-                    .addGap(93, 93, 93)
-                    .addComponent(label2)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(balance, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-                    .addGap(51, 51, 51)
-                    .addComponent(label3)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-                    .addGap(71, 71, 71))
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
@@ -166,12 +156,31 @@ public class TradeStockScreen extends JFrame {
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(32, 32, 32)
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 581, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(40, Short.MAX_VALUE))
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label1)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(username)
+                    .addGap(93, 93, 93)
+                    .addComponent(label2)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(balance, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                    .addGap(51, 51, 51)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(label4)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(label3)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(31, 31, 31))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addGap(38, 38, 38)
+                    .addGap(12, 12, 12)
+                    .addComponent(label4)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label2)
                         .addComponent(label3)
@@ -185,7 +194,7 @@ public class TradeStockScreen extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(buy, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                         .addComponent(sell, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(38, Short.MAX_VALUE))
+                    .addContainerGap(39, Short.MAX_VALUE))
         );
         setSize(655, 435);
         setLocationRelativeTo(getOwner());
@@ -204,5 +213,6 @@ public class TradeStockScreen extends JFrame {
     private JLabel totProfit;
     private JScrollPane scrollPane1;
     private JTable table1;
+    private JLabel label4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class StockAccount extends Account {
     private ArrayList<HeldStock> stocks;
 
+
+
+    private float unrealizedProfit;
+
     public StockAccount() {
         super();
         this.moneyList = new ArrayList<Money>();
@@ -12,7 +16,7 @@ public class StockAccount extends Account {
         this.date = TimeController.getCurDate();
     }
 
-    public StockAccount(float usd, float eur, float cny, float jpy, int[] date) {
+    public StockAccount(float usd, float eur, float cny, float jpy, int[] date,float unrealizedProfit) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
@@ -24,8 +28,15 @@ public class StockAccount extends Account {
         this.addMoney(new Money("JPY", (float) jpy));
         this.date = new ATMDate();
         this.date.setDate(date);
+        this.unrealizedProfit = unrealizedProfit;
+    }
+    public float getUnrealizedProfit() {
+        return unrealizedProfit;
     }
 
+    public void setUnrealizedProfit(float unrealizedProfit) {
+        this.unrealizedProfit = unrealizedProfit;
+    }
     public boolean buyStock(int amount, Stock stock) {
         float totalPrice = (stock.getPrice()+2) * amount;
         if (totalPrice <= this.getBalance()) {
