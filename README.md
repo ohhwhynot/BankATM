@@ -1,7 +1,7 @@
 BankATM
 Compile and run commands:
-> javac Main.java
-> java Main
+javac Main.java
+java Main
 **************************************
 Class Description:
 Main:This is a main function for the program.
