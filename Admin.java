@@ -1,3 +1,11 @@
+/**
+ * @ClassName: Admin
+ * @Author: Juan Guang
+ * @Description: This class represent the Admin of our ATM and it has an account 
+ *              which all the fee he/she charged will be put into and 
+ *              loan to the client will be taken out from
+ * @Date: Dec 2021
+ */
 class Admin extends User {
 
     private Admin() {

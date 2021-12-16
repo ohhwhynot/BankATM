@@ -1,3 +1,9 @@
+/**
+ * @ClassName: Client
+ * @Author: Juan Guang
+ * @Description: This class represents a client. A Client have a list of accounts(checking, saving and stock) 
+ * @Date: Dec 2021
+ */
 class Client extends User {
     private AccountManager m;
 
