@@ -18,7 +18,6 @@ class UserManager {
         else {
             for (int i=0; i< userfiles.length; i++) {
                 String filename = userfiles[i];
-                System.out.println(filename);
                 clients.add(loadClient(dirname+"/"+filename));
             }
         }
@@ -37,8 +36,7 @@ class UserManager {
             line = br.readLine();
             if (line != null) {
                 String[] strs = line.split(" ");
-                Client client = new Client(strs[0], strs[1], admin);
-                System.out.println(client.getUserName());
+                Client client = new Client(strs[0], strs[1], admin);\
                 line = br.readLine();
                 while (line != null) {
                     strs = line.split(" ");
@@ -62,7 +60,6 @@ class UserManager {
                         SavingAccount acc = new SavingAccount(usd, eur, cny, jpy, date);
                         client.addAccount(acc);
                     } else if (strs[0].equalsIgnoreCase("STOCK")) {
-                        System.out.println(line);
                         float unrealizedProfit = Float.parseFloat(strs[7]);
                         StockAccount acc = new StockAccount(usd, eur, cny, jpy, date, unrealizedProfit);
                         
@@ -125,14 +122,12 @@ class UserManager {
             
             try {
                 String username = user.getUserName();
-                System.out.println(username);
                 File writename = new File("./Users/" + username + ".txt");
                 writename.createNewFile();
                 BufferedWriter out = new BufferedWriter(new FileWriter(writename));
                 String userInfo = user.toString() + "\n";
                 out.write(userInfo);
                 for (Account acc : user.getAccounts()) {
-                    System.out.println(acc);
                     out.write(acc.toString() + "\n");
                 }
                 out.flush();
