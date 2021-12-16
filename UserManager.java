@@ -62,9 +62,11 @@ class UserManager {
                         SavingAccount acc = new SavingAccount(usd, eur, cny, jpy, date);
                         client.addAccount(acc);
                     } else if (strs[0].equalsIgnoreCase("STOCK")) {
-                        StockAccount acc = new StockAccount(usd, eur, cny, jpy, date);
+                        System.out.println(line);
+                        float unrealizedProfit = Float.parseFloat(strs[7]);
+                        StockAccount acc = new StockAccount(usd, eur, cny, jpy, date, unrealizedProfit);
                         
-                        for(int i = 7; i < strs.length; i++) {
+                        for(int i = 8; i < strs.length; i++) {
                             
                             if(strs[i].length() > 1) {
                                 String[] stockInfo = strs[i].split("\\|");
