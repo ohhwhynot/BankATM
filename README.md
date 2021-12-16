@@ -1,11 +1,11 @@
-BankATM
+###BankATM
 
 Compile and run commands:\
 javac Main.java\
 java Main
 **************************************
 Class Description:\
-Main:This is a main function for the program.\
+Main:This is a main function for the program.\Cancel changes
 UserManager: This class manage all the users and contains functions of loading and storing all the users\
 User: This class is the parent class of Admin and Client. It contains some coexisting fields         i.e. username password and accounts\
 Admin: This class represent the Admin of our ATM and it has an account which all the fee he/she charged will be put into and loan to the client will be taken out from\
