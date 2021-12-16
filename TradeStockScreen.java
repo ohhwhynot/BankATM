@@ -24,14 +24,16 @@ public class TradeStockScreen extends JFrame {
         DefaultTableModel model =  Admin.getInstance().getStockController().getView().getTableModel_7(client.getStockAccount());
         table1.setModel(model);
         balance.setText(Float.toString(client.getStockAccount().getBalance()));
-        totProfit.setText(Float.toString(Admin.getInstance().getStockController().getView().getTotProfits(client.getStockAccount())));
+        totUnProfit.setText(Float.toString(Admin.getInstance().getStockController().getView().getTotProfits(client.getStockAccount())));
+        totRProfit.setText(Float.toString(client.getStockAccount().getRealizedProfit()));
     }
 
     public void refresh(){
         DefaultTableModel model =  Admin.getInstance().getStockController().getView().getTableModel_7(client.getStockAccount());
         table1.setModel(model);
         balance.setText(Float.toString(stockAccount.getBalance()));
-        totProfit.setText(Float.toString(Admin.getInstance().getStockController().getView().getTotProfits(client.getStockAccount())));
+        totUnProfit.setText(Float.toString(Admin.getInstance().getStockController().getView().getTotProfits(client.getStockAccount())));
+        totRProfit.setText(Float.toString(client.getStockAccount().getRealizedProfit()));
     }
 
     private void buyActionPerformed(ActionEvent e) {
@@ -79,10 +81,11 @@ public class TradeStockScreen extends JFrame {
         label3 = new JLabel();
         username = new JLabel();
         balance = new JLabel();
-        totProfit = new JLabel();
+        totUnProfit = new JLabel();
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         label4 = new JLabel();
+        totRProfit = new JLabel();
 
         //======== this ========
         setTitle("My stocks");
@@ -117,9 +120,9 @@ public class TradeStockScreen extends JFrame {
         balance.setText("0");
         balance.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
-        //---- totProfit ----
-        totProfit.setText("0");
-        totProfit.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
+        //---- totUnProfit ----
+        totUnProfit.setText("0");
+        totUnProfit.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
         //======== scrollPane1 ========
         {
@@ -141,6 +144,10 @@ public class TradeStockScreen extends JFrame {
 
         //---- label4 ----
         label4.setText("Total realized profit:  ");
+
+        //---- totRProfit ----
+        totRProfit.setText("0");
+        totRProfit.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -168,25 +175,30 @@ public class TradeStockScreen extends JFrame {
                     .addComponent(balance, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
                     .addGap(51, 51, 51)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(label4)
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(label3)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(totProfit, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(31, 31, 31))
+                            .addComponent(totUnProfit, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(label4)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(totRProfit, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(30, 30, 30))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addGap(12, 12, 12)
-                    .addComponent(label4)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label4)
+                        .addComponent(totRProfit))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label2)
                         .addComponent(label3)
                         .addComponent(label1)
                         .addComponent(username)
-                        .addComponent(totProfit)
+                        .addComponent(totUnProfit)
                         .addComponent(balance))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
@@ -210,9 +222,10 @@ public class TradeStockScreen extends JFrame {
     private JLabel label3;
     private JLabel username;
     private JLabel balance;
-    private JLabel totProfit;
+    private JLabel totUnProfit;
     private JScrollPane scrollPane1;
     private JTable table1;
     private JLabel label4;
+    private JLabel totRProfit;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:149:p, comp buy:::p:110:p, space :p:135:p, comp sell:::p:110:p}, seq l {space :p:32:p, comp scrollPane1:::p:581:p}}, space :::x}, seq t {space :::x, comp label1:::p::p, space :::p, comp username:::p::p, space :p:93:p, comp label2:::p::p, space :::p, comp balance:::p:86:p, space :p:51:p, par l {comp label4:::p::p, seq {comp label3:::p::p, space :::p, comp totProfit:::p:79:p}}, space :p:31:p}}"
-			"$verticalGroup": "par l {seq t {space :p:12:p, comp label4:::p::p, space :::p, par b {comp label2::b:p::p, comp label3::b:p::p, comp label1::b:p::p, comp username::b:p::p, comp totProfit::b:p::p, comp balance::b:p::p}, space u:::p, comp scrollPane1:::p:226:p, space u:::p, par b {comp buy::b:p:50:p, comp sell::b:p:50:p}, space ::39:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:149:p, comp buy:::p:110:p, space :p:135:p, comp sell:::p:110:p}, seq l {space :p:32:p, comp scrollPane1:::p:581:p}}, space :::x}, seq t {space :::x, comp label1:::p::p, space :::p, comp username:::p::p, space :p:93:p, comp label2:::p::p, space :::p, comp balance:::p:86:p, space :p:51:p, par l {seq l {comp label3:::p::p, space :::p, comp totUnProfit:::p:79:p}, seq l {comp label4:::p::p, space :::p, comp totRProfit:::p:79:p}}, space :p:30:p}}"
+			"$verticalGroup": "par l {seq t {space :p:12:p, par b {comp label4::b:p::p, comp totRProfit::b:p::p}, space :::p, par b {comp label2::b:p::p, comp label3::b:p::p, comp label1::b:p::p, comp username::b:p::p, comp totUnProfit::b:p::p, comp balance::b:p::p}, space u:::p, comp scrollPane1:::p:226:p, space u:::p, par b {comp buy::b:p:50:p, comp sell::b:p:50:p}, space ::39:x}}"
 		} ) {
 			name: "this"
 			"title": "My stocks"
@@ -47,7 +47,7 @@ new FormModel {
 				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "totProfit"
+				name: "totUnProfit"
 				"text": "0"
 				"font": #Font0
 			} )
@@ -138,6 +138,11 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label4"
 				"text": "Total realized profit:  "
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "totRProfit"
+				"text": "0"
+				"font": #Font0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 80, 35 )

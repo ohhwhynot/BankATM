@@ -5,7 +5,7 @@ public class StockAccount extends Account {
 
 
 
-    private float unrealizedProfit = 0;
+    private float realizedProfit = 0;
 
     public StockAccount() {
         super();
@@ -16,7 +16,7 @@ public class StockAccount extends Account {
         this.date = TimeController.getCurDate();
     }
 
-    public StockAccount(float usd, float eur, float cny, float jpy, int[] date,float unrealizedProfit) {
+    public StockAccount(float usd, float eur, float cny, float jpy, int[] date,float realizedProfit) {
         super();
         this.moneyList = new ArrayList<Money>();
         this.curr = new Currency();
@@ -28,14 +28,14 @@ public class StockAccount extends Account {
         this.addMoney(new Money("JPY", (float) jpy));
         this.date = new ATMDate();
         this.date.setDate(date);
-        this.unrealizedProfit = unrealizedProfit;
+        this.realizedProfit = realizedProfit;
     }
-    public float getUnrealizedProfit() {
-        return unrealizedProfit;
+    public float getRealizedProfit() {
+        return realizedProfit;
     }
 
-    public void setUnrealizedProfit(float unrealizedProfit) {
-        this.unrealizedProfit = unrealizedProfit;
+    public void setRealizedProfit(float unrealizedProfit) {
+        this.realizedProfit = unrealizedProfit;
     }
     public boolean buyStock(int amount, Stock stock) {
         float totalPrice = (stock.getPrice()+2) * amount;
@@ -71,6 +71,7 @@ public class StockAccount extends Account {
             if (hs.getStock().getName().equals(stock.getName())) {
                 hs.setAmount(hs.getAmount() - amount);
                 this.moneyList.get(0).addMoneyAmount(totalPrice-amount*fee);
+                this.setRealizedProfit(this.getRealizedProfit()+ (totalPrice-(fee+hs.getCost())*amount));
                 Admin.getInstance().addMoney(new Money("USD", (float) (fee*amount)));
             }
         }
@@ -109,7 +110,7 @@ public class StockAccount extends Account {
         return String.format("STOCK %s %.2f %.2f %.2f %.2f %.2f %s", this.date.toString(),
                 this.moneyList.get(0).getMoneyAmount(), this.moneyList.get(1).getMoneyAmount(),
                 this.moneyList.get(2).getMoneyAmount(), this.moneyList.get(3).getMoneyAmount(),
-                this.unrealizedProfit, str.toString());
+                this.realizedProfit, str.toString());
     }
 
 }
