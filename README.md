@@ -24,7 +24,7 @@ ATMHome: This is a home screen for all users to sign up and log in.\
 ClientHome: This is a home screen for a client. A client can choose their action.\
 AdminScreen: This is a home screen for the admin. The admin can choose his action like updating stocks.\
 AccountInfoScreen,addStockScreen,DepositWithdrawScreen,ExchangeScreen, LogScreen, SignUpScreen,StocksMarketScreen,TimeScreen,\
-TradeStockScreen,TransferScreen \
+TradeStockScreen,TransferScreen 
 
 Account: This is an abstract class for all three types of accounts, it has basic getters and setters, and common method for all three class like convertion.\
 SavingAccount: Extension of account class, have the ability to calculate interest.\
@@ -34,4 +34,4 @@ AccountManager: This class uses factory pattern to create accounts, it also acts
  deposit, transfer between accounts and apply for loan.\
 AccountFactory: The factory class for accounts, take a string and return a new account.\
 Currency: Represent real world currency with convertion value.\
-Money: Represent real world dollar bill with country code and face value.\
+Money: Represent real world dollar bill with country code and face value.
