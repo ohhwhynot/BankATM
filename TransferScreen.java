@@ -72,14 +72,22 @@ public class TransferScreen extends JFrame {
                     }
                 } else {
                     if (this.client.isAccountExist("STOCK") == true) {
-                        if (account.getCurrMoney(curr) >= amount) {
-                            client.getAccountManager().transferMoney(this.account, this.client.getStockAccount(), m);
-                            this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
-                                    + this.account.getAccountType() + " to STOCK");
-                            JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
-                                    JOptionPane.INFORMATION_MESSAGE);
+                        if (this.account.getAccountType() == "SAVING") {
+                            if (account.getCurrMoney(curr) >= amount && amount >= 1000
+                                    && this.client.getSavingAccount().getBalance() - amount >= 2500) {
+                                client.getAccountManager().transferMoney(this.account, this.client.getStockAccount(),
+                                        m);
+                                this.s.addLog(client.getUserName() + " transfered" + m.toString() + " from "
+                                        + this.account.getAccountType() + " to STOCK");
+                                JOptionPane.showMessageDialog(null, "Success! You action is completed.", "Success",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Action failed! Insufficient balance.", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Action failed! Insufficient balance.", "Error",
+                            JOptionPane.showMessageDialog(null,
+                                    "Action failed! You have to transfer from Saving Account.", "Error",
                                     JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
