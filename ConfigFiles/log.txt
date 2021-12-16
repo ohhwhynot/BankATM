@@ -23,4 +23,7 @@
 2020/1/29 62:00 Client xdgao log in successfully
 2020/1/30 66:00 Client xdgao log in successfully
 2020/1/31 66:00 Client xdgao sold 11 shares of Edison stocks at 23.0 USD each
-2020/1/38 78:00 Client gja log in successfully
+2020/1/38 86:00 Client xdgao log in successfully
+2020/1/39 76:00 xdgao loaned2349.34 USD to CHECKING
+2020/1/40 86:00 xdgao payed2349.34 USD to CHECKING
+2020/1/41 84:00 xdgao loaned2349.3403 USD to CHECKING

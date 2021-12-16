@@ -25,14 +25,13 @@ public class SignUpScreen extends JFrame {
 
     private void signUpPerformed(ActionEvent e) {
         String username = UsernameF.getText();
-        String password = passwordField1.getText();
-        String passwordC = passwordField2.getText();
+        String password = String.valueOf(passwordField1.getPassword());
+        String passwordC = String.valueOf(passwordField2.getPassword());
         if (um.checkDuplicateName(username) || username.equals(admin.getUserName())) { // check if existed
             JOptionPane.showMessageDialog(null, "That username is taken", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!password.equals(passwordC)) {
             JOptionPane.showMessageDialog(null, "Those passwords didn’t match", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            // todo sign
             Client client = new Client(username, password, Admin.getInstance());
             um.addUser(client);
             JOptionPane.showMessageDialog(null, "You have successfully signud up", "Success", JOptionPane.INFORMATION_MESSAGE);

@@ -1,5 +1,11 @@
 import java.util.*;
-
+/**
+ * @ClassName: User
+ * @Author: Juan Guang
+ * @Description: This class is the parent class of Admin and Client. It contains some coexisting fields
+ *                  i.e. username password and accounts
+ * @Date: Dec 2021
+ */
 class User {
     protected String userName;
     protected String password;

@@ -24,8 +24,27 @@ public class TimeController {
         int dayD = (int)hourD/24;
         int monthD = dayD/30;
         int yearD = monthD/12;
-        int[] dateTemp = {yearD+startDate.getYear(),monthD%12+startDate.getMonth(),dayD%30+startDate.getDay(),
-                (int)hourD%24+startDate.getHour()};
+        int[] dateTemp={0,0,0,0};
+        if(((int)hourD%24+startDate.getHour())>=24){
+            dateTemp[3] = ((int)hourD%24+startDate.getHour())%24;
+            dateTemp[2] = 1;
+        }else {
+            dateTemp[3] = (int)hourD%24+startDate.getHour();
+        }
+        if(((int)dayD%30+startDate.getDay())>30){
+            dateTemp[3] += ((int)dayD%30+startDate.getDay())%30;
+            dateTemp[2] = 1;
+        }else {
+            dateTemp[3] += (int)dayD%30+startDate.getDay();
+        }
+        if(((int)monthD%12+startDate.getMonth())>12){
+            dateTemp[2] += ((int)monthD%12+startDate.getMonth())%12;
+            dateTemp[1] = 1;
+        }else {
+            dateTemp[1] += (int)monthD%12+startDate.getMonth();
+        }
+        dateTemp[0] += yearD+startDate.getYear();
+
         curDate.setDate(dateTemp);
         ATMDate cur = curDate;
         return cur;

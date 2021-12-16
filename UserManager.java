@@ -1,6 +1,11 @@
 import java.io.*;
 import java.util.*;
-
+/**
+ * @ClassName: UserManager
+ * @Author: Juan Guang
+ * @Description: This class manage all the users and contains functions of loading and storing all the users
+ * @Date: Dec 2021
+ */
 class UserManager {
     // private String filename;
     private List<Client> clients;

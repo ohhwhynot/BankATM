@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 /**
  * @author Xudong Gao
  */
+@SuppressWarnings({"unchecked"})
 public class LogScreen extends JFrame {
     public LogScreen() {
         initComponents();
