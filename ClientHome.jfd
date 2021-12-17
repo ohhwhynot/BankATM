@@ -33,7 +33,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
-				"text": "Close a new account"
+				"text": "Close a account"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonCloseAccountPerformed", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {

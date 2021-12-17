@@ -443,7 +443,7 @@ public class ClientHome extends JFrame {
                 button4.addActionListener(e -> button4ActionPerformed(e));
 
                 //---- button3 ----
-                button3.setText("Close a new account");
+                button3.setText("Close a account");
                 button3.addActionListener(e -> buttonCloseAccountPerformed(e));
 
                 //---- button5 ----
